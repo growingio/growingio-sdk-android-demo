@@ -1,0 +1,123 @@
+plugins {
+    id 'com.android.application'
+
+    id 'com.google.dagger.hilt.android'
+
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
+
+    id 'com.google.devtools.ksp'
+
+    alias libs.plugins.protobuf
+
+    //id 'com.growingio.giokit'
+    id 'com.growingio.android.autotracker'
+}
+
+android {
+    namespace 'com.growingio.demo'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.growingio.demo"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+    sourceSets {
+        main {
+            proto {
+                srcDir 'src/main/proto'
+                include '**/*.proto'
+            }
+        }
+    }
+}
+
+growingAutotracker {
+    excludePackages "com.growingio.demo.ui.widgets.LogcatView"
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${libs.versions.protobuf.get()}"
+    }
+    generateProtoTasks {
+        all().configureEach { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
+    }
+}
+
+ksp {
+    arg("source.dir", "${projectDir}/src/main/assets/")
+}
+
+configurations {
+    cleanedAnnotations
+    implementation.exclude group: 'org.jetbrains', module: 'annotations'
+}
+
+dependencies {
+
+    implementation libs.bundles.androidx
+    implementation libs.bundles.lifecycle.viewmodel
+    implementation libs.bundles.navigation
+
+    implementation libs.google.material
+
+    implementation libs.androidx.splashscreen
+    implementation libs.hilt.library
+
+    implementation libs.kotlin.stdlib
+    implementation libs.kotlin.coroutines.core
+    implementation libs.kotlin.coroutines.android
+
+    implementation libs.androidx.datastore
+    implementation libs.protobuf.javalite
+    implementation libs.lottie
+
+    implementation libs.bundles.coil
+    implementation libs.bundles.markwon
+
+    kapt libs.hilt.compiler
+    kapt libs.androidx.lifecycle.compiler
+
+    testImplementation libs.junit
+    androidTestImplementation libs.bundles.androidx.test
+
+    implementation platform("com.growingio.android:autotracker-bom:${libs.versions.growingio.get()}")
+    implementation 'com.growingio.android:autotracker-cdp'
+    //implementation "com.growingio.giokit:giokit:1.3.0"
+
+    implementation project(path: ':code-annotation')
+    // https://github.com/google/ksp/issues/1280 waiting fix
+    // ksp project(path: ':code-annotation:processor')
+}

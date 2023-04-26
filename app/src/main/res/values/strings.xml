@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">GrowingIO</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="image_description_app">APP LOGO</string>
+    <string name="image_description_badge">SDK BADGE</string>
+
+    <string name="dialog_policy_title">用户协议与隐私政策提示</string>
+    <string name="dialog_policy_agree">同意并继续</string>
+    <string name="dialog_policy_disagree">不同意并退出</string>
+    <string name="dialog_policy_link_name">《隐私政策》</string>
+    <string name="dialog_policy_message">欢迎使用GrowingIO软件及服务！\n\n为使用GrowingIO软件（以下简称“本软件”）及服务，用户应当阅读并遵守本协议。请用户务必审慎阅读、充分理解本协议各条款内容，特别是免除或者限制责任的条款，以及开通或使用某项服务的单独协议，并选择接受或不接受。限制、免责条款将以加粗形式提示用户注意。\n\n为了维护用户的隐私权，请用户在下载、安装或使用本软件及相关服务前，务必认真阅读并透彻理解本协议所有条款，如果用户对本协议有任何疑问，可以通过 legal@growingio.com 与我们联系。\n\n用户的下载、安装、使用、登录等行为即视为已阅读并同意上述条款的约束。如果用户不同意本协议条款中任何内容，用户有权停止下载、安装或使用本软件及相关服务。</string>
+    <string name="dialog_policy_link">https://www.growingio.com/privacy.html</string>
+
+    <string name="navi_dashboard_title">功能</string>
+    <string name="navi_ui_title">界面</string>
+    <string name="navi_template_title">模版</string>
+
+    <string name="logcat">日志</string>
+    <string name="logcat_filter">Choose Log Level</string>
+    <string name="logcat_default_level">level:debug </string>
+    <string-array name="logcat_level_list" translatable="false">
+        <item>Verbose</item>
+        <item>Info</item>
+        <item>Debug</item>
+        <item>Warn</item>
+        <item>Error</item>
+    </string-array>
+
+    <string name="dashboard_android_sdk">Android SDK</string>
+    <string name="dashboard_doc">查看文档 >></string>
+    <string name="dashboard_doc_url">https://growingio.github.io/growingio-sdk-docs/docs/android</string>
+    <string name="dashboard_sdk_intro">SDK 功能介绍</string>
+    <string name="dashboard_sdk_slogan">帮助客户提升数据驱动能力，实现更好的增长。</string>
+    <string name="dashboard_sdk_version_badge">https://img.shields.io/github/v/release/growingio/growingio-sdk-android-autotracker</string>
+    <string name="dashboard_sdk_license_badge">https://img.shields.io/github/license/growingio/growingio-sdk-android-autotracker</string>
+    <string name="dashboard_sdk_platform_badge">https://img.shields.io/badge/platform-Android-brightgreen</string>
+    <string name="dashboard_sdk_codecov_badge">https://codecov.io/gh/growingio/growingio-sdk-android-autotracker/branch/master/graph/badge.svg?token=CRD807YQUX</string>
+    <string name="dashboard_sdk_repo">https://github.com/growingio/growingio-sdk-android-autotracker</string>
+
+    <string name="dashboard_page_intro">INTRO</string>
+    <string name="dashboard_page_code">CODE</string>
+
+    <string name="sdk_title_init">初始化</string>
+</resources>

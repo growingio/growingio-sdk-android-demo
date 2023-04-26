@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/logcat_background_color">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/logcatControl"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:maxEms="60"
+        app:boxBackgroundColor="?attr/colorOnPrimary"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="?attr/colorPrimaryInverse"
+        app:boxStrokeWidthFocused="1px"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@+id/logcatClear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/logcatFilter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:completionThreshold="1"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:paddingHorizontal="8dp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorTextBlack"
+            app:simpleItems="@array/logcat_level_list" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/logcatListDivider"
+        style="?attr/materialDividerStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/logcatControl" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logcatClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_logcat_clear"
+        app:layout_constraintBottom_toTopOf="@+id/logcatListDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/logcatList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:minHeight="320dp"
+        app:layout_constraintBottom_toTopOf="@+id/logcatDivider"
+        app:layout_constraintTop_toBottomOf="@id/logcatListDivider"
+        tools:itemCount="8"
+        tools:listitem="@layout/recycler_logcat_item" />
+
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/logcatDivider"
+        style="?attr/materialDividerStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/logcatList" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logcatDivider">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logcatClean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="8dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_logcat_remove" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logcatMaximize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:padding="4dp"
+            android:src="@drawable/ic_logcat_maximize" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logcatClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginStart="8dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_logcat_close" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

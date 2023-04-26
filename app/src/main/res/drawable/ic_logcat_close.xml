@@ -1,0 +1,35 @@
+<!--
+  ~   Copyright (c) - 2023 Beijing Yishu Technology Co., Ltd.
+  ~
+  ~   Licensed under the Apache License, Version 2.0 (the "License");
+  ~   you may not use this file except in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~   Unless required by applicable law or agreed to in writing, software
+  ~   distributed under the License is distributed on an "AS IS" BASIS,
+  ~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~   See the License for the specific language governing permissions and
+  ~   limitations under the License.
+  ~
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="25dp"
+    android:height="25dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M15,22.75H9C3.57,22.75 1.25,20.43 1.25,15V9C1.25,3.57 3.57,1.25 9,1.25H15C20.43,1.25 22.75,3.57 22.75,9V15C22.75,20.43 20.43,22.75 15,22.75ZM9,2.75C4.39,2.75 2.75,4.39 2.75,9V15C2.75,19.61 4.39,21.25 9,21.25H15C19.61,21.25 21.25,19.61 21.25,15V9C21.25,4.39 19.61,2.75 15,2.75H9Z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M14.83,14.09H10.59C10.18,14.09 9.84,13.75 9.84,13.34C9.84,12.93 10.18,12.59 10.59,12.59H14.08V9.1C14.08,8.69 14.42,8.35 14.83,8.35C15.24,8.35 15.58,8.69 15.58,9.1V13.34C15.58,13.76 15.24,14.09 14.83,14.09Z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M14.829,14.09C14.639,14.09 14.449,14.02 14.299,13.87L8.639,8.21C8.349,7.92 8.349,7.44 8.639,7.15C8.929,6.86 9.409,6.86 9.699,7.15L15.359,12.81C15.649,13.1 15.649,13.58 15.359,13.87C15.209,14.02 15.019,14.09 14.829,14.09Z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M12,18.23C9.89,18.23 7.77,17.89 5.76,17.22C5.37,17.09 5.16,16.66 5.29,16.27C5.42,15.88 5.85,15.66 6.24,15.8C9.96,17.04 14.05,17.04 17.77,15.8C18.16,15.67 18.59,15.88 18.72,16.27C18.85,16.66 18.64,17.09 18.25,17.22C16.23,17.9 14.11,18.23 12,18.23Z"
+      android:fillColor="#ffffff"/>
+</vector>

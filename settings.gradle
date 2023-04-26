@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+enableFeaturePreview("VERSION_CATALOGS")
+
+rootProject.name = "Demo"
+include ':app'
+include ':code-annotation'
+include ':code-annotation:processor'

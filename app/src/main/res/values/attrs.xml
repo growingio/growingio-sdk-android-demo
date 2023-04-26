@@ -1,0 +1,6 @@
+
+<resources>
+    <attr name="colorTextBlack" format="color" />
+    <attr name="colorTextWhite" format="color" />
+    <attr name="colorTextGray" format="color" />
+</resources>
