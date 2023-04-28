@@ -71,7 +71,7 @@ class SdkUserLoginFragment : PageFragment<FragmentUserLoginBinding>() {
 
         loadAssetCode(this)
 
-        setDefaultLogFilter("level:debug user")
+        setDefaultLogFilter("level:debug userid")
     }
 
     override fun onDestroy() {
