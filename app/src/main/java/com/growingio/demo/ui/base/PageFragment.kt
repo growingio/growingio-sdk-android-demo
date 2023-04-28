@@ -172,6 +172,10 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
         return transform
     }
 
+    fun setDefaultLogFilter(text: String) {
+        binding.logcatView.setDefaultLogFilter(text)
+    }
+
     private fun showLogcatView() {
         val transition = buildContainerTransform(true)
         transition.startView = binding.logcatFab

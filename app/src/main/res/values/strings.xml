@@ -42,5 +42,16 @@
     <string name="dashboard_page_intro">INTRO</string>
     <string name="dashboard_page_code">CODE</string>
 
-    <string name="sdk_title_init">初始化</string>
+    <string name="sdk_log_hint">可以打开右下角的 Logcat 查看SDK的运行日志。</string>
+    <string name="sdk_init_title">初始化</string>
+    <string name="sdk_filter_title">事件过滤</string>
+    <string name="sdk_filter_event_type">拦截用户属性事件</string>
+    <string name="sdk_filter_event_type_action">发送用户属性事件</string>
+    <string name="sdk_filter_event_path">根据页面路径拦截事件,\n如PAGE事件或VIEW_CLICK事件</string>
+    <string name="sdk_filter_event_path_action">发送点击事件</string>
+    <string name="sdk_filter_event_name">根据事件名称拦截自定义事件</string>
+    <string name="sdk_filter_event_name_action">发送自定义事件</string>
+    <string name="sdk_filter_field">过滤事件的基本属性</string>
+    <string name="sdk_filter_field_action">过滤Language属性</string>
+    <string name="sdk_user_login">用户登录</string>
 </resources>

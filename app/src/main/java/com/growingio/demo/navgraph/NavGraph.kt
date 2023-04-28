@@ -43,6 +43,7 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
 
     object SdkInitPage : PageNav(FragmentNav.DashBoard, "init")
     object SdkEventFilterPage : PageNav(FragmentNav.DashBoard, "eventFilter")
+    object SdkUserLoginPage : PageNav(FragmentNav.DashBoard, "userLogin")
 
     object LinkArticlePage : PageNav(FragmentNav.Home, params = arrayListOf("noteId")) {
         fun toNoteUrl(noteId: Long): String {

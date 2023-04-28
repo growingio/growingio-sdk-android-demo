@@ -41,6 +41,7 @@ class CodeProcessor(
             SourceCode::class.qualifiedName ?: "com.growingio.code.annotation.SourceCode"
         ).filterIsInstance<KSFunctionDeclaration>()
 
+
         logger.info("start code processor!")
 
         symbols.forEach { function ->
@@ -103,6 +104,7 @@ class CodeProcessor(
         if (fileDir.exists()) {
             fileDir.mkdirs()
         }
+        //delete all
         fileDir.listFiles { _, name -> name.endsWith(".code") }?.forEach { it.delete() }
 
         sourceCodeList.groupBy { code ->

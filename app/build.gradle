@@ -81,7 +81,6 @@ ksp {
 }
 
 configurations {
-    cleanedAnnotations
     implementation.exclude group: 'org.jetbrains', module: 'annotations'
 }
 
@@ -119,5 +118,5 @@ dependencies {
 
     implementation project(path: ':code-annotation')
     // https://github.com/google/ksp/issues/1280 waiting fix
-    // ksp project(path: ':code-annotation:processor')
+    //ksp project(path: ':code-annotation:processor')
 }

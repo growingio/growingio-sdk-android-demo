@@ -123,6 +123,11 @@ class LogcatView @JvmOverloads constructor(
 
     }
 
+    fun setDefaultLogFilter(text: String) {
+        filterTv.setText(text, false)
+    }
+
+
     private fun switchHeight() {
         if (parent !is ConstraintLayout) return
         layoutParams = if (isMaximize) getMinimizeHeightLayoutParams()
@@ -189,7 +194,7 @@ class LogcatView @JvmOverloads constructor(
             'd' -> Log.DEBUG
             'w' -> Log.WARN
             'e' -> Log.ERROR
-            else -> Log.DEBUG
+            else -> Log.VERBOSE
         }
     }
 
@@ -294,7 +299,7 @@ class LogcatView @JvmOverloads constructor(
             @SuppressLint("SetTextI18n")
             fun bind(item: GrowingIOLoggerItem) {
                 //2023-06-12 20:00:00.614
-                logTime.text = SimpleDateFormat("yyyy-MM-DD hh:mm:ss.SSS", Locale.getDefault()).format(item.time)
+                logTime.text = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()).format(item.time)
                 logTag.text = "[${item.tag}]"
                 logMessage.text = item.msg
                 when (item.level) {

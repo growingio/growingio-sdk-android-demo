@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.demo.R
 import com.growingio.demo.databinding.FragmentEventFilterBinding
+import com.growingio.demo.databinding.FragmentUserLoginBinding
 import com.growingio.demo.ui.base.PageFragment
 import com.growingio.demo.util.GrowingIOManager
 import com.growingio.demo.util.MarkwonManager
@@ -36,15 +37,10 @@ import javax.inject.Inject
  * @author cpacm 2023/4/20
  */
 @AndroidEntryPoint
-class SdkEventFilterFragment : PageFragment<FragmentEventFilterBinding>() {
+class SdkUserLoginFragment : PageFragment<FragmentUserLoginBinding>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        GrowingIOManager.configDemoEventFilterInterceptor()
-    }
-
-    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentEventFilterBinding {
-        return FragmentEventFilterBinding.inflate(inflater, container, false)
+    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentUserLoginBinding {
+        return FragmentUserLoginBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,25 +50,6 @@ class SdkEventFilterFragment : PageFragment<FragmentEventFilterBinding>() {
 
         loadAssetCode(GrowingIOManager)
 
-        pageBinding.typeFilterButton.setOnClickListener {
-            GrowingAutotracker.get().setLoginUserAttributes(hashMapOf("userName" to "cpacm"))
-        }
-
-        pageBinding.pathFilterButton.setOnClickListener { }
-
-        pageBinding.customFilterButton.setOnClickListener {
-            GrowingAutotracker.get().trackCustomEvent("filter")
-        }
-
-        pageBinding.fieldFilterButton.setOnClickListener {
-            GrowingAutotracker.get().trackCustomEvent("filter_field")
-        }
-
-        setDefaultLogFilter("level:debug filter")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        GrowingIOManager.resetEventFilterInterceptor()
+        setDefaultLogFilter("level:debug user")
     }
 }

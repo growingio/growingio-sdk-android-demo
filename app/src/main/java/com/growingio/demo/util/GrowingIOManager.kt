@@ -18,6 +18,7 @@
 package com.growingio.demo.util
 
 import com.growingio.android.sdk.track.events.EventFilterInterceptor
+import com.growingio.android.sdk.track.events.base.BaseField
 import com.growingio.android.sdk.track.events.helper.DefaultEventFilterInterceptor
 import com.growingio.android.sdk.track.log.BaseLogger
 import com.growingio.android.sdk.track.log.ILogger
@@ -30,6 +31,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import java.lang.ref.WeakReference
 import java.util.PriorityQueue
+import javax.inject.Singleton
 
 /**
  * <p>
@@ -40,26 +42,90 @@ import java.util.PriorityQueue
 @InstallIn(SingletonComponent::class)
 object GrowingIOManager {
 
-    private var defaultEventFilterInterceptor: DefaultEventFilterInterceptor = DefaultEventFilterInterceptor()
+    private val loggerManager by lazy {
+        GrowingLoggerManager()
+    }
+
+    init {
+        Logger.addLogger(loggerManager)
+    }
+
+    private var defaultEventFilterInterceptor = DemoEventFilterInterceptor()
 
     @Provides
     fun provideEventFilterInterceptor(): EventFilterInterceptor {
-        return DemoEventFilterInterceptor(defaultEventFilterInterceptor)
+        return defaultEventFilterInterceptor
     }
 
     @Provides
     fun provideLoggerManager(): GrowingLoggerManager {
-        return GrowingLoggerManager()
+        return loggerManager
     }
 
     @SourceCode
     fun configDemoEventFilterInterceptor() {
-        defaultEventFilterInterceptor = object : DefaultEventFilterInterceptor() {
+        defaultEventFilterInterceptor.innerFilterInterceptor = object : DefaultEventFilterInterceptor() {
+            override fun filterEventType(eventType: String): Boolean {
+                if (eventType == FilterEventType.LOGIN_USER_ATTRIBUTES) {
+                    return false
+                }
+                return super.filterEventType(eventType)
+            }
 
+            override fun filterEventPath(path: String): Boolean {
+                if (path.contains("SdkEventFilterFragment")) {
+                    return false
+                }
+                return super.filterEventPath(path)
+            }
+
+            override fun filterEventName(eventName: String): Boolean {
+                if (eventName == "filter") {
+                    return false
+                }
+                return super.filterEventName(eventName)
+            }
+
+            override fun filterEventField(
+                type: String, fieldArea: MutableMap<String, Boolean>
+            ): MutableMap<String, Boolean> {
+                fieldArea[BaseField.LANGUAGE] = false
+                return super.filterEventField(type, fieldArea)
+            }
         }
     }
 
-    class DemoEventFilterInterceptor(private val filterInterceptor: EventFilterInterceptor) :
-        EventFilterInterceptor by filterInterceptor
+    fun resetEventFilterInterceptor() {
+        defaultEventFilterInterceptor.innerFilterInterceptor = DefaultEventFilterInterceptor()
+    }
+
+    class DemoEventFilterInterceptor : EventFilterInterceptor {
+
+        var innerFilterInterceptor: EventFilterInterceptor? = null
+
+        override fun filterEventType(eventType: String): Boolean {
+            return innerFilterInterceptor?.filterEventType(eventType) ?: true
+        }
+
+        override fun filterEventName(eventName: String): Boolean {
+            return innerFilterInterceptor?.filterEventName(eventName) ?: true
+        }
+
+        override fun filterEventPath(path: String): Boolean {
+            return innerFilterInterceptor?.filterEventPath(path) ?: true
+        }
+
+        override fun filterEventField(
+            type: String,
+            fieldArea: MutableMap<String, Boolean>
+        ): MutableMap<String, Boolean> {
+            return innerFilterInterceptor?.filterEventField(type, fieldArea) ?: fieldArea
+        }
+
+        override fun filterEventGroup(group: String): Boolean {
+            return true
+        }
+
+    }
 }
 

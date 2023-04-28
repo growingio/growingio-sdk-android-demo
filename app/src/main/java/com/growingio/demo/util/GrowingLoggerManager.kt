@@ -47,12 +47,8 @@ class GrowingLoggerManager @Inject constructor() : BaseLogger() {
         }
     }
 
-    init {
-        Logger.addLogger(this)
-    }
-
     override fun getType(): String {
-        return "Logcat"
+        return "Logview"
     }
 
     override fun print(priority: Int, tag: String, message: String, t: Throwable?) {

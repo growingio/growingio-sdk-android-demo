@@ -1,0 +1,32 @@
+    fun configDemoEventFilterInterceptor() {
+        defaultEventFilterInterceptor.innerFilterInterceptor = object : DefaultEventFilterInterceptor() {
+            override fun filterEventType(eventType: String): Boolean {
+                if (eventType == FilterEventType.LOGIN_USER_ATTRIBUTES) {
+                    return false
+                }
+                return super.filterEventType(eventType)
+            }
+
+            override fun filterEventPath(path: String): Boolean {
+                if (path.contains("SdkEventFilterFragment")) {
+                    return false
+                }
+                return super.filterEventPath(path)
+            }
+
+            override fun filterEventName(eventName: String): Boolean {
+                if (eventName == "filter") {
+                    return false
+                }
+                return super.filterEventName(eventName)
+            }
+
+            override fun filterEventField(
+                type: String, fieldArea: MutableMap<String, Boolean>
+            ): MutableMap<String, Boolean> {
+                fieldArea[BaseField.LANGUAGE] = false
+                return super.filterEventField(type, fieldArea)
+            }
+        }
+    }
+

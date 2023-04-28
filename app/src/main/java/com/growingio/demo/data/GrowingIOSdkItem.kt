@@ -43,8 +43,8 @@ val dashboardItems = listOf(
         id = 3,
         route = "api",
         icon = SdkIcon.Api,
-        title = "SDK API",
-        desc = "SDK API 相关"
+        title = "用户登录",
+        desc = ""
     ),
     DashboardItem(
         id = 4,

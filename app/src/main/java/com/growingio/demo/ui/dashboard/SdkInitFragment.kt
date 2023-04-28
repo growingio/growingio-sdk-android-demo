@@ -46,7 +46,7 @@ class SdkInitFragment : PageFragment<FragmentInitBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTitle(getString(R.string.sdk_title_init))
+        setTitle(getString(R.string.sdk_init_title))
 
         markwonManager.renderMarkdown(pageBinding.content, initContent())
 
