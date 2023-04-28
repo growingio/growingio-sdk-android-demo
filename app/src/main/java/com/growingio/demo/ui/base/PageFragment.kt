@@ -21,12 +21,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent.ACTION_UP
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.transition.MaterialContainerTransform
@@ -52,13 +50,6 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
 
     lateinit var _pageBinding: T
     val pageBinding: T get() = _pageBinding
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val animation = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.fade)
-        sharedElementEnterTransition = animation
-        sharedElementReturnTransition = animation
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
 
     override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentPageBinding {

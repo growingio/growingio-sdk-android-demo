@@ -20,6 +20,7 @@ import com.growingio.demo.navgraph.NavGraph.MAIN_GRAPH
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.dashboard.SdkEventFilterFragment
 import com.growingio.demo.ui.dashboard.SdkInitFragment
+import com.growingio.demo.ui.dashboard.SdkUserLoginFragment
 import com.growingio.demo.ui.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -60,6 +61,8 @@ class MainActivity : AppCompatActivity() {
                 fragment<SdkInitFragment>(PageNav.SdkInitPage.route()) {
                 }
                 fragment<SdkEventFilterFragment>(PageNav.SdkEventFilterPage.route()) {
+                }
+                fragment<SdkUserLoginFragment>(PageNav.SdkUserLoginPage.route()) {
                 }
 
             }

@@ -22,6 +22,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
+import com.growingio.android.sdk.track.events.AttributesBuilder
+import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.databinding.FragmentEventFilterBinding
 import com.growingio.demo.databinding.FragmentUserLoginBinding
@@ -46,10 +48,53 @@ class SdkUserLoginFragment : PageFragment<FragmentUserLoginBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTitle(getString(R.string.sdk_filter_title))
+        setTitle(getString(R.string.sdk_user_login))
 
-        loadAssetCode(GrowingIOManager)
+        pageBinding.login.setOnClickListener {
+            val userId = pageBinding.userId.editText?.text
+            if (userId == null || userId.toString().isEmpty()) {
+                showMessage(R.string.sdk_user_id_toast)
+                return@setOnClickListener
+            }
+
+            val userKey = pageBinding.userKey.editText?.text.toString()
+            loginWithUserIdAndKey(userId.toString(), userKey)
+        }
+
+        pageBinding.userAttrs.setOnClickListener {
+            setLoginUserAttributes()
+        }
+
+        pageBinding.userClear.setOnClickListener {
+            clearLoginUser()
+        }
+
+        loadAssetCode(this)
 
         setDefaultLogFilter("level:debug user")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        clearLoginUser()
+    }
+
+    @SourceCode
+    private fun loginWithUserIdAndKey(userId: String, userKey: String) {
+        GrowingAutotracker.get().setLoginUserId(userId, userKey)
+    }
+
+    @SourceCode
+    private fun setLoginUserAttributes() {
+        val attrsMap = AttributesBuilder().addAttribute("name", "kun")
+            .addAttribute("age", "2.5")
+            .addAttribute("hobby", listOf("singing", "dancing", "rap", "playing basketball"))
+            .build()
+        GrowingAutotracker.get().setLoginUserAttributes(attrsMap)
+    }
+
+    @SourceCode
+    private fun clearLoginUser() {
+        GrowingAutotracker.get().cleanLoginUserId()
     }
 }

@@ -41,10 +41,10 @@ val dashboardItems = listOf(
     ),
     DashboardItem(
         id = 3,
-        route = "api",
+        route = PageNav.SdkUserLoginPage.route(),
         icon = SdkIcon.Api,
         title = "用户登录",
-        desc = ""
+        desc = "设置登录用户信息和IdMapping功能"
     ),
     DashboardItem(
         id = 4,

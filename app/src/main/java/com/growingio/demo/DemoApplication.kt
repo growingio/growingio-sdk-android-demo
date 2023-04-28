@@ -15,12 +15,8 @@ import com.growingio.android.sdk.autotrack.CdpAutotrackConfiguration
 import com.growingio.android.sdk.autotrack.CdpAutotracker
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.events.EventFilterInterceptor
-import com.growingio.android.sdk.track.events.helper.DefaultEventFilterInterceptor
-import com.growingio.android.sdk.track.log.Logger
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.data.settingsDataStore
-import com.growingio.demo.util.GrowingIOManager
-import com.growingio.demo.util.MarkwonManager
 import com.growingio.demo.util.enableStrictMode
 import dagger.hilt.EntryPoint
 import dagger.hilt.EntryPoints
@@ -31,11 +27,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Cache
 import okhttp3.ConnectionPool
-import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import java.io.File
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 /**
  * <p>

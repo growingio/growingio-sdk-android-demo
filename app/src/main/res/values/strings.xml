@@ -54,4 +54,11 @@
     <string name="sdk_filter_field">过滤事件的基本属性</string>
     <string name="sdk_filter_field_action">过滤Language属性</string>
     <string name="sdk_user_login">用户登录</string>
+    <string name="sdk_user_hint">用户信息,如 cpacm@gmail.com</string>
+    <string name="sdk_user_helper">长度限制大于0且小于等于1000</string>
+    <string name="sdk_user_key_hint">账号类型：如 email</string>
+    <string name="sdk_user_key_mapping">初始化时需要打开ID-MAPPING功能</string>
+    <string name="sdk_user_id_toast">请输入用户信息</string>
+    <string name="sdk_user_attributes">设置用户属性信息</string>
+    <string name="sdk_user_clear">清除用户信息</string>
 </resources>
