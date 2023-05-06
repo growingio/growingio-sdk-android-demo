@@ -22,13 +22,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
+import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.data.SdkIcon
 import com.growingio.demo.data.SdkIntroItem
-import com.growingio.demo.databinding.FragmentEventFilterBinding
+import com.growingio.demo.databinding.FragmentDataCollectBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment
-import com.growingio.demo.util.GrowingIOManager
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,44 +41,38 @@ import dagger.multibindings.IntoSet
  * @author cpacm 2023/4/20
  */
 @AndroidEntryPoint
-class SdkEventFilterFragment : PageFragment<FragmentEventFilterBinding>() {
+class SdkDataCollectFragment : PageFragment<FragmentDataCollectBinding>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        GrowingIOManager.configDemoEventFilterInterceptor()
-    }
-
-    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentEventFilterBinding {
-        return FragmentEventFilterBinding.inflate(inflater, container, false)
+    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentDataCollectBinding {
+        return FragmentDataCollectBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTitle(getString(R.string.sdk_filter_title))
+        setTitle(getString(R.string.sdk_data_collect))
 
-        loadAssetCode(GrowingIOManager)
+        initSdkDataCollectView()
 
-        pageBinding.typeFilterButton.setOnClickListener {
-            GrowingAutotracker.get().setLoginUserAttributes(hashMapOf("userName" to "cpacm"))
+        loadAssetCode(this)
+
+        setDefaultLogFilter("level:debug DataCollection")
+    }
+
+    @SourceCode
+    private fun initSdkDataCollectView() {
+        pageBinding.collectSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            GrowingAutotracker.get().setDataCollectionEnabled(isChecked)
         }
 
-        pageBinding.pathFilterButton.setOnClickListener { }
-
-        pageBinding.customFilterButton.setOnClickListener {
-            GrowingAutotracker.get().trackCustomEvent("filter")
+        pageBinding.collectTestBtn.setOnClickListener {
+            GrowingAutotracker.get().trackCustomEvent("DataCollection")
         }
-
-        pageBinding.fieldFilterButton.setOnClickListener {
-            GrowingAutotracker.get().trackCustomEvent("filter_field")
-        }
-
-        setDefaultLogFilter("level:debug filter")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        GrowingIOManager.resetEventFilterInterceptor()
+        GrowingAutotracker.get().setDataCollectionEnabled(true)
     }
 
     @dagger.Module
@@ -88,12 +82,12 @@ class SdkEventFilterFragment : PageFragment<FragmentEventFilterBinding>() {
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 2,
-                icon = SdkIcon.Config,
-                title = "SDK 事件过滤",
-                desc = "如何在初始化中设置事件过滤",
-                route = PageNav.SdkEventFilterPage.route(),
-                fragmentClass = SdkEventFilterFragment::class
+                id = 3,
+                icon = SdkIcon.Api,
+                title = "数据开关",
+                desc = "数据开关可以控制SDK是否采集和发数",
+                route = PageNav.SdkDataCollectPage.route(),
+                fragmentClass = SdkDataCollectFragment::class
             )
         }
     }

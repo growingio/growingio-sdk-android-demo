@@ -3,22 +3,15 @@ package com.growingio.demo.ui.dashboard
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.Navigator
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.growingio.demo.R
-import com.growingio.demo.data.DashboardItem
+import com.growingio.demo.data.SdkIntroItem
 import com.growingio.demo.databinding.FragmentDashboardBinding
 import com.growingio.demo.ui.base.ViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +37,7 @@ class DashboardFragment : ViewBindingFragment<FragmentDashboardBinding>() {
                 startActivity(intent)
             }
 
-            override fun onSdkItemClick(view: View, item: DashboardItem) {
+            override fun onSdkItemClick(view: View, item: SdkIntroItem) {
                 //val extras = FragmentNavigatorExtras(view to "dashboard_item_${item.id}")
                 findParentNavController().navigate(item.route)
             }
@@ -65,8 +58,8 @@ class DashboardFragment : ViewBindingFragment<FragmentDashboardBinding>() {
         lifecycleScope.launch {
             viewModel.sdkItemState.collect {
                 when (it) {
-                    is SdkItemState.SdkItemList -> {
-                        (binding.dashboardRv.adapter as DashboardAdapter).loadData(it.list)
+                    is SdkItemState.SdkItemSet -> {
+                        (binding.dashboardRv.adapter as DashboardAdapter).loadData(it.set)
                     }
                     else -> {}
                 }

@@ -6,17 +6,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.growingio.demo.BuildConfig
-import com.growingio.demo.data.DashboardItem
-import com.growingio.demo.data.dashboardItems
+import com.growingio.demo.data.SdkIntroItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlin.random.Random
+import javax.inject.Inject
 
-class DashboardViewModel : ViewModel()  {
+@HiltViewModel
+class DashboardViewModel @Inject constructor(
+    private val sdkItems: MutableSet<SdkIntroItem>
+) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "V" + BuildConfig.GROWINGIO_SDK_VERSION
@@ -29,7 +31,6 @@ class DashboardViewModel : ViewModel()  {
 
     val text: LiveData<String> = _text
 
-
     val sdkItemState = _sdkItemState
         .asStateFlow().stateIn(
             scope = viewModelScope,
@@ -38,9 +39,9 @@ class DashboardViewModel : ViewModel()  {
         )
 
     fun refreshData() {
-        val list = dashboardItems
+        val list = sdkItems.sortedBy { it.id }.toMutableSet()
         viewModelScope.launch {
-            _sdkItemState.emit(SdkItemState.SdkItemList(list))
+            _sdkItemState.emit(SdkItemState.SdkItemSet(list))
         }
     }
 
@@ -56,5 +57,5 @@ class DashboardViewModel : ViewModel()  {
 sealed interface SdkItemState {
     object Empty : SdkItemState
 
-    data class SdkItemList(val list: List<DashboardItem>) : SdkItemState
+    data class SdkItemSet(val set: MutableSet<SdkIntroItem>) : SdkItemState
 }

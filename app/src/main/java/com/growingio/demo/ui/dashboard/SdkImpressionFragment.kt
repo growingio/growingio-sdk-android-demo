@@ -22,13 +22,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
+import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.data.SdkIcon
 import com.growingio.demo.data.SdkIntroItem
-import com.growingio.demo.databinding.FragmentEventFilterBinding
+import com.growingio.demo.databinding.FragmentImpressionBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment
-import com.growingio.demo.util.GrowingIOManager
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,44 +41,53 @@ import dagger.multibindings.IntoSet
  * @author cpacm 2023/4/20
  */
 @AndroidEntryPoint
-class SdkEventFilterFragment : PageFragment<FragmentEventFilterBinding>() {
+class SdkImpressionFragment : PageFragment<FragmentImpressionBinding>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        GrowingIOManager.configDemoEventFilterInterceptor()
-    }
-
-    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentEventFilterBinding {
-        return FragmentEventFilterBinding.inflate(inflater, container, false)
+    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentImpressionBinding {
+        return FragmentImpressionBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTitle(getString(R.string.sdk_filter_title))
+        setTitle(getString(R.string.sdk_impression))
 
-        loadAssetCode(GrowingIOManager)
-
-        pageBinding.typeFilterButton.setOnClickListener {
-            GrowingAutotracker.get().setLoginUserAttributes(hashMapOf("userName" to "cpacm"))
+        pageBinding.impressionSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            pageBinding.impView.visibility = if (isChecked) View.VISIBLE else View.GONE
         }
 
-        pageBinding.pathFilterButton.setOnClickListener { }
-
-        pageBinding.customFilterButton.setOnClickListener {
-            GrowingAutotracker.get().trackCustomEvent("filter")
+        pageBinding.settleBtn.setOnClickListener {
+            setViewImpression()
         }
 
-        pageBinding.fieldFilterButton.setOnClickListener {
-            GrowingAutotracker.get().trackCustomEvent("filter_field")
+        pageBinding.clearBtn.setOnClickListener {
+            cleanViewImpression()
         }
 
-        setDefaultLogFilter("level:debug filter")
+        loadAssetCode(this)
+
+        setDefaultLogFilter("level:debug ImpressionProvider")
+    }
+
+    @SourceCode
+    private fun setViewImpression() {
+        GrowingAutotracker.get()
+            .trackViewImpression(pageBinding.impView, "ImpressionProvider", mapOf("type" to "visible"))
+
+        GrowingAutotracker.get()
+            .trackViewImpression(pageBinding.impScrollView, "ImpressionProvider", mapOf("type" to "scroll"))
+    }
+
+    @SourceCode
+    private fun cleanViewImpression() {
+        GrowingAutotracker.get().stopTrackViewImpression(pageBinding.impView)
+
+        GrowingAutotracker.get().stopTrackViewImpression(pageBinding.impScrollView)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        GrowingIOManager.resetEventFilterInterceptor()
+        cleanViewImpression()
     }
 
     @dagger.Module
@@ -88,12 +97,12 @@ class SdkEventFilterFragment : PageFragment<FragmentEventFilterBinding>() {
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 2,
-                icon = SdkIcon.Config,
-                title = "SDK 事件过滤",
-                desc = "如何在初始化中设置事件过滤",
-                route = PageNav.SdkEventFilterPage.route(),
-                fragmentClass = SdkEventFilterFragment::class
+                id = 6,
+                icon = SdkIcon.Api,
+                title = "曝光事件",
+                desc = "当被设置的View出现在屏幕内时将触发曝光事件",
+                route = PageNav.SdkImpressionPage.route(),
+                fragmentClass = SdkImpressionFragment::class
             )
         }
     }

@@ -26,9 +26,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.request.CachePolicy
 import com.growingio.demo.R
-import com.growingio.demo.data.DashboardItem
+import com.growingio.demo.data.SdkIntroItem
 
 /**
  * <p>
@@ -38,12 +37,12 @@ import com.growingio.demo.data.DashboardItem
 class DashboardAdapter(private val listener: DashboardAdapterListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val sdkItems = arrayListOf<DashboardItem>()
+    private val sdkItems: MutableSet<SdkIntroItem> = mutableSetOf()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun loadData(list: List<DashboardItem>) {
+    fun loadData(list: MutableSet<SdkIntroItem>) {
         sdkItems.clear()
-        sdkItems.add(DashboardItem(id = -1, "header"))// header
+        sdkItems.add(SdkIntroItem(-1, route = "header", fragmentClass = DashboardFragment::class))// header
         sdkItems.addAll(list)
         notifyDataSetChanged()
     }
@@ -65,12 +64,12 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return sdkItems[position].id
+        return sdkItems.elementAt(position).id
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is SdkItemViewHolder) {
-            holder.bind(sdkItems[position])
+            holder.bind(sdkItems.elementAt(position))
         }
     }
 
@@ -82,11 +81,11 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
 
         init {
             sdkJump.setOnClickListener {
-                listener.onSdkItemClick(itemView, sdkItems[adapterPosition])
+                listener.onSdkItemClick(itemView, sdkItems.elementAt(position))
             }
         }
 
-        fun bind(item: DashboardItem) {
+        fun bind(item: SdkIntroItem) {
             if (item.icon != null) {
                 sdkIcon.setImageResource(item.icon.icon)
             }
@@ -123,7 +122,7 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
 
 
     interface DashboardAdapterListener {
-        fun onSdkItemClick(view: View, item: DashboardItem)
+        fun onSdkItemClick(view: View, item: SdkIntroItem)
         fun onLinkClick(url: String)
     }
 }

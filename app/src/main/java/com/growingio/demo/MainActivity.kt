@@ -9,26 +9,29 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.createGraph
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorDestinationBuilder
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.fragment
-import androidx.navigation.navOptions
+import androidx.navigation.get
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
+import com.growingio.demo.data.SdkIntroItem
 import com.growingio.demo.data.settingsDataStore
 import com.growingio.demo.navgraph.FragmentNav
 import com.growingio.demo.navgraph.NavGraph.MAIN_GRAPH
-import com.growingio.demo.navgraph.PageNav
-import com.growingio.demo.ui.dashboard.SdkEventFilterFragment
-import com.growingio.demo.ui.dashboard.SdkInitFragment
-import com.growingio.demo.ui.dashboard.SdkUserLoginFragment
 import com.growingio.demo.ui.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var sdkIntroItems: MutableSet<SdkIntroItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,13 +61,18 @@ class MainActivity : AppCompatActivity() {
             graph = createGraph(FragmentNav.Home.route, MAIN_GRAPH) {
                 fragment<HomeFragment>(FragmentNav.Home.route) {
                 }
-                fragment<SdkInitFragment>(PageNav.SdkInitPage.route()) {
-                }
-                fragment<SdkEventFilterFragment>(PageNav.SdkEventFilterPage.route()) {
-                }
-                fragment<SdkUserLoginFragment>(PageNav.SdkUserLoginPage.route()) {
-                }
 
+                sdkIntroItems.forEach { item ->
+                    destination(
+                        FragmentNavigatorDestinationBuilder(
+                            provider[FragmentNavigator::class],
+                            item.route,
+                            item.fragmentClass!!
+                        )
+                    )
+                }
+//                fragment<SdkInitFragment>(PageNav.SdkInitPage.route()) {
+//                }
             }
         }
     }

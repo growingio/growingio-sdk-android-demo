@@ -22,11 +22,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.growingio.demo.R
+import com.growingio.demo.data.SdkIcon
+import com.growingio.demo.data.SdkIntroItem
 import com.growingio.demo.databinding.FragmentInitBinding
+import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment
 import com.growingio.demo.util.MarkwonManager
+import dagger.Provides
+import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.components.SingletonComponent
+import dagger.multibindings.IntoSet
 import javax.inject.Inject
+import kotlin.reflect.KClass
 
 /**
  * <p>
@@ -81,5 +90,23 @@ class SdkInitFragment : PageFragment<FragmentInitBinding>() {
             
             
         """.trimIndent()
+    }
+
+    @dagger.Module
+    @InstallIn(SingletonComponent::class)
+    object Module {
+        @IntoSet
+        @Provides
+        fun provideSdkItem(): SdkIntroItem {
+            return SdkIntroItem(
+                id = 1,
+                title = "SDK 初始化配置",
+                desc = "初始化配置相关默认值",
+                icon = SdkIcon.Config,
+                route = PageNav.SdkInitPage.route(),
+                fragmentClass = SdkInitFragment::class
+            )
+        }
+
     }
 }

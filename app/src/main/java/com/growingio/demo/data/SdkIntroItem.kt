@@ -17,19 +17,23 @@
 
 package com.growingio.demo.data
 
+import androidx.fragment.app.Fragment
 import com.growingio.demo.R
+import kotlin.reflect.KClass
 
 /**
  * <p>
  *
  * @author cpacm 2023/4/20
  */
-data class DashboardItem(
+data class SdkIntroItem(
     val id: Int,
-    val route: String,
-    val icon: SdkIcon? = null,
     val title: String? = null,
-    val desc: String? = null)
+    val desc: String? = null,
+    val icon: SdkIcon? = null,
+    val route: String,
+    val fragmentClass: KClass<out Fragment>,
+)
 
 sealed interface SdkIcon {
 
