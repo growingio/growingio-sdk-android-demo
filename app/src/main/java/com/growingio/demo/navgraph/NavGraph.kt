@@ -49,6 +49,8 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object SdkImpressionPage : PageNav(FragmentNav.DashBoard, "impression")
     object SdkEventTimerPage : PageNav(FragmentNav.DashBoard, "eventTimer")
 
+    object ComponentHybridPage : PageNav(FragmentNav.DashBoard, "hybrid")
+
     object LinkArticlePage : PageNav(FragmentNav.Home, params = arrayListOf("noteId")) {
         fun toNoteUrl(noteId: Long): String {
             return route().replace("{${paramName()}}", noteId.toString())

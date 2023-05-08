@@ -1,0 +1,130 @@
+<!--
+  ~   Copyright (c) - 2023 Beijing Yishu Technology Co., Ltd.
+  ~
+  ~   Licensed under the Apache License, Version 2.0 (the "License");
+  ~   you may not use this file except in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~   Unless required by applicable law or agreed to in writing, software
+  ~   distributed under the License is distributed on an "AS IS" BASIS,
+  ~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~   See the License for the specific language governing permissions and
+  ~   limitations under the License.
+  ~
+  -->
+
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>SDKAutoCheck中文测试#¥%……&*（）</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+
+    <script type="text/javascript">
+    // CasperJS 不支持 Object.defineProperty 修改 document 中的默认变量
+    window.history.pushState = null;
+    window._gr_ignore_local_rule = true;
+
+
+    </script>
+    <script type="text/javascript">
+      !(function (e, n, t, c, i) {
+    (e[i] =
+      e[i] ||
+      function () {
+        (e[i].q = e[i].q || []).push(arguments);
+      }),
+      (t = n.createElement('script'));
+    s = n.getElementsByTagName('script')[0];
+    (t.async = 1), (t.src = c), s.parentNode.insertBefore(t, s);
+  })(
+    window,
+    document,
+    'script',
+    'https://assets.giocdn.com/sdk/webjs/cdp/gdp-full.js',
+    'gdp'
+  );
+
+  gdp('init', '<ProjectId>', '<DataSourceId>', {
+    host: '<DataServerHost>',
+    version: 'V1.0.0',
+    debug: true,
+    enableIdMapping: true,
+  });
+
+
+    </script>
+    <script>
+    function setTrack() {
+      gdp('track', 'test')
+    }
+    function setTrackPro(){
+    gdp('track','test', {type: 'hjh'});
+    }
+    function closeDataCollect(){
+      gdp('setOption', 'dataCollect', false);
+    }
+    function openDataCollect(){
+      gdp('setOption', 'dataCollect', true);
+    }
+
+    function closeAutoTrack(){
+      gdp('setOption', 'autotrack', false);
+    }
+    function openAutoTrack(){
+      gdp('setOption', 'autotrack', true);
+    }
+
+    function setUserIdkey(){
+     gdp('setUserId','cpacm@gmail.com','email')
+    }
+    function setUserIdkey2(){
+     gdp('setUserId',1101001,'phone')
+    }
+    function clearUser(){
+     gdp('clearUserId')
+    }
+    function setUserAttr(){
+        gdp('setUserAttributes', {
+        'gender': 'male',
+        'age': 25
+        });
+    }
+
+
+    </script>
+</head>
+
+<body>
+<div class='main'>
+    <div class='title'>
+        <h2>Web SDK Demo</h2>
+        <div>
+            <div class='title'>
+                <h3>加载并且初始化了 GIO WEB SDK </h3>
+                <button onclick="setTrack()">点击埋点</button>
+                <button onclick="setTrackPro()">设置事件属性</button>
+                <br>
+                <br>
+                <button onclick="setUserIdkey()">点击设置用户名（cpacm@gmail.com-email）</button>
+                <button onclick="setUserIdkey2()">设置用户名2（1101001-phone）</button>
+                <button onclick="setUserAttr()">设置用户属性</button>
+                <button onclick="clearUser()">清除用户设置</button>
+                <br>
+                <br>
+                <button onclick="closeDataCollect()">关闭数据收集</button>
+                <button onclick="openDataCollect()">打开数据收集</button>
+                <br>
+                <br>
+                <button onclick="closeAutoTrack()">关闭无埋点采集</button>
+                <button onclick="openAutoTrack()">打开无埋点采集</button>
+                <br>
+
+            </div>
+        </div>
+</body>
+
+</html>
