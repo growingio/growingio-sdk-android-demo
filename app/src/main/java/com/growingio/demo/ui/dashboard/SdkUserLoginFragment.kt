@@ -114,7 +114,7 @@ class SdkUserLoginFragment : PageFragment<FragmentUserLoginBinding>() {
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 4,
+                id = 11,
                 icon = SdkIcon.Api,
                 title = "用户登录",
                 desc = "设置登录用户信息和IdMapping功能",

@@ -90,6 +90,17 @@
     <string name="sdk_impression_clean">取消曝光View</string>
     <string name="sdk_impression_hint">滑动显示View</string>
 
+    <string name="component_test_btn">测试按钮</string>
+    <string name="component_reset_btn">重置按钮</string>
     <string name="component_hybrid">H5内嵌页</string>
     <string name="component_hybrid_hint">在无埋点SDK中，SDK 会自动注入桥接代码，实现数据打通；\n若是在埋点SDK中需要手动注册 Hybrid 模块（参考示例代码）。</string>
+    <string name="component_encoder">数据加密</string>
+    <string name="component_encoder_hint">SDK 加密模块默认使用 snappy 数据压缩和 xor 简单加密方式，作用于数据网络上传的阶段。</string>
+    <string name="component_protobuf">Google Protobuf</string>
+    <string name="component_oaid">OAID 标识符</string>
+    <string name="component_oaid_hint">Random Oaid</string>
+    <string name="component_oaid_helper">传入OAID作为设备标识符</string>
+    <string name="component_oaid_settle">设置OAID</string>
+    <string name="component_oaid_toast">请先生成OAID</string>
+    <string name="component_oaid_toast2">OAID模块已经注册，无法替换</string>
 </resources>

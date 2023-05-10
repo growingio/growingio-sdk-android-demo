@@ -82,7 +82,7 @@ class SdkDataCollectFragment : PageFragment<FragmentDataCollectBinding>() {
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 3,
+                id = 10,
                 icon = SdkIcon.Api,
                 title = "数据开关",
                 desc = "数据开关可以控制SDK是否采集和发数",

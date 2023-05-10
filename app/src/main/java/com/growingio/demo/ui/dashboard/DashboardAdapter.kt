@@ -43,7 +43,16 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
     fun loadData(list: MutableSet<SdkIntroItem>) {
         sdkItems.clear()
         sdkItems.add(SdkIntroItem(-1, route = "header", fragmentClass = DashboardFragment::class))// header
-        sdkItems.addAll(list)
+        sdkItems.add(SdkIntroItem(0, route = "初始化", fragmentClass = DashboardFragment::class))
+        list.forEach {
+            if (it.id == 10) {
+                sdkItems.add(SdkIntroItem(0, route = "采集API", fragmentClass = DashboardFragment::class))
+            }
+            if (it.id == 20) {
+                sdkItems.add(SdkIntroItem(0, route = "功能模块", fragmentClass = DashboardFragment::class))
+            }
+            sdkItems.add(it)
+        }
         notifyDataSetChanged()
     }
 
@@ -51,6 +60,10 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
         if (viewType < 0) {
             return HeaderViewHolder(
                 LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_header, parent, false)
+            )
+        } else if (viewType == 0) {
+            return DividerViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_divider, parent, false)
             )
         } else {
             return SdkItemViewHolder(
@@ -70,6 +83,8 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is SdkItemViewHolder) {
             holder.bind(sdkItems.elementAt(position))
+        } else if (holder is DividerViewHolder) {
+            holder.setDividerTitle(sdkItems.elementAt(position).route)
         }
     }
 
@@ -91,6 +106,15 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
             }
             sdkTitle.text = item.title
             sdkDesc.text = item.desc
+        }
+    }
+
+    inner class DividerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private val dividerTv = itemView.findViewById<TextView>(R.id.dividerTitle)
+
+        fun setDividerTitle(title: String) {
+            dividerTv.text = title
         }
     }
 

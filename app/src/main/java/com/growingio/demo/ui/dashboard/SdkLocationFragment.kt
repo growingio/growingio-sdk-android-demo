@@ -103,7 +103,7 @@ class SdkLocationFragment : PageFragment<FragmentLocationBinding>() {
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 5,
+                id = 12,
                 icon = SdkIcon.Api,
                 title = "位置信息",
                 desc = "为事件设置经纬度信息",

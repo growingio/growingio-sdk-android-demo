@@ -72,7 +72,7 @@ class ComponentHybridFragment : PageFragment<FragmentComponentHybridBinding>() {
          *            .addPreloadComponent(HybridLibraryGioModule()))
          */
 
-        // 或者运行时直接注册
+        // 或者在运行时再注册
         // GrowingTracker.get().registerComponent(HybridLibraryGioModule())
 
         // 最后需要在 WebView 初始化之后调用桥接代码，实现访问用户数据打通:

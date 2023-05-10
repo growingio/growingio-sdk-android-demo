@@ -114,6 +114,10 @@ dependencies {
 
     implementation platform("com.growingio.android:autotracker-bom:${libs.versions.growingio.get()}")
     implementation 'com.growingio.android:autotracker-cdp'
+    implementation 'com.growingio.android:encoder'
+    implementation 'com.growingio.android:protobuf'
+    implementation 'com.growingio.android:oaid'
+    implementation 'com.growingio.android:advert'
     //implementation "com.growingio.giokit:giokit:1.3.0"
 
     implementation project(path: ':code-annotation')

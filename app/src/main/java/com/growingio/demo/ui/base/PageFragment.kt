@@ -117,7 +117,7 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
         loadAssetCode(fileName, language, showLineNumbers)
     }
 
-    fun loadAssetCode(fileName: String, language: String = "kotlin", showLineNumbers: Boolean = false) {
+    private fun loadAssetCode(fileName: String, language: String = "kotlin", showLineNumbers: Boolean = false) {
         lifecycleScope.launch {
             val text = withContext(Dispatchers.IO) {
                 kotlin.runCatching {
