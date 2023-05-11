@@ -28,6 +28,8 @@
         <item>Error</item>
     </string-array>
 
+    <string name="qrcode">二维码</string>
+
     <string name="dashboard_android_sdk">Android SDK</string>
     <string name="dashboard_doc">查看文档 >></string>
     <string name="dashboard_doc_url">https://growingio.github.io/growingio-sdk-docs/docs/android</string>

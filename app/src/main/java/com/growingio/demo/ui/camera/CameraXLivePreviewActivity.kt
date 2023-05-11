@@ -22,8 +22,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.CompoundButton
 import android.widget.Toast
-import android.widget.ToggleButton
-import androidx.activity.result.ActivityResultCallback
 import androidx.camera.core.CameraInfoUnavailableException
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -32,15 +30,12 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.cpacm.moment.ui.base.PermissionActivity
 import com.google.mlkit.common.MlKitException
 import com.google.mlkit.vision.demo.kotlin.barcodescanner.BarcodeScannerProcessor
 import com.growingio.demo.R
 import com.growingio.demo.databinding.ActivityVisionCameraxLivePreviewBinding
-
-import java.util.ArrayList
 
 /**
  * <p>
@@ -79,12 +74,10 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
         if (graphicOverlay == null) {
             Log.d(TAG, "graphicOverlay is null")
         }
-        val options: MutableList<String> = ArrayList()
-        options.add(BARCODE_SCANNING)
 
-        val facingSwitch = findViewById<ToggleButton>(R.id.facing_switch)
-        facingSwitch.setOnCheckedChangeListener(this)
+//        binding.facingSwitch.setOnCheckedChangeListener(this)
 
+        //initNavigation(binding.control)
 
         launchPermission(android.Manifest.permission.CAMERA) {
             if (it) {
@@ -95,6 +88,7 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
             }
         }
     }
+
 
     private fun observerCameraProvider() {
         ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))
@@ -235,23 +229,5 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
 
     companion object {
         private const val TAG = "CameraXLivePreview"
-        private const val OBJECT_DETECTION = "Object Detection"
-        private const val OBJECT_DETECTION_CUSTOM = "Custom Object Detection"
-        private const val CUSTOM_AUTOML_OBJECT_DETECTION = "Custom AutoML Object Detection (Flower)"
-        private const val FACE_DETECTION = "Face Detection"
-        private const val TEXT_RECOGNITION_LATIN = "Text Recognition Latin"
-        private const val TEXT_RECOGNITION_CHINESE = "Text Recognition Chinese"
-        private const val TEXT_RECOGNITION_DEVANAGARI = "Text Recognition Devanagari"
-        private const val TEXT_RECOGNITION_JAPANESE = "Text Recognition Japanese"
-        private const val TEXT_RECOGNITION_KOREAN = "Text Recognition Korean"
-        private const val BARCODE_SCANNING = "Barcode Scanning"
-        private const val IMAGE_LABELING = "Image Labeling"
-        private const val IMAGE_LABELING_CUSTOM = "Custom Image Labeling (Birds)"
-        private const val CUSTOM_AUTOML_LABELING = "Custom AutoML Image Labeling (Flower)"
-        private const val POSE_DETECTION = "Pose Detection"
-        private const val SELFIE_SEGMENTATION = "Selfie Segmentation"
-        private const val FACE_MESH_DETECTION = "Face Mesh Detection (Beta)";
-
-        private const val STATE_SELECTED_MODEL = "selected_model"
     }
 }

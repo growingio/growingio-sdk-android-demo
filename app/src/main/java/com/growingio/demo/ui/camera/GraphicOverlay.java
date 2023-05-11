@@ -78,14 +78,6 @@ public class GraphicOverlay extends View {
      * instances to the overlay using {@link GraphicOverlay#add(Graphic)}.
      */
     public abstract static class Graphic {
-
-        public boolean onTouchEvent(MotionEvent event) {
-            return false;
-        }
-
-        public void OnDestroy() {
-
-        }
         private GraphicOverlay overlay;
 
         public Graphic(GraphicOverlay overlay) {

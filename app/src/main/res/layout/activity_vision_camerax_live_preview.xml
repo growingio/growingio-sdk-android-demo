@@ -9,7 +9,7 @@
         android:id="@+id/preview_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/control"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.growingio.demo.ui.camera.GraphicOverlay
@@ -20,24 +20,5 @@
         app:layout_constraintLeft_toLeftOf="@id/preview_view"
         app:layout_constraintRight_toRightOf="@id/preview_view"
         app:layout_constraintTop_toTopOf="@id/preview_view" />
-
-    <LinearLayout
-        android:id="@id/control"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#000"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ToggleButton
-            android:id="@+id/facing_switch"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:checked="false"
-            android:textOff=""
-            android:textOn="" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
