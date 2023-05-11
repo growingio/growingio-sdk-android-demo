@@ -65,7 +65,7 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
 
 
 
-        pageBinding.encoderSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        pageBinding.encoderSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 registerEncoderComponent()
             } else {

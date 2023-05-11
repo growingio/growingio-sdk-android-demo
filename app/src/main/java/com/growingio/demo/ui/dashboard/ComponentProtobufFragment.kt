@@ -65,7 +65,7 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
 
         setTitle(getString(R.string.component_protobuf))
 
-        pageBinding.protobufSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        pageBinding.protobufSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 registerProtobufComponent()
             } else {

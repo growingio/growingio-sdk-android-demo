@@ -95,9 +95,11 @@ dependencies {
     implementation libs.androidx.splashscreen
     implementation libs.hilt.library
 
+
     implementation libs.kotlin.stdlib
     implementation libs.kotlin.coroutines.core
     implementation libs.kotlin.coroutines.android
+    implementation libs.kotlin.coroutines.guava
 
     implementation libs.androidx.datastore
     implementation libs.protobuf.javalite
@@ -105,6 +107,9 @@ dependencies {
 
     implementation libs.bundles.coil
     implementation libs.bundles.markwon
+
+    implementation libs.bundles.camerax
+    implementation libs.barcode.scanning
 
     kapt libs.hilt.compiler
     kapt libs.androidx.lifecycle.compiler

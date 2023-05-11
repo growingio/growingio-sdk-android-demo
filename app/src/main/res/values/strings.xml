@@ -103,4 +103,12 @@
     <string name="component_oaid_settle">设置OAID</string>
     <string name="component_oaid_toast">请先生成OAID</string>
     <string name="component_oaid_toast2">OAID模块已经注册，无法替换</string>
+    <string name="component_advert">广告分析</string>
+    <string name="component_advert_register">注册广告模块</string>
+    <string name="component_advert_hint">扫码获取链接</string>
+    <string name="component_advert_helper">深度链接用于SDK监测广告推广效果</string>
+    <string name="component_advert_toast">请输入广告推广链接</string>
+    <string name="component_advert_generate">默认链接</string>
+    <string name="component_advert_default_url">https://ads-uat.growingio.cn/k4budVa</string>
+    <string name="component_advert_parse">解析链接</string>
 </resources>

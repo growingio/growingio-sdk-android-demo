@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                         FragmentNavigatorDestinationBuilder(
                             provider[FragmentNavigator::class],
                             item.route,
-                            item.fragmentClass!!
+                            item.fragmentClass
                         )
                     )
                 }
@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity() {
                         initAppAfterAgreePolicy()
                     }
                 }
+                .setCancelable(false)
                 .setNegativeButton(R.string.dialog_policy_disagree) { _, _ ->
                     finish()
                 }

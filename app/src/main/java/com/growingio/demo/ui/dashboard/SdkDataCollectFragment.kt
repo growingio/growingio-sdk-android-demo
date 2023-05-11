@@ -61,7 +61,7 @@ class SdkDataCollectFragment : PageFragment<FragmentDataCollectBinding>() {
 
     @SourceCode
     private fun initSdkDataCollectView() {
-        pageBinding.collectSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        pageBinding.collectSwitch.setOnCheckedChangeListener { _, isChecked ->
             GrowingAutotracker.get().setDataCollectionEnabled(isChecked)
         }
 

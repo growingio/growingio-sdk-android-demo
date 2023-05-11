@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".DemoApplication"
@@ -28,13 +29,28 @@
             </intent-filter>
 
             <intent-filter>
-                <data android:scheme="growing.ff8a70351000af43" />
+                <data android:scheme="growing.55ea7f7853827722" />
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="ads-uat.growingio.cn"
+                    android:pathPattern="/k4bud.*"
+                    android:scheme="https" />
+            </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.camera.CameraXLivePreviewActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.Immerse" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

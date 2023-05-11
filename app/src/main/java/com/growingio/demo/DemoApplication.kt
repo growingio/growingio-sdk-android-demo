@@ -63,8 +63,8 @@ class GrowingioInitializer : Initializer<CdpAutotracker> {
         val agreePolicy = runBlocking { context.settingsDataStore.data.first().agreePolicy }
         GrowingAutotracker.startWithConfiguration(
             context,
-            CdpAutotrackConfiguration("bc675c65b3b0290e", "growing.ff8a70351000af43")
-                .setDataSourceId("8b17366d9e90b05b")
+            CdpAutotrackConfiguration("bc675c65b3b0290e", "growing.55ea7f7853827722")
+                .setDataSourceId("9fe6e7c0ceffe22c")
                 .setDataCollectionServerHost("http://117.50.84.75:8080")
                 .setChannel("demo")
                 .setDebugEnabled(BuildConfig.DEBUG)
