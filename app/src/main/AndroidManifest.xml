@@ -64,6 +64,9 @@
             <meta-data
                 android:name="com.growingio.demo.CoilInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.growingio.demo.GiokitInitializer"
+                android:value="androidx.startup" />
         </provider>
     </application>
 

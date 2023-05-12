@@ -55,6 +55,8 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object ComponentOaidPage : PageNav(FragmentNav.DashBoard, "oaid")
     object ComponentAdvertPage : PageNav(FragmentNav.DashBoard, "advert")
 
+    object MaterialRecyclerViewPage : PageNav(FragmentNav.UI, "recyclerview")
+
     object LinkArticlePage : PageNav(FragmentNav.Home, params = arrayListOf("noteId")) {
         fun toNoteUrl(noteId: Long): String {
             return route().replace("{${paramName()}}", noteId.toString())

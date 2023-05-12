@@ -16,6 +16,7 @@ import androidx.navigation.fragment.fragment
 import androidx.navigation.get
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
+import com.growingio.demo.data.MaterialItem
 import com.growingio.demo.data.SdkIntroItem
 import com.growingio.demo.data.settingsDataStore
 import com.growingio.demo.navgraph.FragmentNav
@@ -32,6 +33,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var sdkIntroItems: MutableSet<SdkIntroItem>
+
+    @Inject
+    lateinit var materialItems: MutableSet<MaterialItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +67,16 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 sdkIntroItems.forEach { item ->
+                    destination(
+                        FragmentNavigatorDestinationBuilder(
+                            provider[FragmentNavigator::class],
+                            item.route,
+                            item.fragmentClass
+                        )
+                    )
+                }
+
+                materialItems.forEach { item ->
                     destination(
                         FragmentNavigatorDestinationBuilder(
                             provider[FragmentNavigator::class],

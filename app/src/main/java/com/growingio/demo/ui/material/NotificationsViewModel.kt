@@ -1,4 +1,4 @@
-package com.growingio.demo.ui.notifications
+package com.growingio.demo.ui.material
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

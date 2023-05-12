@@ -16,7 +16,8 @@ import com.growingio.demo.navgraph.FragmentNav
 import com.growingio.demo.navgraph.NavGraph.HOME_GRAPH
 import com.growingio.demo.ui.base.ViewBindingFragment
 import com.growingio.demo.ui.dashboard.DashboardFragment
-import com.growingio.demo.ui.notifications.NotificationsFragment
+import com.growingio.demo.ui.material.MaterialFragment
+import com.growingio.demo.ui.material.NotificationsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.ref.WeakReference
 
@@ -33,7 +34,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
             graph = createGraph(FragmentNav.DashBoard.route, HOME_GRAPH) {
                 fragment<DashboardFragment>(FragmentNav.DashBoard.route) {
                 }
-                fragment<NotificationsFragment>(FragmentNav.UI.route) {
+                fragment<MaterialFragment>(FragmentNav.UI.route) {
                 }
                 fragment<NotificationsFragment>(FragmentNav.Template.route) {
                 }
@@ -49,7 +50,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
             add(Menu.NONE, R.id.dashboard, 0, R.string.navi_dashboard_title).apply {
                 icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_dashboard)
             }
-            add(Menu.NONE, R.id.ui, 1, R.string.navi_ui_title).apply {
+            add(Menu.NONE, R.id.ui, 1, R.string.navi_material_title).apply {
                 icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_ui)
             }
             add(Menu.NONE, R.id.template, 2, R.string.navi_template_title).apply {

@@ -1,4 +1,4 @@
-package com.growingio.demo.ui.notifications
+package com.growingio.demo.ui.material
 
 import android.os.Bundle
 import android.util.Log
