@@ -42,11 +42,13 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     }
 
     object SdkInitPage : PageNav(FragmentNav.DashBoard, "init")
+    object SdkAutoTrackOptionsPage : PageNav(FragmentNav.DashBoard, "autotrackOption")
     object SdkEventFilterPage : PageNav(FragmentNav.DashBoard, "eventFilter")
     object SdkUserLoginPage : PageNav(FragmentNav.DashBoard, "userLogin")
     object SdkDataCollectPage : PageNav(FragmentNav.DashBoard, "dataCollect")
     object SdkLocationPage : PageNav(FragmentNav.DashBoard, "location")
     object SdkImpressionPage : PageNav(FragmentNav.DashBoard, "impression")
+    object SdkUniqueTagPage : PageNav(FragmentNav.DashBoard, "uniqueTag")
     object SdkEventTimerPage : PageNav(FragmentNav.DashBoard, "eventTimer")
 
     object ComponentHybridPage : PageNav(FragmentNav.DashBoard, "hybrid")
@@ -56,6 +58,7 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object ComponentAdvertPage : PageNav(FragmentNav.DashBoard, "advert")
 
     object MaterialRecyclerViewPage : PageNav(FragmentNav.UI, "recyclerview")
+    object MaterialBottomAppBarPage : PageNav(FragmentNav.UI, "bottomappbar")
 
     object LinkArticlePage : PageNav(FragmentNav.Home, params = arrayListOf("noteId")) {
         fun toNoteUrl(noteId: Long): String {

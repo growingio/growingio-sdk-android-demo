@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
 import com.growingio.demo.databinding.FragmentMaterialBinding
 import com.growingio.demo.ui.base.ViewBindingFragment
+import com.growingio.demo.ui.widgets.GridDividerDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -31,6 +34,13 @@ class MaterialFragment : ViewBindingFragment<FragmentMaterialBinding>() {
                 findParentNavController().navigate(item.route)
             }
         })
+        binding.materialRv.addItemDecoration(
+            GridDividerDecoration(
+                resources.getDimensionPixelSize(R.dimen.material_divider_size),
+                ContextCompat.getColor(requireContext(), R.color.material_grid_divider_color),
+                2
+            )
+        )
         viewModel.refreshData()
     }
 

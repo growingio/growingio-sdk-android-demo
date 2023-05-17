@@ -120,7 +120,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
         // 可以选择在SDK初始化时先注册广告模块
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpTrackConfiguration("accountId", "urlScheme")
+         *            CdpAutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(AdvertLibraryGioModule(), config))
          */

@@ -18,6 +18,7 @@ import com.growingio.demo.ui.base.ViewBindingFragment
 import com.growingio.demo.ui.dashboard.DashboardFragment
 import com.growingio.demo.ui.material.MaterialFragment
 import com.growingio.demo.ui.material.NotificationsFragment
+import com.growingio.giokit.GioKit
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.ref.WeakReference
 
@@ -60,10 +61,20 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
 
     }
 
+    private fun setupGiokit(item: MenuItem) {
+        if (item.itemId == R.id.ui) {
+            GioKit.attach(requireActivity())
+        } else {
+            GioKit.detach(requireActivity())
+        }
+    }
+
     private fun setupWithNavController(navBar: BottomNavigationView, navController: NavController) {
         navBar.setOnItemSelectedListener { item ->
+            setupGiokit(item)
             onNavDestinationSelected(item, navController)
         }
+
 
         val weakReference = WeakReference(navBar)
         navController.addOnDestinationChangedListener(

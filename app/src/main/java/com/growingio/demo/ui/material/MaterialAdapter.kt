@@ -23,7 +23,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
@@ -62,10 +61,9 @@ class MaterialAdapter(private val listener: MaterialAdapterListener) :
     inner class MaterialItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val materialIcon = itemView.findViewById<ImageView>(R.id.materialIcon)
         private val materialTitle = itemView.findViewById<TextView>(R.id.materialTitle)
-        private val materialCard = itemView.findViewById<CardView>(R.id.materialCard)
 
         init {
-            materialCard.setOnClickListener {
+            itemView.rootView.setOnClickListener {
                 listener.onMaterialItemClick(itemView, materialItems.elementAt(position))
             }
         }

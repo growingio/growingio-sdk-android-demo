@@ -17,15 +17,19 @@
 
 package com.growingio.demo.ui.material
 
-import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
-import com.growingio.demo.databinding.FragmentNotificationsBinding
+import com.growingio.demo.databinding.FragmentMaterialRecyclerBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.ViewBindingFragment
-import com.growingio.giokit.GioKit
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -36,20 +40,17 @@ import dagger.multibindings.IntoSet
  *
  * @author cpacm 2023/5/11
  */
-class RecyclerViewFragment : ViewBindingFragment<FragmentNotificationsBinding>() {
+class RecyclerViewFragment : ViewBindingFragment<FragmentMaterialRecyclerBinding>() {
 
-    override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentNotificationsBinding {
-        return FragmentNotificationsBinding.inflate(inflater, container, false)
+    override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMaterialRecyclerBinding {
+        return FragmentMaterialRecyclerBinding.inflate(inflater, container, false)
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        GioKit.attach(requireActivity())
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onDetach() {
-        super.onDetach()
-        GioKit.detach(requireActivity())
+        binding.recycler.adapter = RecyclerSampleAdapter()
+        binding.recycler.layoutManager = LinearLayoutManager(requireContext())
     }
 
     @dagger.Module
@@ -60,7 +61,7 @@ class RecyclerViewFragment : ViewBindingFragment<FragmentNotificationsBinding>()
         fun provideMaterialItem(): MaterialItem {
             return MaterialItem(
                 sort = 1,
-                icon = R.drawable.ic_sdk_component,
+                icon = R.drawable.ic_lists,
                 title = "RecyclerView",
                 route = PageNav.MaterialRecyclerViewPage.route(),
                 fragmentClass = RecyclerViewFragment::class
@@ -68,3 +69,42 @@ class RecyclerViewFragment : ViewBindingFragment<FragmentNotificationsBinding>()
         }
     }
 }
+
+class RecyclerSampleAdapter : RecyclerView.Adapter<RecyclerSampleAdapter.SampleViewHolder>() {
+
+    private val sampleList = mutableListOf<SampleItem>()
+
+    init {
+        for (i in 0..100) {
+            sampleList.add(SampleItem("title-$i", "desc in position-$i"))
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
+        return SampleViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.recycler_sample_item, parent, false)
+        )
+    }
+
+    override fun getItemCount(): Int {
+        return sampleList.size
+    }
+
+    override fun onBindViewHolder(holder: SampleViewHolder, position: Int) {
+        val item = sampleList[position]
+        holder.titleTv.text = item.title
+        holder.descTv.text = item.desc
+        holder.button.setOnClickListener {
+            // nothing
+        }
+    }
+
+    data class SampleItem(val title: String, val desc: String)
+
+    class SampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val titleTv = itemView.findViewById<TextView>(R.id.title)
+        val descTv = itemView.findViewById<TextView>(R.id.desc)
+        val button = itemView.findViewById<Button>(R.id.action)
+    }
+}
+

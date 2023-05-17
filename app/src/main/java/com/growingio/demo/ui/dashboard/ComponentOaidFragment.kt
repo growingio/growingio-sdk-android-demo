@@ -101,7 +101,7 @@ class ComponentOaidFragment : PageFragment<FragmentComponentOaidBinding>() {
         // 推荐在SDK初始化时先注册Oaid模块,能一开始就上传OAID设备标识符
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpTrackConfiguration("accountId", "urlScheme")
+         *            CdpAutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(OaidLibraryGioModule(), oaidConfig))
          */

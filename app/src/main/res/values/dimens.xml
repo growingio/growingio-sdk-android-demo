@@ -5,4 +5,6 @@
 
 
     <dimen name="logcat_minimize_height">320dp</dimen>
+
+    <dimen name="material_divider_size">1dp</dimen>
 </resources>

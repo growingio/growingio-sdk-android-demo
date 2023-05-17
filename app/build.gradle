@@ -58,7 +58,7 @@ android {
 }
 
 growingAutotracker {
-    excludePackages "com.growingio.demo.ui.widgets.LogcatView"
+    excludePackages "com.growingio.demo.ui.widgets.LogcatView", "androidx.navigation.fragment.NavHostFragment"
 }
 
 giokitExt {

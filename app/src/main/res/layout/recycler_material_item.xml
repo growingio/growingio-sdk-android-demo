@@ -1,46 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/materialCard"
-    style="?attr/materialCardViewOutlinedStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="0dp"
-    tools:layout_width="200dp">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/materialIcon"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:contentDescription="@string/image_description_app"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_sdk_api"
+        app:layout_constraintDimensionRatio="w,2:3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/materialTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingVertical="8dp">
-
-        <ImageView
-            android:id="@+id/materialIcon"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:contentDescription="@string/image_description_app"
-            android:src="@drawable/ic_sdk_api"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/materialTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:lines="1"
-            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/materialIcon"
-            tools:text="初始化配置" />
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/materialIcon"
+        tools:text="初始化配置" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

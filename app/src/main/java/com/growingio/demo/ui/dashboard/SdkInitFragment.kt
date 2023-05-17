@@ -31,11 +31,9 @@ import com.growingio.demo.util.MarkwonManager
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
 import javax.inject.Inject
-import kotlin.reflect.KClass
 
 /**
  * <p>

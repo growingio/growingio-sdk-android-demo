@@ -22,13 +22,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
+import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.data.SdkIcon
 import com.growingio.demo.data.SdkIntroItem
-import com.growingio.demo.databinding.FragmentEventFilterBinding
+import com.growingio.demo.databinding.FragmentUniqueTagBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment
-import com.growingio.demo.util.GrowingIOManager
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,44 +41,38 @@ import dagger.multibindings.IntoSet
  * @author cpacm 2023/4/20
  */
 @AndroidEntryPoint
-class SdkEventFilterFragment : PageFragment<FragmentEventFilterBinding>() {
+class SdkUniqueTagFragment : PageFragment<FragmentUniqueTagBinding>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        GrowingIOManager.configDemoEventFilterInterceptor()
-    }
-
-    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentEventFilterBinding {
-        return FragmentEventFilterBinding.inflate(inflater, container, false)
+    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentUniqueTagBinding {
+        return FragmentUniqueTagBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTitle(getString(R.string.sdk_filter_title))
+        setTitle(getString(R.string.sdk_unique_tag))
 
-        loadAssetCode(GrowingIOManager)
-
-        pageBinding.typeFilterButton.setOnClickListener {
-            GrowingAutotracker.get().setLoginUserAttributes(hashMapOf("userName" to "cpacm"))
+        pageBinding.settleBtn.setOnClickListener {
+            val uniqueTag = pageBinding.uniqueTag.editText?.text
+            if (uniqueTag == null || uniqueTag.toString().isEmpty()) {
+                showMessage(R.string.sdk_unique_tag_toast)
+                return@setOnClickListener
+            }
+            setTestBtnUniqueTag(uniqueTag.toString())
         }
 
-        pageBinding.pathFilterButton.setOnClickListener { }
-
-        pageBinding.customFilterButton.setOnClickListener {
-            GrowingAutotracker.get().trackCustomEvent("filter")
+        pageBinding.testBtn.setOnClickListener {
+            //nothing
         }
 
-        pageBinding.fieldFilterButton.setOnClickListener {
-            GrowingAutotracker.get().trackCustomEvent("filter_field")
-        }
+        loadAssetCode(this)
 
-        setDefaultLogFilter("level:debug filter")
+        setDefaultLogFilter("level:debug unique")
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        GrowingIOManager.resetEventFilterInterceptor()
+    @SourceCode
+    private fun setTestBtnUniqueTag(tag: String) {
+        GrowingAutotracker.get().setUniqueTag(pageBinding.testBtn, tag)
     }
 
     @dagger.Module
@@ -88,12 +82,12 @@ class SdkEventFilterFragment : PageFragment<FragmentEventFilterBinding>() {
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 3,
-                icon = SdkIcon.Config,
-                title = "SDK 事件过滤",
-                desc = "如何在初始化中设置事件过滤",
-                route = PageNav.SdkEventFilterPage.route(),
-                fragmentClass = SdkEventFilterFragment::class
+                id = 14,
+                icon = SdkIcon.Api,
+                title = "唯一路径",
+                desc = "给View设置唯一的Tag，方便点击等事件确定唯一的View路径，一般用于动态布局的场景",
+                route = PageNav.SdkUniqueTagPage.route(),
+                fragmentClass = SdkUniqueTagFragment::class
             )
         }
     }

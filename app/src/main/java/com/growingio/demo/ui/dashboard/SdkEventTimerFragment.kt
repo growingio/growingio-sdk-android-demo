@@ -175,7 +175,7 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 14,
+                id = 15,
                 icon = SdkIcon.Api,
                 title = "事件计时器",
                 desc = "用来计算自定义事件从产生到结束经过的时间",

@@ -23,10 +23,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.json.JsonLibraryModule
 import com.growingio.android.protobuf.ProtobufLibraryModule
-import com.growingio.android.sdk.TrackerContext
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
-import com.growingio.android.sdk.track.middleware.format.EventByteArray
-import com.growingio.android.sdk.track.middleware.format.EventFormatData
 import com.growingio.android.sdk.track.providers.ConfigurationProvider
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.BuildConfig
@@ -86,7 +83,7 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
         // 可以选择在SDK初始化时先注册模块
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpTrackConfiguration("accountId", "urlScheme")
+         *            CdpAutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(ProtobufLibraryModule()))
          */

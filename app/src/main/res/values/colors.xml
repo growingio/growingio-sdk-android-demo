@@ -90,5 +90,6 @@
     <color name="logcat_error_foreground">#FFFFFF</color>
     <color name="logcat_error_background">#CF5B56</color>
 
+    <color name="material_grid_divider_color">#E0E0E0</color>
 
 </resources>

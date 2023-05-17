@@ -51,7 +51,7 @@ class GiokitInitializer : Initializer<Boolean> {
     override fun create(context: Context): Boolean {
         if (context is Application) {
             GioKit.with(context)
-                .attach(false).bindWindow(false)
+                .attach(false)
                 .build()
             return true
         }
@@ -59,7 +59,7 @@ class GiokitInitializer : Initializer<Boolean> {
     }
 
     override fun dependencies(): MutableList<Class<out Initializer<*>>> {
-        return mutableListOf(GrowingioInitializer::class.java)
+        return mutableListOf()
     }
 
 }
