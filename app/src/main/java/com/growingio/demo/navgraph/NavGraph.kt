@@ -59,6 +59,11 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
 
     object MaterialRecyclerViewPage : PageNav(FragmentNav.UI, "recyclerview")
     object MaterialBottomAppBarPage : PageNav(FragmentNav.UI, "bottomappbar")
+    object MaterialButtonPage : PageNav(FragmentNav.UI, "button")
+    object MaterialCheckBoxPage : PageNav(FragmentNav.UI, "checkbox")
+    object MaterialChipsPage : PageNav(FragmentNav.UI, "chips")
+    object MaterialDialogPage : PageNav(FragmentNav.UI, "dialog")
+    object MaterialMenuPage : PageNav(FragmentNav.UI, "menu")
 
     object LinkArticlePage : PageNav(FragmentNav.Home, params = arrayListOf("noteId")) {
         fun toNoteUrl(noteId: Long): String {

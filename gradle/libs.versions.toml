@@ -27,7 +27,7 @@ markwon = "4.6.2"
 
 # growingio
 growingio = "3.5.0"
-growingioPlugin = "3.4.6"
+growingioPlugin = "3.5.0"
 giokit = "1.4.0"
 
 pluginGradle = "7.4.2"

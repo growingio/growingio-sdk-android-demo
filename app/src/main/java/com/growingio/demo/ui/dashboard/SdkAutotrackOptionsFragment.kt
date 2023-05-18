@@ -74,6 +74,7 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
             isToolbarMenuItemClickEnabled = true
             isActionMenuItemClickEnabled = true
             isPopupMenuItemClickEnabled = true
+            isContextMenuItemClickEnabled = true
             isDialogClickEnabled = true
             isEditTextChangeEnabled = true
             isSeekbarChangeEnabled = true
@@ -110,6 +111,7 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
             | toolbarMenuItemClickEnabled    | true  | Toolbar上的MenuItem点击事件    |
             | actionMenuItemClickEnabled     | true | ActionMenu上的MenuItem点击事件   | 
             | popupMenuItemClickEnabled    | true | PopupMenu上的MenuItem点击事件    |
+            | contextMenuItemClickEnabled     | true |ContextMenu上的MenuItem点击事件   | 
             | dialogClickEnabled         | true   | Dialog上的选项点击事件 |
             | editTextChangeEnabled        | true    | EditText上的焦点变化事件       |
             | seekbarChangeEnabled           | true    | SeekBar上的滑动事件     | 

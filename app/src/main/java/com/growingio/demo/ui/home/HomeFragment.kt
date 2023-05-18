@@ -69,12 +69,16 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
         }
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        GioKit.detach(requireActivity())
+    }
+
     private fun setupWithNavController(navBar: BottomNavigationView, navController: NavController) {
         navBar.setOnItemSelectedListener { item ->
             setupGiokit(item)
             onNavDestinationSelected(item, navController)
         }
-
 
         val weakReference = WeakReference(navBar)
         navController.addOnDestinationChangedListener(
