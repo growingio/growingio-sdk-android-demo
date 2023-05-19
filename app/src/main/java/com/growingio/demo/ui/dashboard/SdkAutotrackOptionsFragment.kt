@@ -103,25 +103,28 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
         return """
             在无埋点SDK中，开发者可以通过设置无埋点配置来精细化控制无埋点注入范围。
             
-            | 参数名称                      | 默认值  | 说明                 | 
-            | :----------------------------| :----------------- | :------ | 
-            | fragmentPageEnabled          | true  | Fragment 页面事件   |
-            | activityPageEnabled          | true | Activity 页面时间    | 
-            | activityMenuItemClickEnabled  |  false  | Activity上的MenuItem点击事件  |
-            | toolbarMenuItemClickEnabled    | true  | Toolbar上的MenuItem点击事件    |
-            | actionMenuItemClickEnabled     | true | ActionMenu上的MenuItem点击事件   | 
-            | popupMenuItemClickEnabled    | true | PopupMenu上的MenuItem点击事件    |
-            | contextMenuItemClickEnabled     | true |ContextMenu上的MenuItem点击事件   | 
-            | dialogClickEnabled         | true   | Dialog上的选项点击事件 |
-            | editTextChangeEnabled        | true    | EditText上的焦点变化事件       |
-            | seekbarChangeEnabled           | true    | SeekBar上的滑动事件     | 
-            | spinnerItemClickSelectEnabled     | true  | Spinner上的Item点击事件               | 
-            | adapterViewItemClickEnabled    | true | DefaultAdapter上的Item点击事件  |
-            | expandableListGroupClickEnabled  | true |  ExpandableListGroup上的父级选项点击事件       | 
-            | expandableListChildClickEnabled  | true |  ExpandableListGroup上的子级选项点击事件       | 
-            | compoundButtonCheckEnabled       | true     | CompoundButton上的选中事件 | 
-            | ratingBarChangeEnabled    | true  | RatingBar上的选中变化事件    | 
-            | viewClickEnabled          | true  | 默认的OnClickListener监听事件 |
+            | 参数名称                      | 默认值  | 说明                 | 事件类型 |
+            | :----------------------------| :----------------- | :------ | --- |
+            | fragmentPageEnabled          | true  | Fragment 页面事件   | Page |
+            | activityPageEnabled          | true | Activity 页面时间    | Page |
+            | viewClickEnabled          | true  | 默认的OnClickListener监听事件 | VIEW_CLICK |
+            | activityMenuItemClickEnabled  |  false  | Activity上的MenuItem点击事件  | VIEW_CLICK |
+            | toolbarMenuItemClickEnabled    | true  | Toolbar上的MenuItem点击事件    | VIEW_CLICK |
+            | tabLayoutTabSelectedEnabled    | true  | TabLayout上的Tab切换事件    |  VIEW_CLICK |
+            | actionMenuItemClickEnabled     | true | ActionMenu上的MenuItem点击事件   |  VIEW_CLICK |
+            | popupMenuItemClickEnabled    | true | PopupMenu上的MenuItem点击事件    | VIEW_CLICK |
+            | contextMenuItemClickEnabled     | true |ContextMenu上的MenuItem点击事件   |  VIEW_CLICK |
+            | dialogClickEnabled         | true   | Dialog上的选项点击事件 | VIEW_CLICK |
+            | spinnerItemClickSelectEnabled     | true  | Spinner上的Item点击事件       |  VIEW_CLICK |
+            | adapterViewItemClickEnabled    | true | DefaultAdapter上的Item点击事件  | VIEW_CLICK |
+            | expandableListGroupClickEnabled  | true |  ExpandableListGroup上的父级选项点击事件  | VIEW_CLICK |
+            | expandableListChildClickEnabled  | true |  ExpandableListGroup上的子级选项点击事件  | VIEW_CLICK |
+            | editTextChangeEnabled        | true    | EditText上的焦点变化事件       | VIEW_CHANGE |
+            | seekbarChangeEnabled        | true    | SeekBar上滑动结束时事件       | VIEW_CHANGE |
+            | sliderChangeEnabled           | true    | Slider上的滑动结束时事件     |  VIEW_CHANGE |
+            | compoundButtonCheckEnabled       | true     | CompoundButton上的选中事件 |  VIEW_CHANGE |
+            | ratingBarChangeEnabled    | true  | RatingBar上的滑动结束时事件    |  VIEW_CHANGE |
+            
             
         """.trimIndent()
     }

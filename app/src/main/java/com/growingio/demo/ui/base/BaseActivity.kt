@@ -1,4 +1,4 @@
-package com.cpacm.moment.ui.base
+package com.growingio.demo.ui.base
 
 import android.os.Bundle
 import androidx.activity.result.ActivityResultCallback

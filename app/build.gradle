@@ -58,6 +58,7 @@ android {
 }
 
 growingAutotracker {
+    logEnabled true
     excludePackages "com.growingio.demo.ui.widgets.LogcatView", "androidx.navigation.fragment.NavHostFragment"
 }
 

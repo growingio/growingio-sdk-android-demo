@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">GrowingIO</string>
+    <string name="app_author">Cpacm</string>
+    <string name="app_author_email">kongbai@startdt.com</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -128,6 +130,7 @@
     <string name="material_button_sample3">Everyone</string>
     <string name="material_floating_button">FloatingActionButton</string>
     <string name="material_floating_button_expanded">Expanded FAB</string>
+    <string name="material_radio_button">RadioButton</string>
     <string name="material_checkbox_enabled">enabled</string>
     <string name="material_checkbox_disabled">disabled</string>
     <string name="material_checkbox_indeterminate">indeterminate</string>
@@ -160,6 +163,20 @@
         <item>Item 3</item>
         <item>Item 4</item>
     </string-array>
+    <string name="material_navigation">Navigation</string>
+    <string name="material_navigation_drawer">NavigationDrawer</string>
+    <string name="material_navigation_drawer_open">Show Navigation Drawer</string>
+    <string name="material_navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="material_navigation_tablayout_all">All</string>
+    <string name="material_navigation_tablayout_shopping">Shopping</string>
+    <string name="material_navigation_tablayout_maps">Maps</string>
+    <string name="material_navigation_tablayout_images">Images</string>
+    <string name="material_navigation_tablayout_updates">Updates</string>
+    <string name="material_switch">MaterialSwitch</string>
+    <string name="material_switch_compat">SwitchCompat</string>
+    <string name="material_text_field_label">Label</string>
+    <string name="material_text_field_helper">Textfield helper text</string>
+    <string name="material_text_field_suffix">-END</string>
 
 
 

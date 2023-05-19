@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="@dimen/material_textinput_default_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:hint="@string/material_text_field_label"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:helperText="@string/material_text_field_helper"
+        app:helperTextEnabled="true"
+        app:suffixText="@string/material_text_field_suffix">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textFieldEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textAlignment="textEnd" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dropMenuTextField"
+        style="?attr/textInputOutlinedExposedDropdownMenuStyle"
+        android:layout_width="@dimen/material_textinput_default_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:hint="@string/material_text_field_label"
+        app:errorEnabled="true"
+        app:helperText="@string/material_text_field_helper"
+        app:helperTextEnabled="true">
+
+        <AutoCompleteTextView
+            android:id="@+id/filled_exposed_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            app:simpleItems="@array/material_menu_list" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>

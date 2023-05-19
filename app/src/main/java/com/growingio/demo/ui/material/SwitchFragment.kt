@@ -21,7 +21,7 @@ import android.os.Bundle
 import android.view.*
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
-import com.growingio.demo.databinding.FragmentMaterialButtonBinding
+import com.growingio.demo.databinding.FragmentMaterialSwitchBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.ViewBindingFragment
 import dagger.Provides
@@ -34,25 +34,25 @@ import dagger.multibindings.IntoSet
  *
  * @author cpacm 2023/5/15
  */
-class ButtonFragment : ViewBindingFragment<FragmentMaterialButtonBinding>() {
+class SwitchFragment : ViewBindingFragment<FragmentMaterialSwitchBinding>() {
 
     override fun createViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentMaterialButtonBinding {
-        return FragmentMaterialButtonBinding.inflate(inflater, container, false)
+    ): FragmentMaterialSwitchBinding {
+        return FragmentMaterialSwitchBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.materialButton.setOnClickListener {}
+        binding.materialSwitch.setOnCheckedChangeListener { _, _ ->
+            //Hook Inject
+        }
 
-        binding.toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked -> }
-
-        binding.fab.setOnClickListener { }
-        binding.expanedFab.setOnClickListener { }
-        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->  }
+        binding.switchCompat.setOnCheckedChangeListener { _, _ ->
+            //Hook Inject
+        }
     }
 
     @dagger.Module
@@ -62,11 +62,11 @@ class ButtonFragment : ViewBindingFragment<FragmentMaterialButtonBinding>() {
         @Provides
         fun provideMaterialItem(): MaterialItem {
             return MaterialItem(
-                sort = 3,
-                icon = R.drawable.ic_button,
-                title = "Material Button",
-                route = PageNav.MaterialButtonPage.route(),
-                fragmentClass = ButtonFragment::class
+                sort = 10,
+                icon = R.drawable.ic_switch,
+                title = "Switch",
+                route = PageNav.MaterialSwitchPage.route(),
+                fragmentClass = SwitchFragment::class
             )
         }
     }

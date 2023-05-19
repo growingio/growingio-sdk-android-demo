@@ -19,9 +19,11 @@ package com.growingio.demo.ui.material
 
 import android.os.Bundle
 import android.view.*
+import com.growingio.android.sdk.autotrack.view.ViewAttributeUtil
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
-import com.growingio.demo.databinding.FragmentMaterialButtonBinding
+import com.growingio.demo.databinding.FragmentMaterialSwitchBinding
+import com.growingio.demo.databinding.FragmentMaterialTextfieldBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.ViewBindingFragment
 import dagger.Provides
@@ -34,25 +36,20 @@ import dagger.multibindings.IntoSet
  *
  * @author cpacm 2023/5/15
  */
-class ButtonFragment : ViewBindingFragment<FragmentMaterialButtonBinding>() {
+class TextFieldFragment : ViewBindingFragment<FragmentMaterialTextfieldBinding>() {
 
     override fun createViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentMaterialButtonBinding {
-        return FragmentMaterialButtonBinding.inflate(inflater, container, false)
+    ): FragmentMaterialTextfieldBinding {
+        return FragmentMaterialTextfieldBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.materialButton.setOnClickListener {}
-
-        binding.toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked -> }
-
-        binding.fab.setOnClickListener { }
-        binding.expanedFab.setOnClickListener { }
-        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->  }
+        // 默认不上传EditText上的值，除非手动进行如下设置
+        ViewAttributeUtil.setTrackText(binding.textFieldEditText, true)
     }
 
     @dagger.Module
@@ -62,11 +59,11 @@ class ButtonFragment : ViewBindingFragment<FragmentMaterialButtonBinding>() {
         @Provides
         fun provideMaterialItem(): MaterialItem {
             return MaterialItem(
-                sort = 3,
-                icon = R.drawable.ic_button,
-                title = "Material Button",
-                route = PageNav.MaterialButtonPage.route(),
-                fragmentClass = ButtonFragment::class
+                sort = 11,
+                icon = R.drawable.ic_textfield,
+                title = "TextField",
+                route = PageNav.MaterialTextFieldPage.route(),
+                fragmentClass = TextFieldFragment::class
             )
         }
     }

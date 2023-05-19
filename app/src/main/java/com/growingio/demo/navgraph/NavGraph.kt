@@ -31,16 +31,6 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
         return route.toString()
     }
 
-    fun paramName(index: Int = 0): String {
-        if (params != null && params.size > index) {
-            return params[index]
-        }
-        assert(true) {
-            "make sure navigation params index is correct"
-        }
-        return ""
-    }
-
     object SdkInitPage : PageNav(FragmentNav.DashBoard, "init")
     object SdkAutoTrackOptionsPage : PageNav(FragmentNav.DashBoard, "autotrackOption")
     object SdkEventFilterPage : PageNav(FragmentNav.DashBoard, "eventFilter")
@@ -64,12 +54,10 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object MaterialChipsPage : PageNav(FragmentNav.UI, "chips")
     object MaterialDialogPage : PageNav(FragmentNav.UI, "dialog")
     object MaterialMenuPage : PageNav(FragmentNav.UI, "menu")
-
-    object LinkArticlePage : PageNav(FragmentNav.Home, params = arrayListOf("noteId")) {
-        fun toNoteUrl(noteId: Long): String {
-            return route().replace("{${paramName()}}", noteId.toString())
-        }
-    }
+    object MaterialNavigationPage : PageNav(FragmentNav.UI, "navigation")
+    object MaterialSliderPage : PageNav(FragmentNav.UI, "slider")
+    object MaterialSwitchPage : PageNav(FragmentNav.UI, "switch")
+    object MaterialTextFieldPage : PageNav(FragmentNav.UI, "textfield")
 
 }
 

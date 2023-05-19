@@ -31,11 +31,11 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import com.cpacm.moment.ui.base.PermissionActivity
 import com.google.mlkit.common.MlKitException
 import com.google.mlkit.vision.demo.kotlin.barcodescanner.BarcodeScannerProcessor
 import com.growingio.demo.R
 import com.growingio.demo.databinding.ActivityVisionCameraxLivePreviewBinding
+import com.growingio.demo.ui.base.PermissionActivity
 
 /**
  * <p>
