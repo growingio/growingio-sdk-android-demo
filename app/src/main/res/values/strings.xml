@@ -179,6 +179,12 @@
     <string name="material_text_field_suffix">-END</string>
 
 
+    <string name="template_compose_title">Compose Demo</string>
+    <string name="template_compose_desc">Jetpack Compose 集成GrowingIO SDK 的实例演示</string>
+    <string name="template_flutter_title">Flutter Demo</string>
+    <string name="template_flutter_desc">Flutter 集成GrowingIO SDK 的实例演示</string>
+    <string name="template_rn_title">RN Demo</string>
+    <string name="template_rn_desc">ReactNative 集成GrowingIO SDK 的实例演示</string>
 
 
     <string name="sample_text" translatable="false">

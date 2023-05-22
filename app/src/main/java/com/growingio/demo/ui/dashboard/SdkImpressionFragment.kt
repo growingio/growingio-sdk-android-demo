@@ -52,7 +52,7 @@ class SdkImpressionFragment : PageFragment<FragmentImpressionBinding>() {
 
         setTitle(getString(R.string.sdk_impression))
 
-        pageBinding.impressionSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        pageBinding.impressionSwitch.setOnCheckedChangeListener { _, isChecked ->
             pageBinding.impView.visibility = if (isChecked) View.VISIBLE else View.GONE
         }
 

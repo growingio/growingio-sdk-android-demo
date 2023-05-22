@@ -96,7 +96,7 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
 
         init {
             sdkJump.setOnClickListener {
-                listener.onSdkItemClick(itemView, sdkItems.elementAt(position))
+                listener.onSdkItemClick(itemView, sdkItems.elementAt(layoutPosition))
             }
         }
 

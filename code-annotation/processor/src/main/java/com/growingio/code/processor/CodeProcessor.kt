@@ -29,8 +29,8 @@ class CodeProcessor(
     private val codeGenerator: CodeGenerator,
 ) : SymbolProcessor {
 
-    fun KSPLogger.log(message: String) {
-        warn(message)
+    fun log(message: String) {
+        logger.logging(message)
     }
 
     private val sourceCodeList = arrayListOf<CodeFunction>()
@@ -77,7 +77,7 @@ class CodeProcessor(
             }
 
             if (path != null && fileName != "unknown") {
-                logger.log("$fileName,${function.simpleName.getShortName()},$path => $startLine == $endLine")
+                log("$fileName,${function.simpleName.getShortName()},$path => $startLine == $endLine")
                 val body = readSourceCode(path, startLine, endLine)
                 sourceCodeList.add(
                     CodeFunction(
@@ -101,17 +101,18 @@ class CodeProcessor(
         val dir = options.get("source.dir") ?: return
 
         val fileDir = File(dir)
-        if (fileDir.exists()) {
+        if (!fileDir.exists()) {
             fileDir.mkdirs()
         }
         //delete all
-        fileDir.listFiles { _, name -> name.endsWith(".code") }?.forEach { it.delete() }
+        //fileDir.listFiles { _, name -> name.endsWith(".code") }?.forEach { it.delete() }
 
         sourceCodeList.groupBy { code ->
             code.dir + "." + code.fileName + ".code"
         }.forEach { (fileName, codes) ->
             val newFile = File(fileDir, fileName)
-            logger.log("generate file:${newFile.path}")
+            newFile.writeText("")
+            log("generate file:${newFile.path}")
             codes.forEachIndexed { index, code ->
                 newFile.appendText(code.body + if (index < codes.size) "\n\n" else "")
             }
@@ -152,6 +153,7 @@ class CodeProcessor(
                         }
                     }
                 }
+
                 '*' -> {
                     if (i + 1 in str.indices && isInDocType == 2) {
                         if (str[i + 1] == '/') {
@@ -159,6 +161,7 @@ class CodeProcessor(
                         }
                     }
                 }
+
                 '\n' -> if (isInDocType == 1) isInDocType = 0
                 '{' -> if (isInDocType == 0) stack.push(i)
                 '}' -> {

@@ -51,7 +51,7 @@ class AppCompatDialogFragment : ViewBindingFragment<FragmentMaterialDialogBindin
             AlertDialog.Builder(requireContext())
                 .setTitle("This is title")
                 .setMessage("This is a loooooooooooooooong Message")
-                .setPositiveButton("Accept") { dialog, which -> }
+                .setPositiveButton("Accept") { _, _ -> }
                 .setNegativeButton("Decline", null)
                 .setNeutralButton("Cancel", null)
                 .setCancelable(true)
@@ -62,10 +62,10 @@ class AppCompatDialogFragment : ViewBindingFragment<FragmentMaterialDialogBindin
         binding.itemsDialog.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("This is title")
-                .setPositiveButton("Accept") { dialog, which -> }
+                .setPositiveButton("Accept") { _, _ -> }
                 .setNegativeButton("Decline", null)
                 .setNeutralButton("Cancel", null)
-                .setSingleChoiceItems(choices, 1) { callback, i -> }
+                .setSingleChoiceItems(choices, 1) { _, _ -> }
                 .setCancelable(true)
                 .show()
         }

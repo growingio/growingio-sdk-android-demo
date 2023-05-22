@@ -47,13 +47,13 @@ class CheckBoxFragment : ViewBindingFragment<FragmentMaterialCheckboxBinding>() 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.checkbox1.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.checkbox1.setOnCheckedChangeListener { _, _ ->
 
         }
-        binding.checkbox2.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.checkbox2.setOnCheckedChangeListener { _, _ ->
 
         }
-        binding.checkbox3.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.checkbox3.setOnCheckedChangeListener { _, _ ->
 
         }
     }

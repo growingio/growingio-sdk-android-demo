@@ -17,7 +17,7 @@ import com.growingio.demo.navgraph.NavGraph.HOME_GRAPH
 import com.growingio.demo.ui.base.ViewBindingFragment
 import com.growingio.demo.ui.dashboard.DashboardFragment
 import com.growingio.demo.ui.material.MaterialFragment
-import com.growingio.demo.ui.material.NotificationsFragment
+import com.growingio.demo.ui.template.TemplateFragment
 import com.growingio.giokit.GioKit
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.ref.WeakReference
@@ -37,7 +37,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                 }
                 fragment<MaterialFragment>(FragmentNav.UI.route) {
                 }
-                fragment<NotificationsFragment>(FragmentNav.Template.route) {
+                fragment<TemplateFragment>(FragmentNav.Template.route) {
                 }
             }
         }

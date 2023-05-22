@@ -102,7 +102,7 @@ class LogcatView @JvmOverloads constructor(
         linearLayoutManager.reverseLayout = true
         logcatList.layoutManager = linearLayoutManager
 
-        logcatAdapter = LoggerAdapter(context) { count ->
+        logcatAdapter = LoggerAdapter(context) { _ ->
             logcatList.scrollToPosition(0)
         }
         logcatList.adapter = logcatAdapter

@@ -106,7 +106,7 @@ class MenuFragment : ViewBindingFragment<FragmentMaterialMenuBinding>(), MenuPro
         )
         popup.setAdapter(adapter)
         popup.anchorView = binding.menuShowPopup
-        popup.setOnItemClickListener { parent, view, position, id ->
+        popup.setOnItemClickListener { _, _, position, _ ->
             showMessage(adapter.getItem(position).toString(), binding.root)
             popup.dismiss()
         }
@@ -124,7 +124,7 @@ class MenuFragment : ViewBindingFragment<FragmentMaterialMenuBinding>(), MenuPro
             )
             true
         }
-        menu.add(R.string.material_test_btn).setOnMenuItemClickListener { menuItem ->
+        menu.add(R.string.material_test_btn).setOnMenuItemClickListener { _ ->
             (v as TextView).setText(R.string.material_test_btn)
             true
         }

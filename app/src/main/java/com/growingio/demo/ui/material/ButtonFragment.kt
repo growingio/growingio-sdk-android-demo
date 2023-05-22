@@ -48,11 +48,11 @@ class ButtonFragment : ViewBindingFragment<FragmentMaterialButtonBinding>() {
 
         binding.materialButton.setOnClickListener {}
 
-        binding.toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked -> }
+        binding.toggleGroup.addOnButtonCheckedListener { _, _, _ -> }
 
         binding.fab.setOnClickListener { }
         binding.expanedFab.setOnClickListener { }
-        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->  }
+        binding.radioGroup.setOnCheckedChangeListener { _, _ ->  }
     }
 
     @dagger.Module

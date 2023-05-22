@@ -64,7 +64,7 @@ class MaterialAdapter(private val listener: MaterialAdapterListener) :
 
         init {
             itemView.rootView.setOnClickListener {
-                listener.onMaterialItemClick(itemView, materialItems.elementAt(position))
+                listener.onMaterialItemClick(itemView, materialItems.elementAt(layoutPosition))
             }
         }
 

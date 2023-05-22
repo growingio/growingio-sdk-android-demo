@@ -87,7 +87,7 @@ protobuf {
 }
 
 ksp {
-    arg("source.dir", "${projectDir}/src/main/assets/")
+    arg("source.dir", "${projectDir}/src/main/assets/code/")
 }
 
 configurations {

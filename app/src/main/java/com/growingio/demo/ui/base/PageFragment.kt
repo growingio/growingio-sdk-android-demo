@@ -36,6 +36,7 @@ import com.growingio.demo.ui.widgets.ContainerTransformConfigurationHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 
 /**
  * <p>
@@ -76,6 +77,7 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
                     binding.codeLayout.visibility = View.GONE
                     binding.apiLayout.visibility = View.VISIBLE
                 }
+
                 binding.codeTab.id -> {
                     val sharedAxis = createTransition(true)
                     TransitionManager.beginDelayedTransition(binding.root, sharedAxis);
@@ -113,7 +115,7 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
     abstract fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): T
 
     fun loadAssetCode(clazz: Any, language: String = "kotlin", showLineNumbers: Boolean = false) {
-        val fileName = clazz.javaClass.name + ".code"
+        val fileName = "code" + File.separator + clazz.javaClass.name + ".code"
         loadAssetCode(fileName, language, showLineNumbers)
     }
 
