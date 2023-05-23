@@ -70,21 +70,25 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
         autotrackerOptions.apply {
             isActivityPageEnabled = true
             isFragmentPageEnabled = true
+            isViewClickEnabled = true
             isActivityMenuItemClickEnabled = false
             isToolbarMenuItemClickEnabled = true
+            isTabLayoutTabSelectedEnabled = true
             isActionMenuItemClickEnabled = true
             isPopupMenuItemClickEnabled = true
             isContextMenuItemClickEnabled = true
             isDialogClickEnabled = true
-            isEditTextChangeEnabled = true
-            isSeekbarChangeEnabled = true
             isSpinnerItemClickSelectEnabled = true
             isAdapterViewItemClickEnabled = true
             isExpandableListGroupClickEnabled = true
             isExpandableListChildClickEnabled = true
+            isEditTextChangeEnabled = true
+            isSeekbarChangeEnabled = true
+            isSliderChangeEnabled = true
             isCompoundButtonCheckEnabled = true
             isRadioGroupCheckEnabled = true
-            isViewClickEnabled = true
+            isRatingBarChangeEnabled = true
+
         }
         /**
          * // 可以在初始化时设置无埋点配置
@@ -123,6 +127,7 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
             | seekbarChangeEnabled        | true    | SeekBar上滑动结束时事件       | VIEW_CHANGE |
             | sliderChangeEnabled           | true    | Slider上的滑动结束时事件     |  VIEW_CHANGE |
             | compoundButtonCheckEnabled       | true     | CompoundButton上的选中事件 |  VIEW_CHANGE |
+            | isRadioGroupCheckEnabled       | true     | RadioGroup上的选中事件 |  VIEW_CHANGE |
             | ratingBarChangeEnabled    | true  | RatingBar上的滑动结束时事件    |  VIEW_CHANGE |
             
             

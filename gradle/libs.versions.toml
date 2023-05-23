@@ -30,7 +30,7 @@ growingio = "3.5.0"
 growingioPlugin = "3.5.0"
 giokit = "1.4.0"
 
-pluginGradle = "7.4.2"
+pluginGradle = "8.0.1" #"7.4.2"
 kotlin = "1.8.20"
 ksp = "1.8.20-1.0.11"
 # https://github.com/google/protobuf-gradle-plugin

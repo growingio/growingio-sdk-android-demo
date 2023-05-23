@@ -18,11 +18,6 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
 dependencies{
     implementation(kotlin("stdlib"))
     implementation(project(":code-annotation"))
@@ -31,6 +26,5 @@ dependencies{
     // https://square.github.io/kotlinpoet/
     implementation("com.squareup:kotlinpoet:1.13.0")
 }
-
 // 运行 $ ./gradlew --stop     # 先停掉 daemon 进程
 // $ ./gradlew --daemon   # 启动 daemon 进程

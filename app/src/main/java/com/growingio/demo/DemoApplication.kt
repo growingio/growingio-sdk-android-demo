@@ -64,9 +64,6 @@ class GiokitInitializer : Initializer<Boolean> {
 
 }
 
-/**
- * dagger with {@link com.growingio.demo.util.GrowingIOManager}
- */
 class GrowingioInitializer : Initializer<CdpAutotracker> {
 
     @EntryPoint
@@ -81,9 +78,9 @@ class GrowingioInitializer : Initializer<CdpAutotracker> {
         val agreePolicy = runBlocking { context.settingsDataStore.data.first().agreePolicy }
         GrowingAutotracker.startWithConfiguration(
             context,
-            CdpAutotrackConfiguration("bc675c65b3b0290e", "growing.55ea7f7853827722")
-                .setDataSourceId("9fe6e7c0ceffe22c")
-                .setDataCollectionServerHost("http://117.50.84.75:8080")
+            CdpAutotrackConfiguration("0a1b4118dd954ec3bcc69da5138bdb96", "growing.bd71d91eb56f5f53")
+                .setDataSourceId("baffd6fb52b78ca7")
+                .setDataCollectionServerHost("https://napi.growingio.com")
                 .setChannel("demo")
                 .setDebugEnabled(BuildConfig.DEBUG)
                 .setDataCollectionEnabled(agreePolicy)

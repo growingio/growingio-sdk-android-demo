@@ -15,8 +15,6 @@ dependencyResolutionManagement {
     }
 }
 
-enableFeaturePreview("VERSION_CATALOGS")
-
 rootProject.name = "Demo"
 include ':app'
 include ':code-annotation'
