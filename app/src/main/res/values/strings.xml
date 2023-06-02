@@ -98,6 +98,9 @@
     <string name="sdk_unique_tag_settle">设置</string>
     <string name="sdk_unique_tag_toast">请先为按钮设置UniqueTag</string>
     <string name="sdk_unique_tag_helper">设置后点击查看测试按钮的Xpath路径</string>
+    <string name="sdk_page_ignore">打开已经设置忽略的页面</string>
+    <string name="sdk_page_ignore_open">打开页面</string>
+    <string name="sdk_page_ignore_hint">显示的页面</string>
 
     <string name="component_test_btn">测试按钮</string>
     <string name="component_reset_btn">重置按钮</string>

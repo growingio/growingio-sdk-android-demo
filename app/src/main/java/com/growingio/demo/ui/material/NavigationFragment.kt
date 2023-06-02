@@ -128,4 +128,9 @@ class NavigationFragment : ViewBindingFragment<FragmentMaterialNavigationBinding
         }
         return false
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (requireActivity() as AppCompatActivity).removeMenuProvider(this)
+    }
 }
