@@ -24,7 +24,7 @@
 - [x] 如何进行事件过滤
 - [x] 常用的SDK API介绍
 - [x] 如何集成额外功能模块
-- [ ] Page事件的手动触发
+- [x] Page事件的手动触发
 - [ ] Compose Demo
 - [ ] Flutter Demo
 - [ ] ReactNative Demo
@@ -45,6 +45,7 @@
 - [Markwon](https://github.com/noties/Markwon/)
 - [Growingio](https://github.com/growingio/)
 - [Dagger](https://github.com/google/dagger)
+- [barcode-scanning](https://developers.google.com/ml-kit/vision/barcode-scanning/android)
 - ...
 
 ## 许可证
