@@ -97,7 +97,7 @@ class SdkImpressionFragment : PageFragment<FragmentImpressionBinding>() {
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 13,
+                id = 14,
                 icon = SdkIcon.Api,
                 title = "曝光事件",
                 desc = "当被设置的View出现在屏幕内时将触发曝光事件",

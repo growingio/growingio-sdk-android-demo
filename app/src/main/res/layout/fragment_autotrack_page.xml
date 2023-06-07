@@ -17,12 +17,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ignoreTitle"
+        android:id="@+id/pageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:checked="false"
-        android:text="@string/sdk_page_ignore"
+        android:text="@string/sdk_autotrack_page"
         android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,28 +34,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="@string/sdk_page_ignore_open"
+        android:text="@string/sdk_autotrack_page_attribute"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ignoreTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle" />
 
     <TextView
-        android:id="@+id/hint"
+        android:id="@+id/pageHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/sdk_page_ignore_hint"
-        android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+        android:text="@string/sdk_autotrack_page_hint"
+        android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
         android:textColor="?attr/colorTextGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/openBtn" />
-
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

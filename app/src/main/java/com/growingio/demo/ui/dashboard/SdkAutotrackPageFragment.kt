@@ -21,12 +21,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.collection.arrayMapOf
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.data.SdkIcon
 import com.growingio.demo.data.SdkIntroItem
-import com.growingio.demo.databinding.FragmentUniqueTagBinding
+import com.growingio.demo.databinding.FragmentAutotrackPageBinding
+import com.growingio.demo.databinding.FragmentImpressionBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment
 import dagger.Provides
@@ -41,38 +43,39 @@ import dagger.multibindings.IntoSet
  * @author cpacm 2023/4/20
  */
 @AndroidEntryPoint
-class SdkUniqueTagFragment : PageFragment<FragmentUniqueTagBinding>() {
+class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
 
-    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentUniqueTagBinding {
-        return FragmentUniqueTagBinding.inflate(inflater, container, false)
+    @SourceCode
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        //设置当前页面可以发送Page页面事件
+        GrowingAutotracker.get().autotrackPage(this, arrayMapOf("name" to "cpacm"))
+    }
+
+    override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentAutotrackPageBinding {
+        return FragmentAutotrackPageBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTitle(getString(R.string.sdk_unique_tag))
+        setTitle(getString(R.string.sdk_autotrack_page_title))
 
-        pageBinding.settleBtn.setOnClickListener {
-            val uniqueTag = pageBinding.uniqueTag.editText?.text
-            if (uniqueTag == null || uniqueTag.toString().isEmpty()) {
-                showMessage(R.string.sdk_unique_tag_toast)
-                return@setOnClickListener
-            }
-            setTestBtnUniqueTag(uniqueTag.toString())
-        }
-
-        pageBinding.testBtn.setOnClickListener {
-            //nothing
+        pageBinding.openBtn.setOnClickListener {
+            sendPageAttributes()
         }
 
         loadAssetCode(this)
 
-        setDefaultLogFilter("level:debug unique")
+        setDefaultLogFilter("level:debug page")
     }
 
     @SourceCode
-    private fun setTestBtnUniqueTag(tag: String) {
-        GrowingAutotracker.get().setUniqueTag(pageBinding.testBtn, tag)
+    private fun sendPageAttributes(){
+        //多次设置当前页面属性，不会多次发送Page事件
+        //页面属性将会合并至无埋点事件中
+        GrowingAutotracker.get().autotrackPage(this, arrayMapOf("name" to "cpacm","age" to "18","clickBy" to "button"))
     }
 
     @dagger.Module
@@ -82,12 +85,12 @@ class SdkUniqueTagFragment : PageFragment<FragmentUniqueTagBinding>() {
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 15,
+                id = 13,
                 icon = SdkIcon.Api,
-                title = "唯一路径",
-                desc = "给View设置唯一的Tag，方便点击等事件确定唯一的View路径，一般用于动态布局的场景",
-                route = PageNav.SdkUniqueTagPage.route(),
-                fragmentClass = SdkUniqueTagFragment::class
+                title = "页面事件",
+                desc = "设置发送Page事件的API",
+                route = PageNav.SdkAutotrackerPage.route(),
+                fragmentClass = SdkAutotrackPageFragment::class
             )
         }
     }

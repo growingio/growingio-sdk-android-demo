@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+        //GrowingAutotracker.get().autotrackPage(this)
+
         settingsDataStore.data.map {
             if (it.agreePolicy) {
                 initAppAfterAgreePolicy()
