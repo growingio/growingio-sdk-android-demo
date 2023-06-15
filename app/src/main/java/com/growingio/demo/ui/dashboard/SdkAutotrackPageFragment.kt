@@ -50,7 +50,7 @@ class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
         super.onCreate(savedInstanceState)
 
         //设置当前页面可以发送Page页面事件
-        GrowingAutotracker.get().autotrackPage(this, arrayMapOf("name" to "cpacm"))
+        //GrowingAutotracker.get().autotrackPage(this, arrayMapOf("name" to "cpacm"))
     }
 
     override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentAutotrackPageBinding {
@@ -72,26 +72,28 @@ class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
     }
 
     @SourceCode
-    private fun sendPageAttributes(){
+    private fun sendPageAttributes() {
         //多次设置当前页面属性，不会多次发送Page事件
         //页面属性将会合并至无埋点事件中
-        GrowingAutotracker.get().autotrackPage(this, arrayMapOf("name" to "cpacm","age" to "18","clickBy" to "button"))
+        //GrowingAutotracker.get().autotrackPage(this, arrayMapOf("name" to "cpacm","age" to "18","clickBy" to "button"))
     }
 
-    @dagger.Module
-    @InstallIn(SingletonComponent::class)
-    object Module {
-        @IntoSet
-        @Provides
-        fun provideSdkItem(): SdkIntroItem {
-            return SdkIntroItem(
-                id = 13,
-                icon = SdkIcon.Api,
-                title = "页面事件",
-                desc = "设置发送Page事件的API",
-                route = PageNav.SdkAutotrackerPage.route(),
-                fragmentClass = SdkAutotrackPageFragment::class
-            )
+    /*
+        @dagger.Module
+        @InstallIn(SingletonComponent::class)
+        object Module {
+            @IntoSet
+            @Provides
+            fun provideSdkItem(): SdkIntroItem {
+                return SdkIntroItem(
+                    id = 13,
+                    icon = SdkIcon.Api,
+                    title = "页面事件",
+                    desc = "设置发送Page事件的API",
+                    route = PageNav.SdkAutotrackerPage.route(),
+                    fragmentClass = SdkAutotrackPageFragment::class
+                )
+            }
         }
-    }
+    */
 }

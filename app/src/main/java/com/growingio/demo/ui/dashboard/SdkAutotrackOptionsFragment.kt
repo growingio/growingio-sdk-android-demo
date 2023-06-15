@@ -100,7 +100,8 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
          */
         // 也可以在运行时修改
         val autotrackConfig = ConfigurationProvider.get().getConfiguration<AutotrackConfig>(AutotrackConfig::class.java)
-        autotrackConfig?.autotrackOptions = autotrackerOptions
+        // not support
+        //autotrackConfig?.autotrackOptions = autotrackerOptions
     }
 
     private fun initContent(): String {
@@ -133,22 +134,23 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
             
         """.trimIndent()
     }
+    /*
+        @dagger.Module
+        @InstallIn(SingletonComponent::class)
+        object Module {
+            @IntoSet
+            @Provides
+            fun provideSdkItem(): SdkIntroItem {
+                return SdkIntroItem(
+                    id = 2,
+                    title = "无埋点配置",
+                    desc = "设置无埋点配置来精细化控制无埋点注入范围",
+                    icon = SdkIcon.Config,
+                    route = PageNav.SdkAutoTrackOptionsPage.route(),
+                    fragmentClass = SdkAutotrackOptionsFragment::class
+                )
+            }
 
-    @dagger.Module
-    @InstallIn(SingletonComponent::class)
-    object Module {
-        @IntoSet
-        @Provides
-        fun provideSdkItem(): SdkIntroItem {
-            return SdkIntroItem(
-                id = 2,
-                title = "无埋点配置",
-                desc = "设置无埋点配置来精细化控制无埋点注入范围",
-                icon = SdkIcon.Config,
-                route = PageNav.SdkAutoTrackOptionsPage.route(),
-                fragmentClass = SdkAutotrackOptionsFragment::class
-            )
         }
-
-    }
+     */
 }
