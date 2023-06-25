@@ -122,10 +122,6 @@ object GrowingIOManager {
             return innerFilterInterceptor?.filterEventField(type, fieldArea) ?: fieldArea
         }
 
-        override fun filterEventGroup(group: String): Boolean {
-            return true
-        }
-
     }
 }
 
