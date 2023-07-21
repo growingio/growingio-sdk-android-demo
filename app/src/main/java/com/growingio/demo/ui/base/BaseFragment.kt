@@ -18,7 +18,6 @@
 package com.growingio.demo.ui.base
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -28,6 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import com.growingio.android.sdk.autotrack.GrowingAutotracker
 
 /**
  * <p>
@@ -49,6 +49,8 @@ open class BaseFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+
+        GrowingAutotracker.get().autotrackPage(this, this.javaClass.simpleName)
     }
 
     /**

@@ -93,7 +93,7 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
         /**
          * // 可以在初始化时设置无埋点配置
          * GrowingAutotracker.startWithConfiguration(requireContext(),
-         * CdpAutotrackConfiguration("accountId", "urlScheme")
+         * AutotrackConfiguration("accountId", "urlScheme")
          * //...
          * .setAutotrackOptions(autotrackerOptions)
          * )

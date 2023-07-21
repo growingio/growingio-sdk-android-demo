@@ -16,12 +16,12 @@ plugins {
 
 android {
     namespace 'com.growingio.demo'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.growingio.demo"
         minSdk 23
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0.0"
 
@@ -138,6 +138,7 @@ dependencies {
 
     implementation libs.bundles.camerax
     implementation libs.barcode.scanning
+    implementation files('libs/tbs_sdk_44051.jar')
 
     kapt libs.hilt.compiler
     kapt libs.androidx.lifecycle.compiler
@@ -146,11 +147,12 @@ dependencies {
     androidTestImplementation libs.bundles.androidx.test
 
     implementation platform("com.growingio.android:autotracker-bom:${libs.versions.growingio.get()}")
-    implementation 'com.growingio.android:autotracker-cdp'
+    implementation 'com.growingio.android:autotracker'
     implementation 'com.growingio.android:encoder'
     implementation 'com.growingio.android:protobuf'
     implementation 'com.growingio.android:oaid'
     implementation 'com.growingio.android:advert'
+    implementation 'com.growingio.android:json'
     implementation "com.growingio.giokit:giokit:${libs.versions.giokit.get()}"
 
     implementation project(path: ':code-annotation')

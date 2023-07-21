@@ -18,6 +18,8 @@ internal sealed class FragmentNav(val route: String) {
     object UI : FragmentNav("ui")
     object Template : FragmentNav("template")
 
+    object Widgets : FragmentNav("widgets")
+
 }
 
 
@@ -29,6 +31,16 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
             route.append("/").append("{").append(param).append("}")
         }
         return route.toString()
+    }
+
+    fun paramName(index: Int = 0): String {
+        if (params != null && params.size > index) {
+            return params[index]
+        }
+        assert(true) {
+            "make sure navigation params index is correct"
+        }
+        return ""
     }
 
     object SdkInitPage : PageNav(FragmentNav.DashBoard, "init")
@@ -59,6 +71,21 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object MaterialSliderPage : PageNav(FragmentNav.UI, "slider")
     object MaterialSwitchPage : PageNav(FragmentNav.UI, "switch")
     object MaterialTextFieldPage : PageNav(FragmentNav.UI, "textfield")
+    object MaterialWebViewPage : PageNav(FragmentNav.UI, "webview")
+    object MaterialExpandablePage : PageNav(FragmentNav.UI, "expandable")
+
+
+    object WidgetAndroidH5Page : PageNav(FragmentNav.Widgets, "androidH5", params = arrayListOf("url")) {
+        fun toUrl(url: String): String {
+            return route().replace("{${paramName()}}", url)
+        }
+    }
+
+    object WidgetAndroidX5Page : PageNav(FragmentNav.Widgets, "androidX5", params = arrayListOf("url")) {
+        fun toUrl(url: String): String {
+            return route().replace("{${paramName()}}", url)
+        }
+    }
 
 }
 

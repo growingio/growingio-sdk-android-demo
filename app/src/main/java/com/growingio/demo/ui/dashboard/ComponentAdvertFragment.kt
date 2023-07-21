@@ -120,7 +120,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
         // 可以选择在SDK初始化时先注册广告模块
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpAutotrackConfiguration("accountId", "urlScheme")
+         *            AutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(AdvertLibraryGioModule(), config))
          */
@@ -148,6 +148,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
         super.onDestroy()
         // reset default sdk state
         unregisterAdvertComponent()
+        barScannerLauncher.unregister()
     }
 
 

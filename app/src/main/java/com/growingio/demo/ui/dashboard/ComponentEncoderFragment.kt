@@ -86,7 +86,7 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
         // 可以选择在SDK初始化时先注册加密模块
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpAutotrackConfiguration("accountId", "urlScheme")
+         *            AutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(EncoderLibraryGioModule()))
          */

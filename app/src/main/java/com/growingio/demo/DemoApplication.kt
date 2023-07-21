@@ -11,8 +11,8 @@ import coil.decode.ImageDecoderDecoder
 import coil.decode.SvgDecoder
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
-import com.growingio.android.sdk.autotrack.CdpAutotrackConfiguration
-import com.growingio.android.sdk.autotrack.CdpAutotracker
+import com.growingio.android.sdk.autotrack.AutotrackConfiguration
+import com.growingio.android.sdk.autotrack.Autotracker
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.events.EventFilterInterceptor
 import com.growingio.code.annotation.SourceCode
@@ -64,7 +64,7 @@ class GiokitInitializer : Initializer<Boolean> {
 
 }
 
-class GrowingioInitializer : Initializer<CdpAutotracker> {
+class GrowingioInitializer : Initializer<Autotracker> {
 
     @EntryPoint
     @InstallIn(SingletonComponent::class)
@@ -73,12 +73,12 @@ class GrowingioInitializer : Initializer<CdpAutotracker> {
     }
 
     @SourceCode
-    override fun create(context: Context): CdpAutotracker {
+    override fun create(context: Context): Autotracker {
         val growingIOProvider = EntryPoints.get(context, GrowingIOProvider::class.java)
         val agreePolicy = runBlocking { context.settingsDataStore.data.first().agreePolicy }
         GrowingAutotracker.startWithConfiguration(
             context,
-            CdpAutotrackConfiguration("0a1b4118dd954ec3bcc69da5138bdb96", "growing.bd71d91eb56f5f53")
+            AutotrackConfiguration("0a1b4118dd954ec3bcc69da5138bdb96", "growing.bd71d91eb56f5f53")
                 .setDataSourceId("baffd6fb52b78ca7")
                 .setDataCollectionServerHost("https://napi.growingio.com")
                 .setChannel("demo")
@@ -90,6 +90,7 @@ class GrowingioInitializer : Initializer<CdpAutotracker> {
                 .setEventFilterInterceptor(growingIOProvider.eventFilterInterceptor())
                 .setIdMappingEnabled(true)
                 .setImpressionScale(0f)
+                //.downgrade()
         )
 
         return GrowingAutotracker.get()

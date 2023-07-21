@@ -83,7 +83,7 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
         // 可以选择在SDK初始化时先注册模块
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpAutotrackConfiguration("accountId", "urlScheme")
+         *            AutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(ProtobufLibraryModule()))
          */
