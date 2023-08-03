@@ -51,9 +51,9 @@ class GioHybridWebView @JvmOverloads constructor(
     private fun loadGioHybridHtmlFromAsset(path: String): String {
         val gioHybridHtmlContent = context.assets.open(path).bufferedReader().use { it.readText() }
 
-        val projectId = ConfigurationProvider.core().projectId
-        val dataSourceId = ConfigurationProvider.core().dataSourceId
-        val dataServerHost = ConfigurationProvider.core().dataCollectionServerHost
+        val projectId = GrowingAutotracker.get().context.configurationProvider.core().projectId
+        val dataSourceId = GrowingAutotracker.get().context.configurationProvider.core().dataSourceId
+        val dataServerHost = GrowingAutotracker.get().context.configurationProvider.core().dataCollectionServerHost
         val newHtmlContent = gioHybridHtmlContent.replace("<ProjectId>", projectId).replace("<DataSourceId>", dataSourceId)
             .replace("<DataServerHost>", dataServerHost)
 

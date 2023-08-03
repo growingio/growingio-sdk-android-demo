@@ -23,20 +23,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.sdk.autotrack.AutotrackConfig
 import com.growingio.android.sdk.autotrack.AutotrackOptions
-import com.growingio.android.sdk.track.providers.ConfigurationProvider
+import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
-import com.growingio.demo.data.SdkIcon
-import com.growingio.demo.data.SdkIntroItem
 import com.growingio.demo.databinding.FragmentAutotrackOptionsBinding
-import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment
 import com.growingio.demo.util.MarkwonManager
-import dagger.Provides
-import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.IntoSet
 import javax.inject.Inject
 
 /**
@@ -99,7 +92,7 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
          * )
          */
         // 也可以在运行时修改
-        val autotrackConfig = ConfigurationProvider.get().getConfiguration<AutotrackConfig>(AutotrackConfig::class.java)
+        val autotrackConfig = GrowingAutotracker.get().context.configurationProvider.getConfiguration<AutotrackConfig>(AutotrackConfig::class.java)
         // not support
         //autotrackConfig?.autotrackOptions = autotrackerOptions
     }

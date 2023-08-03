@@ -51,7 +51,7 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // open sdk debug log
-        ConfigurationProvider.core().isDebugEnabled = true
+        GrowingAutotracker.get().context.configurationProvider.core().isDebugEnabled = true
     }
 
     override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentComponentEncoderBinding {
@@ -62,8 +62,6 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
         super.onViewCreated(view, savedInstanceState)
 
         setTitle(getString(R.string.component_encoder))
-
-
 
         pageBinding.encoderSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -96,14 +94,14 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
     }
 
     private fun unregisterEncoderComponent() {
-        TrackerContext.get().registry.unregister(EventEncoder::class.java, EventEncoder::class.java)
+        GrowingAutotracker.get().context.registry.unregister(EventEncoder::class.java, EventEncoder::class.java)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         // reset default sdk state
         unregisterEncoderComponent()
-        ConfigurationProvider.core().isDebugEnabled = BuildConfig.DEBUG
+        GrowingAutotracker.get().context.configurationProvider.core().isDebugEnabled = BuildConfig.DEBUG
     }
 
 

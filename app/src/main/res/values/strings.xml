@@ -69,6 +69,10 @@
     <string name="sdk_data_collect">数据开关</string>
     <string name="sdk_data_collect_hint">数据开关</string>
     <string name="sdk_data_collect_test">测试数据发送</string>
+    <string name="sdk_data_protobuf">Protobuf</string>
+    <string name="sdk_data_json">Json</string>
+    <string name="sdk_data_protobuf_hint">使用 Google Protobuf 格式压缩和上传事件数据。</string>
+    <string name="sdk_data_json_hint">使用 json 格式上传事件数据。</string>
     <string name="sdk_location">位置信息</string>
     <string name="sdk_location_lon">经度</string>
     <string name="sdk_location_lon_hint">经度范围:-180 ~ 180</string>

@@ -16,17 +16,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/protobufSwitch"
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:checked="false"
-        android:text="@string/component_protobuf"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_marginTop="16dp"
+        app:checkedButton="@+id/protobuf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sdkHint" />
+        app:layout_constraintTop_toBottomOf="@+id/sdkHint"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/protobuf"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sdk_data_protobuf" />
+
+        <Button
+            android:id="@+id/json"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sdk_data_json" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:id="@+id/sdkDataHint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/sdk_data_protobuf_hint"
+        android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggleGroup" />
 
     <Button
         android:id="@+id/testBtn"
@@ -37,7 +66,7 @@
         android:text="@string/component_test_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/protobufSwitch" />
+        app:layout_constraintTop_toBottomOf="@+id/sdkDataHint" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

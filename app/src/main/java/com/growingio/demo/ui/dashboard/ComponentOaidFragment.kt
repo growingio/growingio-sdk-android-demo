@@ -64,7 +64,7 @@ class ComponentOaidFragment : PageFragment<FragmentComponentOaidBinding>() {
         }
 
         pageBinding.settleBtn.setOnClickListener {
-            val loader = TrackerContext.get().registry.getModelLoader(OaidHelper::class.java)
+            val loader = GrowingAutotracker.get().context.registry.getModelLoader(OaidHelper::class.java)
             if (loader != null) {
                 showMessage(R.string.component_oaid_toast2)
                 return@setOnClickListener
@@ -112,7 +112,7 @@ class ComponentOaidFragment : PageFragment<FragmentComponentOaidBinding>() {
 
     private fun unregisterOaidComponent() {
         // oaid will store in app's memory, so it always send to server until app exit
-        TrackerContext.get().registry.unregister(OaidHelper::class.java, String::class.java)
+        GrowingAutotracker.get().context.registry.unregister(OaidHelper::class.java, String::class.java)
     }
 
     @dagger.Module

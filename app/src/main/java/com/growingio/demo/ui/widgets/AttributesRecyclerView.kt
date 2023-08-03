@@ -39,7 +39,7 @@ class AttributesRecyclerView @JvmOverloads constructor(
 
     private val buildSize = arrayListOf<Int>()
 
-    val attrAdapter by lazy { AttributesAdapter(context, buildSize) }
+    private val attrAdapter by lazy { AttributesAdapter(context, buildSize) }
 
     fun addAttribute() {
         if (buildSize.size > MAX_COUNT) return

@@ -24,7 +24,6 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import com.growingio.android.advert.AdvertConfig
 import com.growingio.android.advert.AdvertLibraryGioModule
-import com.growingio.android.sdk.TrackerContext
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.log.Logger
 import com.growingio.android.sdk.track.middleware.advert.Activate
@@ -60,6 +59,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
         barScannerLauncher = registerForActivityResult(BarScanner(requireContext())) {
             pageBinding.deeplink.editText?.setText(it)
         }
+
     }
 
     override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentComponentAdvertBinding {
@@ -141,7 +141,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
     }
 
     private fun unregisterAdvertComponent() {
-        TrackerContext.get().registry.unregister(Activate::class.java, AdvertResult::class.java)
+        GrowingAutotracker.get().context.registry.unregister(Activate::class.java, AdvertResult::class.java)
     }
 
     override fun onDestroy() {

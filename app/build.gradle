@@ -27,7 +27,8 @@ android {
 
         buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.growingio.demo.GrowingAndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -76,12 +77,12 @@ android {
 }
 
 growingAutotracker {
-    logEnabled true
+    logEnabled false
     excludePackages "com.growingio.demo.ui.widgets.LogcatView", "androidx.navigation.fragment.NavHostFragment"
 }
 
 giokitExt {
-    debugMode true
+    debugMode false
     enableRelease true
     trackFinder {
         enable = true
@@ -144,7 +145,15 @@ dependencies {
     kapt libs.androidx.lifecycle.compiler
 
     testImplementation libs.junit
+    testImplementation libs.kotlin.coroutines.test
     androidTestImplementation libs.bundles.androidx.test
+    androidTestImplementation libs.kotlin.coroutines.test
+    androidTestImplementation(libs.bundles.espresso) {
+        exclude module: "protobuf-lite"
+    }
+    androidTestImplementation libs.okhttp.mockwebserver
+    debugImplementation libs.androidx.fragment.testing
+    //debugImplementation libs.androidx.test.core
 
     implementation platform("com.growingio.android:autotracker-bom:${libs.versions.growingio.get()}")
     implementation 'com.growingio.android:autotracker'
