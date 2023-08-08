@@ -75,7 +75,7 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
     private fun initTimerView(){
         pageBinding.start.setOnClickListener {
 
-            val timer = pageBinding.timerEt.editText?.text
+            val timer = pageBinding.timerInput.editText?.text
             if (timer == null || timer.toString().isEmpty()) {
                 showMessage(R.string.sdk_event_timer_toast)
                 return@setOnClickListener

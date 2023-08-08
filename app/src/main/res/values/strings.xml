@@ -123,6 +123,7 @@
     <string name="component_hybrid_hint">在无埋点SDK中，SDK 会自动注入桥接代码，实现数据打通；\n若是在埋点SDK中需要手动注册 Hybrid 模块（参考示例代码）。</string>
     <string name="component_encoder">数据加密</string>
     <string name="component_encoder_hint">SDK 加密模块默认使用 snappy 数据压缩和 xor 简单加密方式，作用于数据网络上传的阶段。</string>
+    <string name="component_data_format">数据格式</string>
     <string name="component_protobuf">Google Protobuf</string>
     <string name="component_oaid">OAID 标识符</string>
     <string name="component_oaid_hint">Random Oaid</string>

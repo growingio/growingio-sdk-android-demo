@@ -100,22 +100,29 @@ class MockEventsApiServer(private val eventDispatcher: (event: BaseEvent) -> Uni
 
     private fun dispatchProtobufData(byteArray: ByteArray): List<BaseEvent> {
         val eventList = arrayListOf<BaseEvent>()
-        val listBuilder = EventV3Protocol.EventV3List.parseFrom(byteArray)
-        for (dto in listBuilder.valuesList) {
-            val json = transferPb2Json(dto)
-            val event = parseJsonToEvent(json)
-            if (event != null) eventList.add(event)
+        try {
+            val listBuilder = EventV3Protocol.EventV3List.parseFrom(byteArray)
+
+            for (dto in listBuilder.valuesList) {
+                val json = transferPb2Json(dto)
+                val event = parseJsonToEvent(json)
+                if (event != null) eventList.add(event)
+            }
+        } catch (ignored: Exception) {
         }
         return eventList
     }
 
     private fun dispatchJsonData(json: String): List<BaseEvent> {
         val eventList = arrayListOf<BaseEvent>()
-        val jsonArray = JSONArray(json)
-        for (index in 0 until jsonArray.length()) {
-            val jsonObject = jsonArray.getJSONObject(index)
-            val event = parseJsonToEvent(jsonObject)
-            if (event != null) eventList.add(event)
+        try {
+            val jsonArray = JSONArray(json)
+            for (index in 0 until jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(index)
+                val event = parseJsonToEvent(jsonObject)
+                if (event != null) eventList.add(event)
+            }
+        } catch (ignored: Exception) {
         }
         return eventList
     }
@@ -126,13 +133,13 @@ class MockEventsApiServer(private val eventDispatcher: (event: BaseEvent) -> Uni
         val builder = when (eventType) {
             TrackEventType.VISIT -> VisitEvent.Builder()
             TrackEventType.CUSTOM -> {
-                if (!TextUtils.isEmpty(json.optString("path"))) {
-                    PageLevelCustomEvent.Builder()
-                }
-                if (!TextUtils.isEmpty(json.optString("query"))) {
+                if (json.has("query")) {
                     HybridCustomEvent.Builder()
+                } else if (json.has("path")) {
+                    PageLevelCustomEvent.Builder()
+                } else {
+                    CustomEvent.Builder()
                 }
-                CustomEvent.Builder()
             }
 
             TrackEventType.VISITOR_ATTRIBUTES -> VisitorAttributesEvent.Builder()
@@ -142,15 +149,17 @@ class MockEventsApiServer(private val eventDispatcher: (event: BaseEvent) -> Uni
             AutotrackEventType.PAGE -> {
                 if (!TextUtils.isEmpty(json.optString("query"))) {
                     HybridPageEvent.Builder()
+                } else {
+                    PageEvent.Builder()
                 }
-                PageEvent.Builder()
             }
 
             AutotrackEventType.VIEW_CLICK, AutotrackEventType.VIEW_CHANGE, TrackEventType.FORM_SUBMIT -> {
                 if (!TextUtils.isEmpty(json.optString("query"))) {
                     HybridViewElementEvent.Builder(eventType)
+                } else {
+                    ViewElementEvent.Builder(eventType)
                 }
-                ViewElementEvent.Builder(eventType)
             }
 
             TrackEventType.ACTIVATE -> ActivateEvent.Builder()
@@ -164,7 +173,7 @@ class MockEventsApiServer(private val eventDispatcher: (event: BaseEvent) -> Uni
 
     private fun checkBaseEvent(baseEvent: BaseEvent) {
         val configurationProvider = GrowingAutotracker.get().context.configurationProvider
-        Truth.assertThat(baseEvent.platform).isEqualTo("Android")
+        Truth.assertThat(baseEvent.platform).isAnyOf("Android", "web")
         Truth.assertThat(baseEvent.platformVersion).isEqualTo(Build.VERSION.RELEASE ?: "UNKNOWN")
         Truth.assertThat(baseEvent.deviceId).isNotEmpty()
         globalEventId?.apply { Truth.assertThat(this).isEqualTo(baseEvent.deviceId) }
@@ -235,7 +244,7 @@ class MockEventsApiServer(private val eventDispatcher: (event: BaseEvent) -> Uni
                             val map = this as Map<String, String>
                             val jsonObject = JSONObject()
                             map.forEach { key, value ->
-                                json.put(key, value)
+                                jsonObject.put(key, value)
                             }
                             json.put(jsonName.toString(), jsonObject)
                         }

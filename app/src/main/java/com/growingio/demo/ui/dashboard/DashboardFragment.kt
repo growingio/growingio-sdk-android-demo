@@ -39,7 +39,7 @@ class DashboardFragment : ViewBindingFragment<FragmentDashboardBinding>() {
 
             override fun onSdkItemClick(view: View, item: SdkIntroItem) {
                 //val extras = FragmentNavigatorExtras(view to "dashboard_item_${item.id}")
-                findParentNavController().navigate(item.route)
+                findParentNavController()?.navigate(item.route)
             }
         })
         viewModel.refreshData()

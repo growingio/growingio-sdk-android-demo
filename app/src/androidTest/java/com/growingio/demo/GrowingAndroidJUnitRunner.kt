@@ -20,9 +20,11 @@ package com.growingio.demo
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
+import com.growingio.android.json.JsonLibraryModule
 import com.growingio.android.sdk.autotrack.AutotrackConfiguration
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.demo.data.settingsDataStore
+import com.growingio.demo.util.GrowingIOManager
 import kotlinx.coroutines.runBlocking
 
 
@@ -47,7 +49,10 @@ class GrowingAndroidJUnitRunner : AndroidJUnitRunner() {
                 .setChannel(CHANNEL)
                 .setDataSourceId(DATA_SOURCE_ID)
                 .setDataUploadInterval(0)
+                .setIdMappingEnabled(true)
+                .setEventFilterInterceptor(GrowingIOManager.provideEventFilterInterceptor())
                 .setDebugEnabled(true)
+                //.addPreloadComponent(JsonLibraryModule())
         )
 
         runBlocking {

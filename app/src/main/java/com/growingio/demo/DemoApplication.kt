@@ -18,7 +18,6 @@ import com.growingio.android.sdk.track.events.EventFilterInterceptor
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.data.settingsDataStore
 import com.growingio.demo.util.enableStrictMode
-import com.growingio.giokit.GioKit
 import dagger.hilt.EntryPoint
 import dagger.hilt.EntryPoints
 import dagger.hilt.InstallIn
@@ -47,22 +46,22 @@ class DemoApplication : Application() {
     }
 }
 
-class GiokitInitializer : Initializer<Boolean> {
-    override fun create(context: Context): Boolean {
-        if (context is Application) {
-            GioKit.with(context)
-                .attach(false)
-                .build()
-            return true
-        }
-        return false
-    }
-
-    override fun dependencies(): MutableList<Class<out Initializer<*>>> {
-        return mutableListOf()
-    }
-
-}
+//class GiokitInitializer : Initializer<Boolean> {
+//    override fun create(context: Context): Boolean {
+//        if (context is Application) {
+//            GioKit.with(context)
+//                .attach(false)
+//                .build()
+//            return true
+//        }
+//        return false
+//    }
+//
+//    override fun dependencies(): MutableList<Class<out Initializer<*>>> {
+//        return mutableListOf()
+//    }
+//
+//}
 
 class GrowingioInitializer : Initializer<Autotracker> {
 

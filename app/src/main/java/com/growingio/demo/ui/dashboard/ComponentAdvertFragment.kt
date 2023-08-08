@@ -133,6 +133,8 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
     fun parseDeepLinkManual(url: String) {
         GrowingAutotracker.get()
             .doDeepLinkByUrl(url) { params, error, appAwakePassedTime ->
+                // for test
+                GrowingAutotracker.get().trackCustomEvent("DeepLinkCallback")
                 Logger.d(
                     "AdvertModule",
                     "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime"

@@ -59,7 +59,7 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTitle(getString(R.string.component_protobuf))
+        setTitle(getString(R.string.component_data_format))
 
         pageBinding.toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
             if (isChecked) {

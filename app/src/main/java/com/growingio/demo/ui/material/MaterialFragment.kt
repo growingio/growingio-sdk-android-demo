@@ -31,7 +31,7 @@ class MaterialFragment : ViewBindingFragment<FragmentMaterialBinding>() {
         binding.materialRv.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.materialRv.adapter = MaterialAdapter(object : MaterialAdapter.MaterialAdapterListener {
             override fun onMaterialItemClick(view: View, item: MaterialItem) {
-                findParentNavController().navigate(item.route)
+                findParentNavController()?.navigate(item.route)
             }
         })
         binding.materialRv.addItemDecoration(

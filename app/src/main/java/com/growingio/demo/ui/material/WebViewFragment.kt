@@ -88,8 +88,8 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
             val url = URLEncoder.encode(linkUrl.toString())
 
             when (webViewType) {
-                0 -> findParentNavController().navigate(PageNav.WidgetAndroidH5Page.toUrl(url))
-                1 -> findParentNavController().navigate(PageNav.WidgetAndroidX5Page.toUrl(url))
+                0 -> findParentNavController()?.navigate(PageNav.WidgetAndroidH5Page.toUrl(url))
+                1 -> findParentNavController()?.navigate(PageNav.WidgetAndroidX5Page.toUrl(url))
             }
         }
 

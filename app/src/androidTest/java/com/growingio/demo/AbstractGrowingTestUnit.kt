@@ -59,10 +59,22 @@ abstract class AbstractGrowingTestUnit {
         // wait event
         receivedHandler.forEach { handler ->
             if (handler.eventType == baseEvent.eventType) {
-                val result = handler.onEvent(baseEvent)
-                if (result) {
-                    handler.countDownLatch.countDown()
+                if (handler.validateAtLast) {
+                    if (handler.countDownLatch.count == 1L) {
+                        val result = handler.onEvent(baseEvent)
+                        if (result) {
+                            handler.countDownLatch.countDown()
+                        }
+                    } else {
+                        handler.countDownLatch.countDown()
+                    }
+                } else {
+                    val result = handler.onEvent(baseEvent)
+                    if (result) {
+                        handler.countDownLatch.countDown()
+                    }
                 }
+
             }
         }
         // return
@@ -99,20 +111,21 @@ abstract class AbstractGrowingTestUnit {
         onEvent: (event: BaseEvent) -> Boolean = this::onEvent,
         eventCount: Int = 1,
         timeout: Long = 5, unit: TimeUnit = TimeUnit.SECONDS,
+        validateAtLast: Boolean = false,
         testBody: suspend () -> Unit
     ) {
-        runTest {
+        runTest() {
             val remainingNanos = unit.toNanos(timeout)
             val end = System.nanoTime() + remainingNanos
             val countDownLatch = CountDownLatch(eventCount)
-            val eventHandler = AwaitHandler(eventType, countDownLatch, onEvent)
+            val eventHandler = AwaitHandler(eventType, countDownLatch, onEvent, validateAtLast)
             receivedHandler.add(eventHandler)
             testBody()
             //CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.IO) {
                 while (countDownLatch.count > 0) {
                     if (System.nanoTime() > end) {
-                        throw TimeoutException("Already waited for the $eventType Event to pass 5s, timed out")
+                        throw TimeoutException("Already waited for the $eventType Event to pass ${timeout}s, timed out")
                     }
                     Uninterruptibles.sleepUninterruptibly(500, TimeUnit.MILLISECONDS)
                 }
@@ -124,6 +137,7 @@ abstract class AbstractGrowingTestUnit {
     class AwaitHandler(
         val eventType: String,
         val countDownLatch: CountDownLatch,
-        val onEvent: (event: BaseEvent) -> Boolean
+        val onEvent: (event: BaseEvent) -> Boolean,
+        val validateAtLast: Boolean = false
     )
 }

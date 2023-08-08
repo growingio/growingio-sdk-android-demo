@@ -78,7 +78,7 @@ class SdkLocationFragment : PageFragment<FragmentLocationBinding>() {
 
         loadAssetCode(this)
 
-        setDefaultLogFilter("level:debug visit")
+        setDefaultLogFilter("level:debug location")
     }
 
     @SourceCode

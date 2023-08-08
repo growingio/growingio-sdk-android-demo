@@ -22,6 +22,7 @@ package com.growingio.demo
  *
  * @author cpacm 2023/8/3
  */
+import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
@@ -34,6 +35,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.click
+import com.google.common.truth.Truth
 
 /**
  * launchFragmentInContainer from the androidx.fragment:fragment-testing library
@@ -72,6 +74,7 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
 
         fragment.action()
     }
+
 }
 
 fun clickOnViewChild(viewId: Int) = object : ViewAction {
@@ -79,5 +82,8 @@ fun clickOnViewChild(viewId: Int) = object : ViewAction {
 
     override fun getDescription() = "Click on a child view with specified id."
 
-    override fun perform(uiController: UiController, view: View) = click().perform(uiController, view.findViewById(viewId))
+    @SuppressLint("CheckResult")
+    override fun perform(uiController: UiController, view: View) {
+        click().perform(uiController, view.findViewById(viewId))
+    }
 }
