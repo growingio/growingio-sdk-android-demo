@@ -38,15 +38,14 @@ class DashboardFragment : ViewBindingFragment<FragmentDashboardBinding>() {
             }
 
             override fun onSdkItemClick(view: View, item: SdkIntroItem) {
-                //val extras = FragmentNavigatorExtras(view to "dashboard_item_${item.id}")
-                findParentNavController().navigate(item.route)
+                // val extras = FragmentNavigatorExtras(view to "dashboard_item_${item.id}")
+                findParentNavController()?.navigate(item.route)
             }
         })
         viewModel.refreshData()
     }
 
     private fun lifecycleStateBinding() {
-
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.text.observe(viewLifecycleOwner) {
@@ -78,5 +77,4 @@ class DashboardFragment : ViewBindingFragment<FragmentDashboardBinding>() {
     override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentDashboardBinding {
         return FragmentDashboardBinding.inflate(layoutInflater, container, false)
     }
-
 }

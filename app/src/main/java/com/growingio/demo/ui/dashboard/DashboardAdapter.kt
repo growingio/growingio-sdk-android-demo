@@ -42,7 +42,7 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
     @SuppressLint("NotifyDataSetChanged")
     fun loadData(list: MutableSet<SdkIntroItem>) {
         sdkItems.clear()
-        sdkItems.add(SdkIntroItem(-1, route = "header", fragmentClass = DashboardFragment::class))// header
+        sdkItems.add(SdkIntroItem(-1, route = "header", fragmentClass = DashboardFragment::class)) // header
         sdkItems.add(SdkIntroItem(0, route = "初始化", fragmentClass = DashboardFragment::class))
         list.forEach {
             if (it.id == 10) {
@@ -59,15 +59,15 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType < 0) {
             return HeaderViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_header, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_header, parent, false),
             )
         } else if (viewType == 0) {
             return DividerViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_divider, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_divider, parent, false),
             )
         } else {
             return SdkItemViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_item, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_item, parent, false),
             )
         }
     }
@@ -143,7 +143,6 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
             sdkCodecovBadge.load(context.getString(R.string.dashboard_sdk_codecov_badge))
         }
     }
-
 
     interface DashboardAdapterListener {
         fun onSdkItemClick(view: View, item: SdkIntroItem)

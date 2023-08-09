@@ -22,10 +22,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.encoder.EncoderLibraryGioModule
-import com.growingio.android.sdk.TrackerContext
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.middleware.http.EventEncoder
-import com.growingio.android.sdk.track.providers.ConfigurationProvider
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.BuildConfig
 import com.growingio.demo.R
@@ -51,7 +49,7 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // open sdk debug log
-        ConfigurationProvider.core().isDebugEnabled = true
+        GrowingAutotracker.get().context.configurationProvider.core().isDebugEnabled = true
     }
 
     override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentComponentEncoderBinding {
@@ -62,8 +60,6 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
         super.onViewCreated(view, savedInstanceState)
 
         setTitle(getString(R.string.component_encoder))
-
-
 
         pageBinding.encoderSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -86,7 +82,7 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
         // 可以选择在SDK初始化时先注册加密模块
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpAutotrackConfiguration("accountId", "urlScheme")
+         *            AutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(EncoderLibraryGioModule()))
          */
@@ -96,16 +92,15 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
     }
 
     private fun unregisterEncoderComponent() {
-        TrackerContext.get().registry.unregister(EventEncoder::class.java, EventEncoder::class.java)
+        GrowingAutotracker.get().context.registry.unregister(EventEncoder::class.java, EventEncoder::class.java)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         // reset default sdk state
         unregisterEncoderComponent()
-        ConfigurationProvider.core().isDebugEnabled = BuildConfig.DEBUG
+        GrowingAutotracker.get().context.configurationProvider.core().isDebugEnabled = BuildConfig.DEBUG
     }
-
 
     @dagger.Module
     @InstallIn(SingletonComponent::class)
@@ -119,7 +114,7 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
                 title = "数据加密",
                 desc = "SDK 加密模块默认使用 snappy 数据压缩和 xor 简单加密方式，作用于数据网络上传的阶段",
                 route = PageNav.ComponentEncoderPage.route(),
-                fragmentClass = ComponentEncoderFragment::class
+                fragmentClass = ComponentEncoderFragment::class,
             )
         }
     }

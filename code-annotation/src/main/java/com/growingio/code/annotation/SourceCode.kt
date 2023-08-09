@@ -24,5 +24,5 @@ package com.growingio.code.annotation
 @Retention(AnnotationRetention.SOURCE)
 @Target(AnnotationTarget.FUNCTION)
 annotation class SourceCode(
-    val fileName: String = ""
+    val fileName: String = "",
 )

@@ -31,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/sdkHint">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/latitudeEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberSigned|numberDecimal" />
@@ -51,6 +52,7 @@
         app:layout_constraintTop_toBottomOf="@id/latitude">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/longitudeEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberSigned|numberDecimal" />

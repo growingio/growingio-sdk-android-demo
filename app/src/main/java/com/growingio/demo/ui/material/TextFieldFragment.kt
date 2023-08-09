@@ -18,11 +18,12 @@
 package com.growingio.demo.ui.material
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.growingio.android.sdk.autotrack.view.ViewAttributeUtil
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
-import com.growingio.demo.databinding.FragmentMaterialSwitchBinding
 import com.growingio.demo.databinding.FragmentMaterialTextfieldBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.ViewBindingFragment
@@ -40,7 +41,7 @@ class TextFieldFragment : ViewBindingFragment<FragmentMaterialTextfieldBinding>(
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialTextfieldBinding {
         return FragmentMaterialTextfieldBinding.inflate(inflater, container, false)
     }
@@ -63,7 +64,7 @@ class TextFieldFragment : ViewBindingFragment<FragmentMaterialTextfieldBinding>(
                 icon = R.drawable.ic_textfield,
                 title = "TextField",
                 route = PageNav.MaterialTextFieldPage.route(),
-                fragmentClass = TextFieldFragment::class
+                fragmentClass = TextFieldFragment::class,
             )
         }
     }

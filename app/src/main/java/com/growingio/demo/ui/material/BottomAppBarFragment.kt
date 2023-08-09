@@ -18,7 +18,12 @@
 package com.growingio.demo.ui.material
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
@@ -41,7 +46,7 @@ class BottomAppBarFragment : ViewBindingFragment<FragmentMaterialBottomappbarBin
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialBottomappbarBinding {
         return FragmentMaterialBottomappbarBinding.inflate(inflater, container, false)
     }
@@ -83,7 +88,7 @@ class BottomAppBarFragment : ViewBindingFragment<FragmentMaterialBottomappbarBin
                 icon = R.drawable.ic_bottomappbar,
                 title = "BottomAppBar",
                 route = PageNav.MaterialBottomAppBarPage.route(),
-                fragmentClass = BottomAppBarFragment::class
+                fragmentClass = BottomAppBarFragment::class,
             )
         }
     }

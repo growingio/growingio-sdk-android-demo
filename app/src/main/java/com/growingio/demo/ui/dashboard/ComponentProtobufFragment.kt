@@ -24,7 +24,6 @@ import android.view.ViewGroup
 import com.growingio.android.json.JsonLibraryModule
 import com.growingio.android.protobuf.ProtobufLibraryModule
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
-import com.growingio.android.sdk.track.providers.ConfigurationProvider
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.BuildConfig
 import com.growingio.demo.R
@@ -50,7 +49,7 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // open sdk debug log
-        ConfigurationProvider.core().isDebugEnabled = true
+        GrowingAutotracker.get().context.configurationProvider.core().isDebugEnabled = true
     }
 
     override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentComponentProtobufBinding {
@@ -60,15 +59,24 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTitle(getString(R.string.component_protobuf))
+        setTitle(getString(R.string.component_data_format))
 
-        pageBinding.protobufSwitch.setOnCheckedChangeListener { _, isChecked ->
+        pageBinding.toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
             if (isChecked) {
-                registerProtobufComponent()
-            } else {
-                unregisterProtobufComponent()
+                when (checkedId) {
+                    pageBinding.protobuf.id -> {
+                        registerProtobufComponent()
+                        pageBinding.sdkDataHint.setText(R.string.sdk_data_protobuf_hint)
+                    }
+
+                    pageBinding.json.id -> {
+                        registerProtobufComponent()
+                        pageBinding.sdkDataHint.setText(R.string.sdk_data_json_hint)
+                    }
+                }
             }
         }
+
         pageBinding.testBtn.setOnClickListener {
             // just send autotracker click event
         }
@@ -83,7 +91,7 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
         // 可以选择在SDK初始化时先注册模块
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpAutotrackConfiguration("accountId", "urlScheme")
+         *            AutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(ProtobufLibraryModule()))
          */
@@ -92,17 +100,26 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
         GrowingAutotracker.get().registerComponent(ProtobufLibraryModule())
     }
 
-    private fun unregisterProtobufComponent() {
+    @SourceCode
+    fun registerJsonComponent() {
+        // 可以选择在SDK初始化时先注册模块
+        /**
+         * GrowingAutotracker.startWithConfiguration(this,
+         *            AutotrackConfiguration("accountId", "urlScheme")
+         *            //...
+         *            .addPreloadComponent(JsonLibraryModule()))
+         */
+
+        // 也可以在运行时再注册
         GrowingAutotracker.get().registerComponent(JsonLibraryModule())
     }
 
     override fun onDestroy() {
         super.onDestroy()
         // reset default sdk state
-        unregisterProtobufComponent()
-        ConfigurationProvider.core().isDebugEnabled = BuildConfig.DEBUG
+        GrowingAutotracker.get().context.configurationProvider.core().isDebugEnabled = BuildConfig.DEBUG
+        GrowingAutotracker.get().registerComponent(ProtobufLibraryModule())
     }
-
 
     @dagger.Module
     @InstallIn(SingletonComponent::class)
@@ -113,10 +130,10 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
             return SdkIntroItem(
                 id = 21,
                 icon = SdkIcon.Component,
-                title = "Protobuf 压缩",
-                desc = "Protobuf 数据模块使用 Google Protobuf 格式压缩和上传事件数据。",
+                title = "数据格式",
+                desc = "SDK目前可以支持 Protobuf 和 Json 数据格式上传。",
                 route = PageNav.ComponentProtobufPage.route(),
-                fragmentClass = ComponentProtobufFragment::class
+                fragmentClass = ComponentProtobufFragment::class,
             )
         }
     }

@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:numStars="5"
-        android:rating="5" />
+        android:rating="1" />
 
 
 </LinearLayout>

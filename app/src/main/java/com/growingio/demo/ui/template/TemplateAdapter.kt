@@ -45,7 +45,7 @@ class TemplateAdapter(private val listener: TemplateAdapterListener) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TemplateItemViewHolder {
         return TemplateItemViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.recycler_template_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.recycler_template_item, parent, false),
         )
     }
 

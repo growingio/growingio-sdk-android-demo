@@ -19,6 +19,9 @@ package com.growingio.demo.ui.widgets
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.style.BackgroundColorSpan
@@ -53,7 +56,7 @@ import java.util.*
 class LogcatView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val logcatList: RecyclerView
@@ -120,18 +123,19 @@ class LogcatView @JvmOverloads constructor(
         logcatMaximize.setOnClickListener {
             switchHeight()
         }
-
     }
 
     fun setDefaultLogFilter(text: String) {
         filterTv.setText(text, false)
     }
 
-
     private fun switchHeight() {
         if (parent !is ConstraintLayout) return
-        layoutParams = if (isMaximize) getMinimizeHeightLayoutParams()
-        else getMaximizeHeightLayoutParams()
+        layoutParams = if (isMaximize) {
+            getMinimizeHeightLayoutParams()
+        } else {
+            getMaximizeHeightLayoutParams()
+        }
         isMaximize = !isMaximize
     }
 
@@ -165,19 +169,18 @@ class LogcatView @JvmOverloads constructor(
                     BackgroundColorSpan(getFilterTextBackgroundColor(level.value)),
                     levelSpanGroup.range.first,
                     levelSpanGroup.range.count(),
-                    0
+                    0,
                 )
 
                 s.setSpan(
                     ForegroundColorSpan(getFilterTextForegroundColor(level.value)),
                     levelSpanGroup.range.first,
                     levelSpanGroup.range.count(),
-                    0
+                    0,
                 )
             }
             val logStr = matchResult.groups[5]?.value ?: ""
             logcatAdapter.setFilter(log, getLogLevel(level?.value ?: "debug"), logStr.trim())
-
         } else {
             logcatAdapter.setFilter(log.trim(), Log.VERBOSE, log.trim())
         }
@@ -220,7 +223,6 @@ class LogcatView @JvmOverloads constructor(
         }
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     class LoggerAdapter(context: Context, private val scrollAction: (count: Int) -> Unit) :
         RecyclerView.Adapter<LoggerAdapter.LoggerViewHolder>(),
@@ -235,6 +237,18 @@ class LogcatView @JvmOverloads constructor(
         private val loggerManager: GrowingLoggerManager
         private var filterLevel = Log.VERBOSE
         private var filterTag = ""
+        private var lastUpdateCount = 0
+        private val handler = object : Handler(Looper.getMainLooper()) {
+
+            override fun handleMessage(msg: Message) {
+                val range = itemCount - lastUpdateCount
+                if (range > 0) {
+                    notifyItemRangeInserted(0, range)
+                    scrollAction.invoke(itemCount)
+                    lastUpdateCount = itemCount
+                }
+            }
+        }
 
         init {
             loggerManager =
@@ -248,7 +262,7 @@ class LogcatView @JvmOverloads constructor(
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoggerViewHolder {
             return LoggerViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.recycler_logcat_item, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.recycler_logcat_item, parent, false),
             )
         }
 
@@ -257,9 +271,14 @@ class LogcatView @JvmOverloads constructor(
             if (item.level < filterLevel) return
             if (filterTag.isEmpty() || item.tag.contains(filterTag, true) || item.msg.contains(filterTag, true)) {
                 loggerList.add(0, item)
-                notifyItemInserted(0)
-                scrollAction.invoke(itemCount)
+                updateItems()
             }
+        }
+
+        private fun updateItems() {
+            handler.removeMessages(0)
+            val message = handler.obtainMessage(0)
+            handler.sendMessageDelayed(message, 300)
         }
 
         override fun getItemCount(): Int {
@@ -273,6 +292,7 @@ class LogcatView @JvmOverloads constructor(
         fun cleanLogcat() {
             loggerManager.clear()
             loggerList.clear()
+            lastUpdateCount = 0
             notifyDataSetChanged()
         }
 
@@ -286,6 +306,7 @@ class LogcatView @JvmOverloads constructor(
             }
             loggerList.clear()
             loggerList.addAll(filterData)
+            lastUpdateCount = loggerList.size
             notifyDataSetChanged()
             scrollAction.invoke(itemCount)
         }
@@ -298,7 +319,7 @@ class LogcatView @JvmOverloads constructor(
 
             @SuppressLint("SetTextI18n")
             fun bind(item: GrowingIOLoggerItem) {
-                //2023-06-12 20:00:00.614
+                // 2023-06-12 20:00:00.614
                 logTime.text = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()).format(item.time)
                 logTag.text = "[${item.tag}]"
                 logMessage.text = item.msg
@@ -309,30 +330,35 @@ class LogcatView @JvmOverloads constructor(
                         logLevel.setBackgroundColor(itemView.context.getColor(R.color.logcat_verbose_background))
                         logTag.setTextColor(itemView.context.getColor(R.color.logcat_verbose_background))
                     }
+
                     Log.INFO -> {
                         logLevel.text = "I"
                         logLevel.setTextColor(itemView.context.getColor(R.color.logcat_info_foreground))
                         logLevel.setBackgroundColor(itemView.context.getColor(R.color.logcat_info_background))
                         logTag.setTextColor(itemView.context.getColor(R.color.logcat_info_background))
                     }
+
                     Log.WARN -> {
                         logLevel.text = "W"
                         logLevel.setTextColor(itemView.context.getColor(R.color.logcat_warn_foreground))
                         logLevel.setBackgroundColor(itemView.context.getColor(R.color.logcat_warn_background))
                         logTag.setTextColor(itemView.context.getColor(R.color.logcat_warn_background))
                     }
+
                     Log.ERROR -> {
                         logLevel.text = "E"
                         logLevel.setTextColor(itemView.context.getColor(R.color.logcat_error_foreground))
                         logLevel.setBackgroundColor(itemView.context.getColor(R.color.logcat_error_background))
                         logTag.setTextColor(itemView.context.getColor(R.color.logcat_error_background))
                     }
+
                     Log.DEBUG -> {
                         logLevel.text = "D"
                         logLevel.setTextColor(itemView.context.getColor(R.color.logcat_debug_foreground))
                         logLevel.setBackgroundColor(itemView.context.getColor(R.color.logcat_debug_background))
                         logTag.setTextColor(itemView.context.getColor(R.color.logcat_debug_background))
                     }
+
                     else -> {
                         logLevel.text = "D"
                         logLevel.setTextColor(itemView.context.getColor(R.color.logcat_debug_foreground))

@@ -66,16 +66,14 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
         setDefaultLogFilter("level:debug TimerCenter")
     }
 
-
     private var isTimerRunning = false
     private var timerStartMill = 0L
     private var timerId: String? = null
 
     @SourceCode
-    private fun initTimerView(){
+    private fun initTimerView() {
         pageBinding.start.setOnClickListener {
-
-            val timer = pageBinding.timerEt.editText?.text
+            val timer = pageBinding.timerInput.editText?.text
             if (timer == null || timer.toString().isEmpty()) {
                 showMessage(R.string.sdk_event_timer_toast)
                 return@setOnClickListener
@@ -180,7 +178,7 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
                 title = "事件计时器",
                 desc = "用来计算自定义事件从产生到结束经过的时间",
                 route = PageNav.SdkEventTimerPage.route(),
-                fragmentClass = SdkEventTimerFragment::class
+                fragmentClass = SdkEventTimerFragment::class,
             )
         }
     }

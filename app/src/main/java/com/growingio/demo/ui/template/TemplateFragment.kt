@@ -50,7 +50,6 @@ class TemplateFragment : ViewBindingFragment<FragmentTemplateBinding>(), Templat
         }
     }
 
-
     override fun onItemClick(view: View, item: TemplateItem) {
         Toast.makeText(context, "敬请期待", Toast.LENGTH_SHORT).show()
     }

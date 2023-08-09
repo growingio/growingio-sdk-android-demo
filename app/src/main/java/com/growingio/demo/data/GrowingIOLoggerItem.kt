@@ -27,7 +27,7 @@ data class GrowingIOLoggerItem(
     val level: Int,
     val tag: String,
     val msg: String,
-    val isEvent: Boolean = false
+    val isEvent: Boolean = false,
 ) : Comparable<GrowingIOLoggerItem> {
 
     override fun compareTo(other: GrowingIOLoggerItem): Int {

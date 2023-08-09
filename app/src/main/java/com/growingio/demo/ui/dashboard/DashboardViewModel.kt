@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
-    private val sdkItems: MutableSet<SdkIntroItem>
+    private val sdkItems: MutableSet<SdkIntroItem>,
 ) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
@@ -35,7 +35,7 @@ class DashboardViewModel @Inject constructor(
         .asStateFlow().stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = SdkItemState.Empty
+            initialValue = SdkItemState.Empty,
         )
 
     fun refreshData() {
@@ -50,8 +50,6 @@ class DashboardViewModel @Inject constructor(
             _sdkItemState.emit(SdkItemState.Empty)
         }
     }
-
-
 }
 
 sealed interface SdkItemState {

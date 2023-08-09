@@ -31,12 +31,16 @@ import androidx.customview.widget.ViewDragHelper
  * @author cpacm 2023/4/23
  */
 class DraggableConstraintLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val viewDragHelper: ViewDragHelper by lazy {
         ViewDragHelper.create(
-            this, 0.5f, dragCallback
+            this,
+            0.5f,
+            dragCallback,
         )
     }
 
@@ -91,7 +95,6 @@ class DraggableConstraintLayout @JvmOverloads constructor(
         override fun clampViewPositionVertical(child: View, top: Int, dy: Int): Int {
             return top
         }
-
     }
 
     private fun viewIsDraggableChild(view: View): Boolean {

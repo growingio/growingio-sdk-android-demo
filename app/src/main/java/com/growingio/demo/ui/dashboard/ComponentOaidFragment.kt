@@ -23,7 +23,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.oaid.OaidConfig
 import com.growingio.android.oaid.OaidLibraryGioModule
-import com.growingio.android.sdk.TrackerContext
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.events.TrackEventGenerator
 import com.growingio.android.sdk.track.middleware.OaidHelper
@@ -64,7 +63,7 @@ class ComponentOaidFragment : PageFragment<FragmentComponentOaidBinding>() {
         }
 
         pageBinding.settleBtn.setOnClickListener {
-            val loader = TrackerContext.get().registry.getModelLoader(OaidHelper::class.java)
+            val loader = GrowingAutotracker.get().context.registry.getModelLoader(OaidHelper::class.java)
             if (loader != null) {
                 showMessage(R.string.component_oaid_toast2)
                 return@setOnClickListener
@@ -94,14 +93,13 @@ class ComponentOaidFragment : PageFragment<FragmentComponentOaidBinding>() {
 
     @SourceCode
     private fun registerOaidComponent(oaid: String) {
-
         val oaidConfig = OaidConfig()
         oaidConfig.setProvideOaid(oaid)
 
         // 推荐在SDK初始化时先注册Oaid模块,能一开始就上传OAID设备标识符
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpAutotrackConfiguration("accountId", "urlScheme")
+         *            AutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(OaidLibraryGioModule(), oaidConfig))
          */
@@ -112,7 +110,7 @@ class ComponentOaidFragment : PageFragment<FragmentComponentOaidBinding>() {
 
     private fun unregisterOaidComponent() {
         // oaid will store in app's memory, so it always send to server until app exit
-        TrackerContext.get().registry.unregister(OaidHelper::class.java, String::class.java)
+        GrowingAutotracker.get().context.registry.unregister(OaidHelper::class.java, String::class.java)
     }
 
     @dagger.Module
@@ -127,7 +125,7 @@ class ComponentOaidFragment : PageFragment<FragmentComponentOaidBinding>() {
                 title = "OAID 标识符",
                 desc = "移动智能终端补充设备标识符，由国内移动安全联盟MSA统一提供。",
                 route = PageNav.ComponentOaidPage.route(),
-                fragmentClass = ComponentOaidFragment::class
+                fragmentClass = ComponentOaidFragment::class,
             )
         }
     }

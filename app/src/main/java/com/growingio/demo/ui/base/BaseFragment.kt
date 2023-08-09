@@ -28,6 +28,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import com.growingio.android.sdk.autotrack.GrowingAutotracker
 
 /**
  * <p>
@@ -49,12 +50,14 @@ open class BaseFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+
+        GrowingAutotracker.get().autotrackPage(this, this.javaClass.simpleName)
     }
 
     /**
      * find the first navController
      */
-    fun findParentNavController(): NavController {
+    fun findParentNavController(): NavController? {
         var findFragment: Fragment? = this
         var tempNavController: NavController? = null
         while (findFragment != null) {
@@ -74,10 +77,13 @@ open class BaseFragment : Fragment() {
         // Try looking for one associated with the view instead, if applicable
         val view = this.view
         if (view != null) {
-            return Navigation.findNavController(view)
+            try {
+                return Navigation.findNavController(view)
+            } catch (ignored: IllegalStateException) {
+            }
         }
-
-        throw IllegalStateException("Fragment $this does not have a NavController set")
+        Log.e("BaseFragment", "Fragment $this does not have a NavController set")
+        return null
     }
 
     protected fun registerPermissions(permissions: Array<String>, callback: (Map<String, Boolean>) -> Unit) {
@@ -87,7 +93,6 @@ open class BaseFragment : Fragment() {
         }
         permissionsLaunch.launch(permissions)
     }
-
 
     private var permissionLauncher: ActivityResultLauncher<String>? = null
     private var permissionCallback: ActivityResultCallback<Boolean>? = null
@@ -104,6 +109,6 @@ open class BaseFragment : Fragment() {
     }
 
     open fun onBackPressed(): Boolean {
-        return findNavController().popBackStack()
+        return findParentNavController()?.popBackStack() ?: false
     }
 }

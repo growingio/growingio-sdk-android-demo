@@ -18,7 +18,12 @@
 package com.growingio.demo.ui.material
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
@@ -45,7 +50,7 @@ class NavigationFragment : ViewBindingFragment<FragmentMaterialNavigationBinding
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialNavigationBinding {
         return FragmentMaterialNavigationBinding.inflate(inflater, container, false)
     }
@@ -63,8 +68,8 @@ class NavigationFragment : ViewBindingFragment<FragmentMaterialNavigationBinding
                 binding.drawer,
                 binding.toolbar,
                 R.string.material_navigation_drawer_open,
-                R.string.material_navigation_drawer_close
-            )
+                R.string.material_navigation_drawer_close,
+            ),
         )
 
         binding.navigationView.setNavigationItemSelectedListener {
@@ -77,7 +82,7 @@ class NavigationFragment : ViewBindingFragment<FragmentMaterialNavigationBinding
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                //Hook Inject
+                // Hook Inject
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
@@ -98,7 +103,6 @@ class NavigationFragment : ViewBindingFragment<FragmentMaterialNavigationBinding
                 icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_template)
             }
         }
-
     }
 
     @dagger.Module
@@ -112,14 +116,13 @@ class NavigationFragment : ViewBindingFragment<FragmentMaterialNavigationBinding
                 icon = R.drawable.ic_bottomnavigation,
                 title = "Navigation",
                 route = PageNav.MaterialNavigationPage.route(),
-                fragmentClass = NavigationFragment::class
+                fragmentClass = NavigationFragment::class,
             )
         }
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
     }
-
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.itemId == android.R.id.home) {

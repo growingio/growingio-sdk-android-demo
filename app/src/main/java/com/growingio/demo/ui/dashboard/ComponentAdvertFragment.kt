@@ -24,7 +24,6 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import com.growingio.android.advert.AdvertConfig
 import com.growingio.android.advert.AdvertLibraryGioModule
-import com.growingio.android.sdk.TrackerContext
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.log.Logger
 import com.growingio.android.sdk.track.middleware.advert.Activate
@@ -87,7 +86,6 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
             pageBinding.deeplink.editText?.setText(getString(R.string.component_advert_default_url))
         }
 
-
         pageBinding.parseBtn.setOnClickListener {
             val deeplinkUrl = pageBinding.deeplink.editText?.text
             if (deeplinkUrl == null || deeplinkUrl.toString().isEmpty()) {
@@ -99,7 +97,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
 
         loadAssetCode(this)
 
-        //https://ads-uat.growingio.cn/k4budVa
+        // https://ads-uat.growingio.cn/k4budVa
         setDefaultLogFilter("level:debug advertModule")
     }
 
@@ -113,14 +111,14 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
             // appAwakePassedTime: 从app唤醒到调用该回调的时间
             Logger.d(
                 "AdvertModule",
-                "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime"
+                "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime",
             )
         }
 
         // 可以选择在SDK初始化时先注册广告模块
         /**
          * GrowingAutotracker.startWithConfiguration(this,
-         *            CdpAutotrackConfiguration("accountId", "urlScheme")
+         *            AutotrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(AdvertLibraryGioModule(), config))
          */
@@ -133,23 +131,25 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
     fun parseDeepLinkManual(url: String) {
         GrowingAutotracker.get()
             .doDeepLinkByUrl(url) { params, error, appAwakePassedTime ->
+                // for test
+                GrowingAutotracker.get().trackCustomEvent("DeepLinkCallback")
                 Logger.d(
                     "AdvertModule",
-                    "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime"
+                    "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime",
                 )
             }
     }
 
     private fun unregisterAdvertComponent() {
-        TrackerContext.get().registry.unregister(Activate::class.java, AdvertResult::class.java)
+        GrowingAutotracker.get().context.registry.unregister(Activate::class.java, AdvertResult::class.java)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         // reset default sdk state
         unregisterAdvertComponent()
+        barScannerLauncher.unregister()
     }
-
 
     @dagger.Module
     @InstallIn(SingletonComponent::class)
@@ -163,7 +163,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
                 title = "广告分析",
                 desc = "广告模块包括激活事件和深度链接，激活事件是当用户第一次进入的事件，深度链接用于SDK监测广告推广效果",
                 route = PageNav.ComponentAdvertPage.route(),
-                fragmentClass = ComponentAdvertFragment::class
+                fragmentClass = ComponentAdvertFragment::class,
             )
         }
     }

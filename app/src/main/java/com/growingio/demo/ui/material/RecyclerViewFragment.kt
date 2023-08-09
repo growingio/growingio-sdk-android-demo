@@ -64,7 +64,7 @@ class RecyclerViewFragment : ViewBindingFragment<FragmentMaterialRecyclerBinding
                 icon = R.drawable.ic_lists,
                 title = "RecyclerView",
                 route = PageNav.MaterialRecyclerViewPage.route(),
-                fragmentClass = RecyclerViewFragment::class
+                fragmentClass = RecyclerViewFragment::class,
             )
         }
     }
@@ -82,7 +82,7 @@ class RecyclerSampleAdapter : RecyclerView.Adapter<RecyclerSampleAdapter.SampleV
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
         return SampleViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.recycler_sample_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.recycler_sample_item, parent, false),
         )
     }
 
@@ -107,4 +107,3 @@ class RecyclerSampleAdapter : RecyclerView.Adapter<RecyclerSampleAdapter.SampleV
         val button = itemView.findViewById<Button>(R.id.action)
     }
 }
-

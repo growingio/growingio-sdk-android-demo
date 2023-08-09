@@ -91,6 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/clearBtn" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

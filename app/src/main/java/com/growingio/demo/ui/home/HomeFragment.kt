@@ -1,12 +1,19 @@
 package com.growingio.demo.ui.home
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.forEach
 import androidx.fragment.app.viewModels
-import androidx.navigation.*
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavOptions
+import androidx.navigation.createGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,7 +25,6 @@ import com.growingio.demo.ui.base.ViewBindingFragment
 import com.growingio.demo.ui.dashboard.DashboardFragment
 import com.growingio.demo.ui.material.MaterialFragment
 import com.growingio.demo.ui.template.TemplateFragment
-import com.growingio.giokit.GioKit
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.ref.WeakReference
 
@@ -58,20 +64,19 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                 icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_template)
             }
         }
-
     }
 
     private fun setupGiokit(item: MenuItem) {
         if (item.itemId == R.id.ui) {
-            GioKit.attach(requireActivity())
+            // GioKit.attach(requireActivity())
         } else {
-            GioKit.detach(requireActivity())
+            // GioKit.detach(requireActivity())
         }
     }
 
     override fun onDetach() {
         super.onDetach()
-        GioKit.detach(requireActivity())
+        // GioKit.detach(requireActivity())
     }
 
     private fun setupWithNavController(navBar: BottomNavigationView, navController: NavController) {
@@ -86,7 +91,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                 override fun onDestinationChanged(
                     controller: NavController,
                     destination: NavDestination,
-                    arguments: Bundle?
+                    arguments: Bundle?,
                 ) {
                     val view = weakReference.get()
                     if (view == null) {
@@ -102,7 +107,8 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
                         }
                     }
                 }
-            })
+            },
+        )
     }
 
     private fun onNavDestinationSelected(item: MenuItem, navController: NavController): Boolean {
@@ -115,7 +121,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
             builder.setPopUpTo(
                 navController.graph.findStartDestination().route,
                 inclusive = false,
-                saveState = true
+                saveState = true,
             )
         }
         val options = builder.build()
@@ -138,5 +144,4 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
             R.id.template to FragmentNav.Template.route,
         )
     }
-
 }

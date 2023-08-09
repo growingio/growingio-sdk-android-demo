@@ -16,8 +16,15 @@
 
 package com.growingio.code.processor
 
-import com.google.devtools.ksp.processing.*
-import com.google.devtools.ksp.symbol.*
+import com.google.devtools.ksp.processing.CodeGenerator
+import com.google.devtools.ksp.processing.KSPLogger
+import com.google.devtools.ksp.processing.Resolver
+import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.symbol.FileLocation
+import com.google.devtools.ksp.symbol.KSAnnotated
+import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSFunctionDeclaration
+import com.google.devtools.ksp.symbol.KSVisitorVoid
 import com.google.devtools.ksp.validate
 import com.growingio.code.annotation.SourceCode
 import java.io.File
@@ -36,11 +43,9 @@ class CodeProcessor(
     private val sourceCodeList = arrayListOf<CodeFunction>()
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
-
         val symbols = resolver.getSymbolsWithAnnotation(
-            SourceCode::class.qualifiedName ?: "com.growingio.code.annotation.SourceCode"
+            SourceCode::class.qualifiedName ?: "com.growingio.code.annotation.SourceCode",
         ).filterIsInstance<KSFunctionDeclaration>()
-
 
         logger.info("start code processor!")
 
@@ -52,9 +57,12 @@ class CodeProcessor(
             var endLine = Int.MAX_VALUE
 
             if (function.parent != null && function.parent is KSClassDeclaration) {
-                function.parent!!.accept(LineNumberVisitor(startLine) {
-                    endLine = it
-                }, Unit)
+                function.parent!!.accept(
+                    LineNumberVisitor(startLine) {
+                        endLine = it
+                    },
+                    Unit,
+                )
             }
 
             val file = function.containingFile
@@ -81,11 +89,15 @@ class CodeProcessor(
                 val body = readSourceCode(path, startLine, endLine)
                 sourceCodeList.add(
                     CodeFunction(
-                        packageName, fileName, function.simpleName.getShortName(), startLine, endLine, body
-                    )
+                        packageName,
+                        fileName,
+                        function.simpleName.getShortName(),
+                        startLine,
+                        endLine,
+                        body,
+                    ),
                 )
             }
-
         }
 
         generateCodeFile()
@@ -104,8 +116,8 @@ class CodeProcessor(
         if (!fileDir.exists()) {
             fileDir.mkdirs()
         }
-        //delete all
-        //fileDir.listFiles { _, name -> name.endsWith(".code") }?.forEach { it.delete() }
+        // delete all
+        // fileDir.listFiles { _, name -> name.endsWith(".code") }?.forEach { it.delete() }
 
         sourceCodeList.groupBy { code ->
             code.dir + "." + code.fileName + ".code"
@@ -171,16 +183,15 @@ class CodeProcessor(
                             return str.substring(0, i + 1)
                         }
                     }
-
                 }
             }
         }
         return str
     }
 
-
     inner class LineNumberVisitor(
-        private val startLine: Int, private val endLineCallback: (endLine: Int) -> Unit
+        private val startLine: Int,
+        private val endLineCallback: (endLine: Int) -> Unit,
     ) : KSVisitorVoid() {
         override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
             var endLine = Int.MAX_VALUE
@@ -195,7 +206,4 @@ class CodeProcessor(
             endLineCallback.invoke(endLine)
         }
     }
-
 }
-
-

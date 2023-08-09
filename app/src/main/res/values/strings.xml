@@ -69,6 +69,10 @@
     <string name="sdk_data_collect">数据开关</string>
     <string name="sdk_data_collect_hint">数据开关</string>
     <string name="sdk_data_collect_test">测试数据发送</string>
+    <string name="sdk_data_protobuf">Protobuf</string>
+    <string name="sdk_data_json">Json</string>
+    <string name="sdk_data_protobuf_hint">使用 Google Protobuf 格式压缩和上传事件数据。</string>
+    <string name="sdk_data_json_hint">使用 json 格式上传事件数据。</string>
     <string name="sdk_location">位置信息</string>
     <string name="sdk_location_lon">经度</string>
     <string name="sdk_location_lon_hint">经度范围:-180 ~ 180</string>
@@ -100,8 +104,18 @@
     <string name="sdk_unique_tag_helper">设置后点击查看测试按钮的Xpath路径</string>
     <string name="sdk_autotrack_page_title">发送Page事件</string>
     <string name="sdk_autotrack_page">当前页面将会自动发送Page事件</string>
-    <string name="sdk_autotrack_page_attribute">设置页面属性</string>
+    <string name="sdk_autotrack_page_alias_helper">设置别名用于区别页面</string>
+    <string name="sdk_autotrack_page_alias_hint">设置别名,如 LoginPage </string>
+    <string name="sdk_autotrack_page_alias">设置别名</string>
+    <string name="sdk_autotrack_page_alias_toast">请输入页面别名</string>
+    <string name="sdk_autotrack_page_attribute">设置属性</string>
+    <string name="sdk_autotrack_page_attribute_toast">请输入有效的页面属性</string>
+    <string name="sdk_autotrack_page_size_toast">已达上限</string>
     <string name="sdk_autotrack_page_hint">可以尝试切换界面来实现生命周期变化</string>
+    <string name="sdk_attributes_key">KEY</string>
+    <string name="sdk_attributes_value">VALUE</string>
+    <string name="sdk_attributes_add">+</string>
+    <string name="sdk_attributes_sub">-</string>
 
     <string name="component_test_btn">测试按钮</string>
     <string name="component_reset_btn">重置按钮</string>
@@ -109,6 +123,7 @@
     <string name="component_hybrid_hint">在无埋点SDK中，SDK 会自动注入桥接代码，实现数据打通；\n若是在埋点SDK中需要手动注册 Hybrid 模块（参考示例代码）。</string>
     <string name="component_encoder">数据加密</string>
     <string name="component_encoder_hint">SDK 加密模块默认使用 snappy 数据压缩和 xor 简单加密方式，作用于数据网络上传的阶段。</string>
+    <string name="component_data_format">数据格式</string>
     <string name="component_protobuf">Google Protobuf</string>
     <string name="component_oaid">OAID 标识符</string>
     <string name="component_oaid_hint">Random Oaid</string>
@@ -181,6 +196,13 @@
     <string name="material_text_field_label">Label</string>
     <string name="material_text_field_helper">Textfield helper text</string>
     <string name="material_text_field_suffix">-END</string>
+    <string name="material_webview_tip">选择要使用的 WebView 系统</string>
+    <string name="material_webview_android">Android</string>
+    <string name="material_webview_x5">X5</string>
+    <string name="material_webview_uc">UC</string>
+    <string name="material_webview_input_hint">请输入跳转的链接</string>
+    <string name="material_webview_input_helper">可以使用不同的WebView查看效果</string>
+    <string name="material_webview_go">访问</string>
 
 
     <string name="template_compose_title">Compose Demo</string>

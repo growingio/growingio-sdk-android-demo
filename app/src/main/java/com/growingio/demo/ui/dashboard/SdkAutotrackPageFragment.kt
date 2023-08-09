@@ -21,14 +21,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.collection.arrayMapOf
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.data.SdkIcon
 import com.growingio.demo.data.SdkIntroItem
 import com.growingio.demo.databinding.FragmentAutotrackPageBinding
-import com.growingio.demo.databinding.FragmentImpressionBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment
 import dagger.Provides
@@ -49,8 +47,8 @@ class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //设置当前页面可以发送Page页面事件
-        //GrowingAutotracker.get().autotrackPage(this, arrayMapOf("name" to "cpacm"))
+        // 设置当前页面可以发送Page页面事件
+        GrowingAutotracker.get().autotrackPage(this, this.javaClass.simpleName)
     }
 
     override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentAutotrackPageBinding {
@@ -62,8 +60,38 @@ class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
 
         setTitle(getString(R.string.sdk_autotrack_page_title))
 
-        pageBinding.openBtn.setOnClickListener {
-            sendPageAttributes()
+        pageBinding.aliasBtn.setOnClickListener {
+            val alias = pageBinding.alias.editText?.text
+            if (alias == null || alias.toString().isEmpty()) {
+                showMessage(R.string.sdk_autotrack_page_alias_toast)
+                return@setOnClickListener
+            }
+            sendPageAlias(alias.toString())
+        }
+
+        pageBinding.addBtn.setOnClickListener {
+            pageBinding.controlBtn.clearChecked()
+            if (pageBinding.attributeList.attributeSize() > 8) {
+                showMessage(R.string.sdk_autotrack_page_size_toast)
+                return@setOnClickListener
+            }
+            pageBinding.attributeList.addAttribute()
+        }
+
+        pageBinding.subBtn.setOnClickListener {
+            pageBinding.controlBtn.clearChecked()
+            if (pageBinding.attributeList.attributeSize() <= 0) {
+                return@setOnClickListener
+            }
+            pageBinding.attributeList.subAttribute()
+        }
+
+        pageBinding.attributeBtn.setOnClickListener {
+            if (pageBinding.attributeList.validAttributes()) {
+                sendPageAttributes(pageBinding.attributeList.getAttributes())
+            } else {
+                showMessage(R.string.sdk_autotrack_page_attribute_toast)
+            }
         }
 
         loadAssetCode(this)
@@ -72,28 +100,32 @@ class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
     }
 
     @SourceCode
-    private fun sendPageAttributes() {
-        //多次设置当前页面属性，不会多次发送Page事件
-        //页面属性将会合并至无埋点事件中
-        //GrowingAutotracker.get().autotrackPage(this, arrayMapOf("name" to "cpacm","age" to "18","clickBy" to "button"))
+    private fun sendPageAttributes(attributes: Map<String, String>) {
+        // 多次设置当前页面属性，不会多次发送Page事件
+        // 页面属性将会合并至无埋点事件中
+        GrowingAutotracker.get().setPageAttributes(this, attributes)
     }
 
-    /*
-        @dagger.Module
-        @InstallIn(SingletonComponent::class)
-        object Module {
-            @IntoSet
-            @Provides
-            fun provideSdkItem(): SdkIntroItem {
-                return SdkIntroItem(
-                    id = 13,
-                    icon = SdkIcon.Api,
-                    title = "页面事件",
-                    desc = "设置发送Page事件的API",
-                    route = PageNav.SdkAutotrackerPage.route(),
-                    fragmentClass = SdkAutotrackPageFragment::class
-                )
-            }
+    @SourceCode
+    private fun sendPageAlias(alias: String) {
+        // 多次设置当前页面别名，不会多次发送Page事件
+        GrowingAutotracker.get().autotrackPage(this, alias)
+    }
+
+    @dagger.Module
+    @InstallIn(SingletonComponent::class)
+    object Module {
+        @IntoSet
+        @Provides
+        fun provideSdkItem(): SdkIntroItem {
+            return SdkIntroItem(
+                id = 13,
+                icon = SdkIcon.Api,
+                title = "页面事件",
+                desc = "设置发送Page事件的API",
+                route = PageNav.SdkAutotrackerPage.route(),
+                fragmentClass = SdkAutotrackPageFragment::class,
+            )
         }
-    */
+    }
 }

@@ -102,9 +102,8 @@ class SdkInitFragment : PageFragment<FragmentInitBinding>() {
                 desc = "初始化配置相关默认值",
                 icon = SdkIcon.Config,
                 route = PageNav.SdkInitPage.route(),
-                fragmentClass = SdkInitFragment::class
+                fragmentClass = SdkInitFragment::class,
             )
         }
-
     }
 }

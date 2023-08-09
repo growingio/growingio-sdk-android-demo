@@ -31,15 +31,15 @@ class MaterialFragment : ViewBindingFragment<FragmentMaterialBinding>() {
         binding.materialRv.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.materialRv.adapter = MaterialAdapter(object : MaterialAdapter.MaterialAdapterListener {
             override fun onMaterialItemClick(view: View, item: MaterialItem) {
-                findParentNavController().navigate(item.route)
+                findParentNavController()?.navigate(item.route)
             }
         })
         binding.materialRv.addItemDecoration(
             GridDividerDecoration(
                 resources.getDimensionPixelSize(R.dimen.material_divider_size),
                 ContextCompat.getColor(requireContext(), R.color.material_grid_divider_color),
-                2
-            )
+                2,
+            ),
         )
         viewModel.refreshData()
     }
@@ -68,5 +68,4 @@ class MaterialFragment : ViewBindingFragment<FragmentMaterialBinding>() {
     override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMaterialBinding {
         return FragmentMaterialBinding.inflate(layoutInflater, container, false)
     }
-
 }

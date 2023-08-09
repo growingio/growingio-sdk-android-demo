@@ -102,7 +102,7 @@ class SdkImpressionFragment : PageFragment<FragmentImpressionBinding>() {
                 title = "曝光事件",
                 desc = "当被设置的View出现在屏幕内时将触发曝光事件",
                 route = PageNav.SdkImpressionPage.route(),
-                fragmentClass = SdkImpressionFragment::class
+                fragmentClass = SdkImpressionFragment::class,
             )
         }
     }

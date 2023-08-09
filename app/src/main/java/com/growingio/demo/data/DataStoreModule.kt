@@ -46,7 +46,6 @@ object DataStoreModule {
     fun provideDataStore(@ApplicationContext context: Context): DataStore<Settings> {
         return context.settingsDataStore
     }
-
 }
 
 object SettingsSerializer : Serializer<Settings> {
@@ -68,5 +67,5 @@ object SettingsSerializer : Serializer<Settings> {
 
 val Context.settingsDataStore: DataStore<Settings> by dataStore(
     fileName = "settings.pb",
-    serializer = SettingsSerializer
+    serializer = SettingsSerializer,
 )

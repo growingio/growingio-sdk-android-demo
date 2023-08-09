@@ -46,7 +46,7 @@ class MaterialAdapter(private val listener: MaterialAdapterListener) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MaterialItemViewHolder {
         return MaterialItemViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.recycler_material_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.recycler_material_item, parent, false),
         )
     }
 

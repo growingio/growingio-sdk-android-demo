@@ -62,7 +62,7 @@ class SdkUniqueTagFragment : PageFragment<FragmentUniqueTagBinding>() {
         }
 
         pageBinding.testBtn.setOnClickListener {
-            //nothing
+            // nothing
         }
 
         loadAssetCode(this)
@@ -87,7 +87,7 @@ class SdkUniqueTagFragment : PageFragment<FragmentUniqueTagBinding>() {
                 title = "唯一路径",
                 desc = "给View设置唯一的Tag，方便点击等事件确定唯一的View路径，一般用于动态布局的场景",
                 route = PageNav.SdkUniqueTagPage.route(),
-                fragmentClass = SdkUniqueTagFragment::class
+                fragmentClass = SdkUniqueTagFragment::class,
             )
         }
     }

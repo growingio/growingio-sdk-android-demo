@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MaterialViewModel @Inject constructor(
-    private val materialItems: MutableSet<MaterialItem>
+    private val materialItems: MutableSet<MaterialItem>,
 ) : ViewModel() {
 
     private val _materialItemState = MutableStateFlow<MaterialItemState>(MaterialItemState.Empty)
@@ -22,7 +22,7 @@ class MaterialViewModel @Inject constructor(
         .asStateFlow().stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = MaterialItemState.Empty
+            initialValue = MaterialItemState.Empty,
         )
 
     fun refreshData() {
@@ -37,8 +37,6 @@ class MaterialViewModel @Inject constructor(
             _materialItemState.emit(MaterialItemState.Empty)
         }
     }
-
-
 }
 
 sealed interface MaterialItemState {

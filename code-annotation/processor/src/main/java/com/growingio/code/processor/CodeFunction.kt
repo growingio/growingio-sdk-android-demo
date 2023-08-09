@@ -7,9 +7,9 @@ package com.growingio.code.processor
  */
 data class CodeFunction(
     val dir: String,
-    val fileName:String,
+    val fileName: String,
     val methodName: String,
     val startLine: Int,
     val endLine: Int,
-    val body: String
+    val body: String,
 )
