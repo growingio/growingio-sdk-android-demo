@@ -28,6 +28,7 @@ import com.growingio.android.sdk.track.events.AutotrackEventType
 import com.growingio.android.sdk.track.events.CustomEvent
 import com.growingio.android.sdk.track.events.PageEvent
 import com.growingio.android.sdk.track.events.TrackEventType
+import com.growingio.android.sdk.track.providers.TimingEventProvider.ATTR_EVENT_DURATION
 import com.growingio.demo.AbstractGrowingTestUnit
 import com.growingio.demo.R
 import com.growingio.demo.launchFragmentInHiltContainer
@@ -76,7 +77,7 @@ class SdkTimerFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.attributes).hasSize(3)
                 Truth.assertThat(baseEvent.attributes).containsEntry("app", "demo")
                 Truth.assertThat(baseEvent.attributes).containsEntry("tag", "TimerCenter")
-                Truth.assertThat(baseEvent.attributes).containsKey("event_duration")
+                Truth.assertThat(baseEvent.attributes).containsKey(ATTR_EVENT_DURATION)
                 return@runEventTest true
             }
             false

@@ -19,6 +19,7 @@ package com.growingio.demo.ui.dashboard
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -58,7 +59,7 @@ class DashboardFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEqualTo("查看文档 >>")
                 Truth.assertThat(baseEvent.path).isEqualTo("/DashboardFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/CoordinatorLayout/RecyclerView/ConstraintLayout/MaterialCardView/MaterialButton")
+                    .isEqualTo("/HiltTestActivity/DashboardFragment/CoordinatorLayout/RecyclerView/ConstraintLayout/MaterialCardView/MaterialButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/dashboardRv/-/sdkBanner/docLink")
                 return@runEventTest true
             }
@@ -77,7 +78,7 @@ class DashboardFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
                 Truth.assertThat(baseEvent.path).isEqualTo("/DashboardFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/CoordinatorLayout/RecyclerView/MaterialCardView/ConstraintLayout/MaterialButton")
+                    .isEqualTo("/HiltTestActivity/DashboardFragment/CoordinatorLayout/RecyclerView/MaterialCardView/ConstraintLayout/MaterialButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/dashboardRv/-/0/sdkJump")
                 return@runEventTest true
             }

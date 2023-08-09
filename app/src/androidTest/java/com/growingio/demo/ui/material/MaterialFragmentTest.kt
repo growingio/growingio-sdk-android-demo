@@ -56,7 +56,7 @@ class MaterialFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
                 Truth.assertThat(baseEvent.path).isEqualTo("/MaterialFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/CoordinatorLayout/RecyclerView/ConstraintLayout")
+                    .isEqualTo("/HiltTestActivity/MaterialFragment/CoordinatorLayout/RecyclerView/ConstraintLayout")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/materialRv/-")
                 return@runEventTest true
             }

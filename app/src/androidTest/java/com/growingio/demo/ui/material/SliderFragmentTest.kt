@@ -56,7 +56,7 @@ class SliderFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.path).isEqualTo("/SliderFragment")
                 Truth.assertThat(baseEvent.textValue).isNotEmpty()
                 Truth.assertThat(baseEvent.xpath)
-                    .isAnyOf("/HiltTestActivity/AndroidXFragment/LinearLayout/Slider", "/HiltTestActivity/AndroidXFragment/LinearLayout/RangeSlider")
+                    .isAnyOf("/HiltTestActivity/SliderFragment/LinearLayout/Slider", "/HiltTestActivity/SliderFragment/LinearLayout/RangeSlider")
                 Truth.assertThat(baseEvent.xIndex).isAnyOf("/0/content/0/slider", "/0/content/0/rangeSlider")
                 return@runEventTest true
             }
@@ -80,7 +80,7 @@ class SliderFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.path).isEqualTo("/SliderFragment")
                 Truth.assertThat(baseEvent.textValue).isNotEmpty()
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/LinearLayout/AppCompatSeekBar")
+                    .isEqualTo("/HiltTestActivity/SliderFragment/LinearLayout/AppCompatSeekBar")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/seekbar")
                 return@runEventTest true
             }
@@ -100,7 +100,7 @@ class SliderFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.path).isEqualTo("/SliderFragment")
                 Truth.assertThat(baseEvent.textValue).isNotEmpty()
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/LinearLayout/AppCompatRatingBar")
+                    .isEqualTo("/HiltTestActivity/SliderFragment/LinearLayout/AppCompatRatingBar")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/ratingBar")
                 return@runEventTest true
             }

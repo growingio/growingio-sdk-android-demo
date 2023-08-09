@@ -73,7 +73,7 @@ class SdkLocationFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEmpty()
                 Truth.assertThat(baseEvent.path).isEqualTo("/SdkLocationFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/FrameLayout/ConstraintLayout/TextInputLayout/FrameLayout/TextInputEditText")
+                    .isEqualTo("/HiltTestActivity/SdkLocationFragment/ConstraintLayout/FrameLayout/ConstraintLayout/TextInputLayout/FrameLayout/TextInputEditText")
                 Truth.assertThat(baseEvent.xIndex).isAnyOf(
                     "/0/content/0/apiLayout/0/latitude/0/latitudeEt",
                     "/0/content/0/apiLayout/0/longitude/0/longitudeEt",

@@ -77,7 +77,7 @@ class SdkUserLoginFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEmpty()
                 Truth.assertThat(baseEvent.path).isEqualTo("/SdkUserLoginFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/FrameLayout/ConstraintLayout/TextInputLayout/FrameLayout/TextInputEditText")
+                    .isEqualTo("/HiltTestActivity/SdkUserLoginFragment/ConstraintLayout/FrameLayout/ConstraintLayout/TextInputLayout/FrameLayout/TextInputEditText")
                 Truth.assertThat(baseEvent.xIndex).isAnyOf("/0/content/0/apiLayout/0/userKey/0/userKeyEditText", "/0/content/0/apiLayout/0/userId/0/userIdEditText")
                 return@runEventTest true
             }

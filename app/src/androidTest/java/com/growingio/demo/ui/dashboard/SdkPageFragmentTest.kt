@@ -71,7 +71,7 @@ class SdkPageFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEqualTo("设置别名")
                 Truth.assertThat(baseEvent.path).isEqualTo("/cpacm")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/FrameLayout/ConstraintLayout/MaterialButton")
+                    .isEqualTo("/HiltTestActivity/SdkAutotrackPageFragment/ConstraintLayout/FrameLayout/ConstraintLayout/MaterialButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/apiLayout/0/aliasBtn")
                 return@runEventTest true
             }
@@ -93,7 +93,7 @@ class SdkPageFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEqualTo("设置属性")
                 Truth.assertThat(baseEvent.path).isEqualTo("/SdkAutotrackPageFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/FrameLayout/ConstraintLayout/MaterialButton")
+                    .isEqualTo("/HiltTestActivity/SdkAutotrackPageFragment/ConstraintLayout/FrameLayout/ConstraintLayout/MaterialButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/apiLayout/0/attributeBtn")
                 Truth.assertThat(baseEvent.attributes).hasSize(2)
                 Truth.assertThat(baseEvent.attributes).containsEntry("key0", "value0")

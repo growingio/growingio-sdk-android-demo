@@ -53,10 +53,10 @@ class ExpandListFragmentTest : AbstractGrowingTestUnit() {
         runEventTest(AutotrackEventType.VIEW_CLICK, onEvent = { baseEvent ->
             if (baseEvent is ViewElementEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
-                Truth.assertThat(baseEvent.path).isEqualTo("/ExpandListViewFragment")
+                Truth.assertThat(baseEvent.path).isEqualTo("/ExpandableListViewFragment")
                 Truth.assertThat(baseEvent.index).isEqualTo(0)
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/ExpandableListView/ELVG/RelativeLayout")
+                    .isEqualTo("/HiltTestActivity/ExpandableListViewFragment/ConstraintLayout/ExpandableListView/ELVG/RelativeLayout")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/expandableListView/-/0")
                 return@runEventTest true
             }

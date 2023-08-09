@@ -77,7 +77,7 @@ class SdkInitFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEqualTo("CODE")
                 Truth.assertThat(baseEvent.path).isEqualTo("/SdkInitFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/MaterialButtonToggleGroup/MaterialButton")
+                    .isEqualTo("/HiltTestActivity/SdkInitFragment/ConstraintLayout/MaterialButtonToggleGroup/MaterialButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/tabGroup/codeTab")
                 return@runEventTest true
             }
@@ -95,7 +95,7 @@ class SdkInitFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEmpty()
                 Truth.assertThat(baseEvent.path).isEqualTo("/SdkInitFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/AppBarLayout/Toolbar/AppCompatImageButton")
+                    .isEqualTo("/HiltTestActivity/SdkInitFragment/ConstraintLayout/AppBarLayout/Toolbar/AppCompatImageButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/appbarLayout/toolbar/0")
                 return@runEventTest true
             }

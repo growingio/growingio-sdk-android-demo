@@ -76,7 +76,7 @@ class SdkDataCollectFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEqualTo("测试数据发送")
                 Truth.assertThat(baseEvent.path).isEqualTo("/SdkDataCollectFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/FrameLayout/ConstraintLayout/MaterialButton")
+                    .isEqualTo("/HiltTestActivity/SdkDataCollectFragment/ConstraintLayout/FrameLayout/ConstraintLayout/MaterialButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/apiLayout/0/collectTestBtn")
                 return@runEventTest true
             }
@@ -95,7 +95,7 @@ class SdkDataCollectFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEqualTo("数据开关[false]")
                 Truth.assertThat(baseEvent.path).isEqualTo("/SdkDataCollectFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/FrameLayout/ConstraintLayout/MaterialSwitch")
+                    .isEqualTo("/HiltTestActivity/SdkDataCollectFragment/ConstraintLayout/FrameLayout/ConstraintLayout/MaterialSwitch")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/apiLayout/0/collectSwitch")
                 return@runEventTest true
             }

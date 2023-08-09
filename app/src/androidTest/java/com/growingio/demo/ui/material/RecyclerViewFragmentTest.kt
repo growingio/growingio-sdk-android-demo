@@ -57,7 +57,7 @@ class RecyclerViewFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.path).isEqualTo("/RecyclerViewFragment")
                 Truth.assertThat(baseEvent.index).isEqualTo(5)
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/AndroidXFragment/ConstraintLayout/RecyclerView/MaterialCardView/ConstraintLayout/MaterialButton")
+                    .isEqualTo("/HiltTestActivity/RecyclerViewFragment/ConstraintLayout/RecyclerView/MaterialCardView/ConstraintLayout/MaterialButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/recycler/-/0/action")
                 return@runEventTest true
             }
