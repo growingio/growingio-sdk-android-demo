@@ -1,19 +1,17 @@
 package com.growingio.demo.util
 
 import android.content.Context
-import android.widget.TextView
 import android.os.Build.VERSION.SDK_INT
+import android.widget.TextView
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
-import com.growingio.demo.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.noties.markwon.Markwon
 import io.noties.markwon.PrecomputedTextSetterCompat
 import io.noties.markwon.ext.tables.TablePlugin
-import io.noties.markwon.ext.tables.TableTheme
 import io.noties.markwon.image.coil.CoilImagesPlugin
 import java.util.*
 import java.util.concurrent.Executors
@@ -73,6 +71,4 @@ class MarkwonManager @Inject constructor(
                 cache[DEFAULT_MARKWON_TAG] = it
             }
     }
-
-
 }

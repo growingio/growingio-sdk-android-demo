@@ -21,7 +21,13 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import android.view.*
+import android.view.ContextMenu
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -47,7 +53,7 @@ class MenuFragment : ViewBindingFragment<FragmentMaterialMenuBinding>(), MenuPro
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialMenuBinding {
         return FragmentMaterialMenuBinding.inflate(inflater, container, false)
     }
@@ -102,7 +108,7 @@ class MenuFragment : ViewBindingFragment<FragmentMaterialMenuBinding>(), MenuPro
         val adapter = ArrayAdapter<CharSequence>(
             requireContext(),
             R.layout.fragment_material_menu_item,
-            resources.getStringArray(R.array.material_menu_list)
+            resources.getStringArray(R.array.material_menu_list),
         )
         popup.setAdapter(adapter)
         popup.anchorView = binding.menuShowPopup
@@ -119,8 +125,8 @@ class MenuFragment : ViewBindingFragment<FragmentMaterialMenuBinding>(), MenuPro
             clipboard.setPrimaryClip(
                 ClipData.newPlainText(
                     "Menu Copy",
-                    (v as TextView).text
-                )
+                    (v as TextView).text,
+                ),
             )
             true
         }
@@ -141,7 +147,7 @@ class MenuFragment : ViewBindingFragment<FragmentMaterialMenuBinding>(), MenuPro
                 icon = R.drawable.ic_menu_list,
                 title = "Menus",
                 route = PageNav.MaterialMenuPage.route(),
-                fragmentClass = MenuFragment::class
+                fragmentClass = MenuFragment::class,
             )
         }
     }

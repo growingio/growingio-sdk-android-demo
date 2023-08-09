@@ -18,7 +18,9 @@
 package com.growingio.demo.ui.material
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.RatingBar
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -43,7 +45,7 @@ class SliderFragment : ViewBindingFragment<FragmentMaterialSliderBinding>() {
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialSliderBinding {
         return FragmentMaterialSliderBinding.inflate(inflater, container, false)
     }
@@ -54,21 +56,21 @@ class SliderFragment : ViewBindingFragment<FragmentMaterialSliderBinding>() {
         binding.slider.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
             override fun onStartTrackingTouch(slider: Slider) {}
             override fun onStopTrackingTouch(slider: Slider) {
-                //Hook Inject
+                // Hook Inject
             }
         })
 
         binding.rangeSlider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
             override fun onStartTrackingTouch(slider: RangeSlider) {}
             override fun onStopTrackingTouch(slider: RangeSlider) {
-                //Hook Inject
+                // Hook Inject
             }
         })
 
         binding.sliderStep.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
             override fun onStartTrackingTouch(slider: Slider) {}
             override fun onStopTrackingTouch(slider: Slider) {
-                //Hook Inject
+                // Hook Inject
             }
         })
         binding.seekbar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
@@ -79,7 +81,7 @@ class SliderFragment : ViewBindingFragment<FragmentMaterialSliderBinding>() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                //Hook Inject
+                // Hook Inject
             }
         })
 
@@ -98,7 +100,7 @@ class SliderFragment : ViewBindingFragment<FragmentMaterialSliderBinding>() {
                 icon = R.drawable.ic_sliders,
                 title = "Slider",
                 route = PageNav.MaterialSliderPage.route(),
-                fragmentClass = SliderFragment::class
+                fragmentClass = SliderFragment::class,
             )
         }
     }

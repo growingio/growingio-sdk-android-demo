@@ -93,7 +93,7 @@ class SdkEventFilterFragment : PageFragment<FragmentEventFilterBinding>() {
                 title = "SDK 事件过滤",
                 desc = "如何在初始化中设置事件过滤",
                 route = PageNav.SdkEventFilterPage.route(),
-                fragmentClass = SdkEventFilterFragment::class
+                fragmentClass = SdkEventFilterFragment::class,
             )
         }
     }

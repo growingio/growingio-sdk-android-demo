@@ -38,8 +38,8 @@ class MaterialFragment : ViewBindingFragment<FragmentMaterialBinding>() {
             GridDividerDecoration(
                 resources.getDimensionPixelSize(R.dimen.material_divider_size),
                 ContextCompat.getColor(requireContext(), R.color.material_grid_divider_color),
-                2
-            )
+                2,
+            ),
         )
         viewModel.refreshData()
     }
@@ -68,5 +68,4 @@ class MaterialFragment : ViewBindingFragment<FragmentMaterialBinding>() {
     override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMaterialBinding {
         return FragmentMaterialBinding.inflate(layoutInflater, container, false)
     }
-
 }

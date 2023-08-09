@@ -34,7 +34,9 @@ import com.growingio.demo.R
  * @author cpacm 2023/7/21
  */
 class AttributesRecyclerView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
     private val buildSize = arrayListOf<Int>()
@@ -88,7 +90,6 @@ class AttributesRecyclerView @JvmOverloads constructor(
         buildSize.add(0)
     }
 
-
     companion object {
         const val MAX_COUNT = 8
     }
@@ -109,7 +110,6 @@ class AttributesRecyclerView @JvmOverloads constructor(
             holder.keyEt.setText("key$position")
             holder.valueEt.setText("value$position")
         }
-
     }
 
     class AddAttrViewHolder(itemView: View) : ViewHolder(itemView) {

@@ -52,7 +52,6 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
     lateinit var _pageBinding: T
     val pageBinding: T get() = _pageBinding
 
-
     override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentPageBinding {
         val createBinding = FragmentPageBinding.inflate(inflater, container, false)
         createBinding.codeLayout.addView(createCodeView(inflater, container))
@@ -73,14 +72,14 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
             when (checkedId) {
                 binding.apiTab.id -> {
                     val sharedAxis = createTransition(false)
-                    TransitionManager.beginDelayedTransition(binding.root, sharedAxis);
+                    TransitionManager.beginDelayedTransition(binding.root, sharedAxis)
                     binding.codeLayout.visibility = View.GONE
                     binding.apiLayout.visibility = View.VISIBLE
                 }
 
                 binding.codeTab.id -> {
                     val sharedAxis = createTransition(true)
-                    TransitionManager.beginDelayedTransition(binding.root, sharedAxis);
+                    TransitionManager.beginDelayedTransition(binding.root, sharedAxis)
                     binding.codeLayout.visibility = View.VISIBLE
                     binding.apiLayout.visibility = View.GONE
                 }
@@ -130,7 +129,6 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
             }
             if (text != null) bindSyntaxHighlighter(text, language, showLineNumbers)
         }
-
     }
 
     fun bindSyntaxHighlighter(formattedSourceCode: String, language: String, showLineNumbers: Boolean = false) {
@@ -138,7 +136,7 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
     }
 
     private fun createTransition(entering: Boolean): MaterialSharedAxis {
-        val transition = MaterialSharedAxis(MaterialSharedAxis.X, entering);
+        val transition = MaterialSharedAxis(MaterialSharedAxis.X, entering)
 
         // Add targets for this transition to explicitly run transitions only on these views. Without
         // targeting, a MaterialSharedAxis transition would be run for every view in the
@@ -197,5 +195,4 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
         }
         return super.onBackPressed()
     }
-
 }

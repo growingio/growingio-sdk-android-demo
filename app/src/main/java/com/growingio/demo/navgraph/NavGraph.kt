@@ -11,17 +11,15 @@ object NavGraph {
 }
 
 internal sealed class FragmentNav(val route: String) {
-    object Home : FragmentNav("home") //主页
+    object Home : FragmentNav("home") // 主页
 
-    //home page,use extra nav controller
+    // home page,use extra nav controller
     object DashBoard : FragmentNav("dashboard")
     object UI : FragmentNav("ui")
     object Template : FragmentNav("template")
 
     object Widgets : FragmentNav("widgets")
-
 }
-
 
 internal sealed class PageNav(val root: FragmentNav, val path: String? = null, val params: List<String>? = null) {
     fun route(): String {
@@ -74,7 +72,6 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object MaterialWebViewPage : PageNav(FragmentNav.UI, "webview")
     object MaterialExpandablePage : PageNav(FragmentNav.UI, "expandable")
 
-
     object WidgetAndroidH5Page : PageNav(FragmentNav.Widgets, "androidH5", params = arrayListOf("url")) {
         fun toUrl(url: String): String {
             return route().replace("{${paramName()}}", url)
@@ -86,7 +83,4 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
             return route().replace("{${paramName()}}", url)
         }
     }
-
 }
-
-

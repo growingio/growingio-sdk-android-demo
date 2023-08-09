@@ -20,13 +20,11 @@ package com.growingio.demo
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
-import com.growingio.android.json.JsonLibraryModule
 import com.growingio.android.sdk.autotrack.AutotrackConfiguration
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.demo.data.settingsDataStore
 import com.growingio.demo.util.GrowingIOManager
 import kotlinx.coroutines.runBlocking
-
 
 /**
  * <p>
@@ -38,21 +36,21 @@ class GrowingAndroidJUnitRunner : AndroidJUnitRunner() {
         return super.newApplication(cl, className, context)
     }
 
-
     override fun callApplicationOnCreate(app: Application?) {
         super.callApplicationOnCreate(app)
 
         GrowingAutotracker.shutdown()
         GrowingAutotracker.startWithConfiguration(
-            app, AutotrackConfiguration(PROJECT_ID, URL_SCHEME)
+            app,
+            AutotrackConfiguration(PROJECT_ID, URL_SCHEME)
                 .setDataCollectionServerHost(MOCK_SERVER_HOST)
                 .setChannel(CHANNEL)
                 .setDataSourceId(DATA_SOURCE_ID)
                 .setDataUploadInterval(0)
                 .setIdMappingEnabled(true)
                 .setEventFilterInterceptor(GrowingIOManager.provideEventFilterInterceptor())
-                .setDebugEnabled(true)
-                //.addPreloadComponent(JsonLibraryModule())
+                .setDebugEnabled(true),
+            // .addPreloadComponent(JsonLibraryModule())
         )
 
         runBlocking {
@@ -64,12 +62,11 @@ class GrowingAndroidJUnitRunner : AndroidJUnitRunner() {
 
     companion object {
         const val PROJECT_ID = "projectId"
-        const val URL_SCHEME = "urlScheme"
+        const val URL_SCHEME = "growing.bd71d91eb56f5f53"
         const val DATA_SOURCE_ID = "dataSourceId"
         const val CHANNEL = "test"
 
         const val MOCK_SERVER_PORT = 8910
         const val MOCK_SERVER_HOST = "http://localhost:$MOCK_SERVER_PORT"
-
     }
 }

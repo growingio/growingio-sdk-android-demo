@@ -56,7 +56,7 @@ import java.util.*
 class LogcatView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val logcatList: RecyclerView
@@ -123,18 +123,19 @@ class LogcatView @JvmOverloads constructor(
         logcatMaximize.setOnClickListener {
             switchHeight()
         }
-
     }
 
     fun setDefaultLogFilter(text: String) {
         filterTv.setText(text, false)
     }
 
-
     private fun switchHeight() {
         if (parent !is ConstraintLayout) return
-        layoutParams = if (isMaximize) getMinimizeHeightLayoutParams()
-        else getMaximizeHeightLayoutParams()
+        layoutParams = if (isMaximize) {
+            getMinimizeHeightLayoutParams()
+        } else {
+            getMaximizeHeightLayoutParams()
+        }
         isMaximize = !isMaximize
     }
 
@@ -168,19 +169,18 @@ class LogcatView @JvmOverloads constructor(
                     BackgroundColorSpan(getFilterTextBackgroundColor(level.value)),
                     levelSpanGroup.range.first,
                     levelSpanGroup.range.count(),
-                    0
+                    0,
                 )
 
                 s.setSpan(
                     ForegroundColorSpan(getFilterTextForegroundColor(level.value)),
                     levelSpanGroup.range.first,
                     levelSpanGroup.range.count(),
-                    0
+                    0,
                 )
             }
             val logStr = matchResult.groups[5]?.value ?: ""
             logcatAdapter.setFilter(log, getLogLevel(level?.value ?: "debug"), logStr.trim())
-
         } else {
             logcatAdapter.setFilter(log.trim(), Log.VERBOSE, log.trim())
         }
@@ -223,7 +223,6 @@ class LogcatView @JvmOverloads constructor(
         }
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     class LoggerAdapter(context: Context, private val scrollAction: (count: Int) -> Unit) :
         RecyclerView.Adapter<LoggerAdapter.LoggerViewHolder>(),
@@ -263,7 +262,7 @@ class LogcatView @JvmOverloads constructor(
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoggerViewHolder {
             return LoggerViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.recycler_logcat_item, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.recycler_logcat_item, parent, false),
             )
         }
 
@@ -297,7 +296,6 @@ class LogcatView @JvmOverloads constructor(
             notifyDataSetChanged()
         }
 
-
         fun setFilter(origin: String, level: Int, tag: String) {
             if (level == filterLevel && tag == filterTag) return
             filterLevel = level
@@ -321,7 +319,7 @@ class LogcatView @JvmOverloads constructor(
 
             @SuppressLint("SetTextI18n")
             fun bind(item: GrowingIOLoggerItem) {
-                //2023-06-12 20:00:00.614
+                // 2023-06-12 20:00:00.614
                 logTime.text = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()).format(item.time)
                 logTag.text = "[${item.tag}]"
                 logMessage.text = item.msg

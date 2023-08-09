@@ -19,9 +19,7 @@ package com.growingio.demo.util
 
 import android.os.Looper
 import android.os.Message
-import androidx.annotation.MainThread
 import com.growingio.android.sdk.track.log.BaseLogger
-import com.growingio.android.sdk.track.log.Logger
 import com.growingio.demo.data.GrowingIOLoggerItem
 import java.lang.ref.WeakReference
 import java.util.*
@@ -64,14 +62,13 @@ class GrowingLoggerManager @Inject constructor() : BaseLogger() {
     }
 
     fun observeLogger(item: GrowingIOLoggerItem) {
-        //uiHandler.removeMessages(0)
+        // uiHandler.removeMessages(0)
         val message = Message.obtain(uiHandler) {
             loggerObservers.forEach {
                 it.get()?.onLoggerChanged(item)
             }
         }
         uiHandler.sendMessage(message)
-
     }
 
     fun addLoggerObserver(observer: LoggerObserver) {

@@ -19,20 +19,15 @@ package com.growingio.demo
 
 import com.google.common.util.concurrent.Uninterruptibles
 import com.growingio.android.sdk.track.events.base.BaseEvent
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.junit.After
 import org.junit.Before
-import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.locks.Condition
 
 /**
  * <p>
@@ -74,7 +69,6 @@ abstract class AbstractGrowingTestUnit {
                         handler.countDownLatch.countDown()
                     }
                 }
-
             }
         }
         // return
@@ -84,12 +78,12 @@ abstract class AbstractGrowingTestUnit {
         return false
     }
 
-
     fun waitEvent(
         eventType: String,
         onEvent: (event: BaseEvent) -> Boolean = this::onEvent,
         eventCount: Int = 1,
-        timeout: Long = 5, unit: TimeUnit = TimeUnit.SECONDS
+        timeout: Long = 5,
+        unit: TimeUnit = TimeUnit.SECONDS,
     ) {
         val remainingNanos = unit.toNanos(timeout)
         val end = System.nanoTime() + remainingNanos
@@ -110,9 +104,10 @@ abstract class AbstractGrowingTestUnit {
         eventType: String,
         onEvent: (event: BaseEvent) -> Boolean = this::onEvent,
         eventCount: Int = 1,
-        timeout: Long = 5, unit: TimeUnit = TimeUnit.SECONDS,
+        timeout: Long = 5,
+        unit: TimeUnit = TimeUnit.SECONDS,
         validateAtLast: Boolean = false,
-        testBody: suspend () -> Unit
+        testBody: suspend () -> Unit,
     ) {
         runTest() {
             val remainingNanos = unit.toNanos(timeout)
@@ -121,7 +116,7 @@ abstract class AbstractGrowingTestUnit {
             val eventHandler = AwaitHandler(eventType, countDownLatch, onEvent, validateAtLast)
             receivedHandler.add(eventHandler)
             testBody()
-            //CoroutineScope(Dispatchers.IO).launch {
+            // CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.IO) {
                 while (countDownLatch.count > 0) {
                     if (System.nanoTime() > end) {
@@ -138,6 +133,6 @@ abstract class AbstractGrowingTestUnit {
         val eventType: String,
         val countDownLatch: CountDownLatch,
         val onEvent: (event: BaseEvent) -> Boolean,
-        val validateAtLast: Boolean = false
+        val validateAtLast: Boolean = false,
     )
 }

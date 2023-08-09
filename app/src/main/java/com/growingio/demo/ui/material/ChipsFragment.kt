@@ -18,12 +18,12 @@
 package com.growingio.demo.ui.material
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.google.android.material.chip.Chip
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
-import com.growingio.demo.databinding.FragmentMaterialButtonBinding
-import com.growingio.demo.databinding.FragmentMaterialCheckboxBinding
 import com.growingio.demo.databinding.FragmentMaterialChipsBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.ViewBindingFragment
@@ -41,7 +41,7 @@ class ChipsFragment : ViewBindingFragment<FragmentMaterialChipsBinding>() {
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialChipsBinding {
         return FragmentMaterialChipsBinding.inflate(inflater, container, false)
     }
@@ -72,7 +72,7 @@ class ChipsFragment : ViewBindingFragment<FragmentMaterialChipsBinding>() {
                 icon = R.drawable.ic_chips,
                 title = "Chips",
                 route = PageNav.MaterialChipsPage.route(),
-                fragmentClass = ChipsFragment::class
+                fragmentClass = ChipsFragment::class,
             )
         }
     }

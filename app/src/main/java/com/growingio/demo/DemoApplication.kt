@@ -46,7 +46,7 @@ class DemoApplication : Application() {
     }
 }
 
-//class GiokitInitializer : Initializer<Boolean> {
+// class GiokitInitializer : Initializer<Boolean> {
 //    override fun create(context: Context): Boolean {
 //        if (context is Application) {
 //            GioKit.with(context)
@@ -61,7 +61,7 @@ class DemoApplication : Application() {
 //        return mutableListOf()
 //    }
 //
-//}
+// }
 
 class GrowingioInitializer : Initializer<Autotracker> {
 
@@ -88,8 +88,8 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setSessionInterval(30)
                 .setEventFilterInterceptor(growingIOProvider.eventFilterInterceptor())
                 .setIdMappingEnabled(true)
-                .setImpressionScale(0f)
-                //.downgrade()
+                .setImpressionScale(0f),
+            // .downgrade()
         )
 
         return GrowingAutotracker.get()

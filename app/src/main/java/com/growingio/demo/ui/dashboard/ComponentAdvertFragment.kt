@@ -59,7 +59,6 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
         barScannerLauncher = registerForActivityResult(BarScanner(requireContext())) {
             pageBinding.deeplink.editText?.setText(it)
         }
-
     }
 
     override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentComponentAdvertBinding {
@@ -87,7 +86,6 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
             pageBinding.deeplink.editText?.setText(getString(R.string.component_advert_default_url))
         }
 
-
         pageBinding.parseBtn.setOnClickListener {
             val deeplinkUrl = pageBinding.deeplink.editText?.text
             if (deeplinkUrl == null || deeplinkUrl.toString().isEmpty()) {
@@ -99,7 +97,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
 
         loadAssetCode(this)
 
-        //https://ads-uat.growingio.cn/k4budVa
+        // https://ads-uat.growingio.cn/k4budVa
         setDefaultLogFilter("level:debug advertModule")
     }
 
@@ -113,7 +111,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
             // appAwakePassedTime: 从app唤醒到调用该回调的时间
             Logger.d(
                 "AdvertModule",
-                "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime"
+                "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime",
             )
         }
 
@@ -137,7 +135,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
                 GrowingAutotracker.get().trackCustomEvent("DeepLinkCallback")
                 Logger.d(
                     "AdvertModule",
-                    "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime"
+                    "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime",
                 )
             }
     }
@@ -153,7 +151,6 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
         barScannerLauncher.unregister()
     }
 
-
     @dagger.Module
     @InstallIn(SingletonComponent::class)
     object Module {
@@ -166,7 +163,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
                 title = "广告分析",
                 desc = "广告模块包括激活事件和深度链接，激活事件是当用户第一次进入的事件，深度链接用于SDK监测广告推广效果",
                 route = PageNav.ComponentAdvertPage.route(),
-                fragmentClass = ComponentAdvertFragment::class
+                fragmentClass = ComponentAdvertFragment::class,
             )
         }
     }

@@ -81,7 +81,6 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
             isCompoundButtonCheckEnabled = true
             isRadioGroupCheckEnabled = true
             isRatingBarChangeEnabled = true
-
         }
         /**
          * // 可以在初始化时设置无埋点配置
@@ -94,7 +93,7 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
         // 也可以在运行时修改
         val autotrackConfig = GrowingAutotracker.get().context.configurationProvider.getConfiguration<AutotrackConfig>(AutotrackConfig::class.java)
         // not support
-        //autotrackConfig?.autotrackOptions = autotrackerOptions
+        // autotrackConfig?.autotrackOptions = autotrackerOptions
     }
 
     private fun initContent(): String {

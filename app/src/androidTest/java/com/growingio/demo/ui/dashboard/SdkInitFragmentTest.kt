@@ -27,18 +27,17 @@ import androidx.test.espresso.matcher.ViewMatchers.withParent
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.google.common.truth.Truth
-import com.growingio.demo.R
 import com.growingio.android.sdk.track.events.AutotrackEventType
 import com.growingio.android.sdk.track.events.PageEvent
 import com.growingio.android.sdk.track.events.ViewElementEvent
 import com.growingio.demo.AbstractGrowingTestUnit
+import com.growingio.demo.R
 import com.growingio.demo.launchFragmentInHiltContainer
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.instanceOf
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 /**
  * <p>
@@ -67,7 +66,6 @@ class SdkInitFragmentTest : AbstractGrowingTestUnit() {
             }
             false
         }) {
-
         }
     }
 
@@ -106,10 +104,9 @@ class SdkInitFragmentTest : AbstractGrowingTestUnit() {
             onView(
                 allOf(
                     instanceOf(AppCompatImageButton::class.java),
-                    withParent(withId(R.id.toolbar))
-                )
+                    withParent(withId(R.id.toolbar)),
+                ),
             ).perform(click())
         }
     }
-
 }

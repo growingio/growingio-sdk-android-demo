@@ -18,8 +18,11 @@ package com.growingio.code.processor
 
 import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.processing.Resolver
-import com.google.devtools.ksp.symbol.*
-
+import com.google.devtools.ksp.symbol.KSDeclaration
+import com.google.devtools.ksp.symbol.KSType
+import com.google.devtools.ksp.symbol.KSTypeArgument
+import com.google.devtools.ksp.symbol.KSTypeReference
+import com.google.devtools.ksp.symbol.Variance
 
 /**
  * <p>
@@ -73,7 +76,7 @@ internal fun KSTypeReference?.typeName(resolver: Resolver): String? {
  * Turns a KSTypeArgument into a TypeName in java's type system.
  */
 internal fun KSTypeArgument.typeName(
-    resolver: Resolver
+    resolver: Resolver,
 ): String? {
     return type.typeName(resolver)
 }
@@ -82,18 +85,18 @@ internal fun KSTypeArgument.typeName(
  * Turns a KSType into a TypeName in java's type system.
  */
 internal fun KSType.typeName(resolver: Resolver): String? {
-    if (this.arguments.isNotEmpty() && this.arguments.size == 1) { //for array
+    if (this.arguments.isNotEmpty() && this.arguments.size == 1) { // for array
         val ksTypeArg = this.arguments.single()
         return when (ksTypeArg.variance) {
             // 泛型统一使用自身类型 包括 out,in,* 三种
             Variance.CONTRAVARIANT -> this.declaration.typeName(resolver)
             Variance.COVARIANT -> this.declaration.typeName(resolver)
             Variance.STAR -> this.declaration.typeName(resolver)
-            //数组
+            // 数组
             else -> "[" + ksTypeArg.typeName(resolver)
         }
     } else {
-        //map
+        // map
         return this.declaration.typeName(resolver)
     }
 }

@@ -55,9 +55,7 @@ class AndroidX5Fragment : ViewBindingFragment<FragmentAndroidX5Binding>() {
             override fun onTitleChanged(title: String?) {
                 binding.toolbar.title = title
             }
-
         })
-
 
         val url = arguments?.getString("url") ?: "about:blank"
         binding.x5Web.loadUrl(URLDecoder.decode(url))
@@ -70,7 +68,6 @@ class AndroidX5Fragment : ViewBindingFragment<FragmentAndroidX5Binding>() {
         }
         return super.onBackPressed()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

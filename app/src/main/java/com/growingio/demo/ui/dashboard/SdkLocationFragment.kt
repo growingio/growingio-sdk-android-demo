@@ -53,7 +53,6 @@ class SdkLocationFragment : PageFragment<FragmentLocationBinding>() {
         setTitle(getString(R.string.sdk_location))
 
         pageBinding.settle.setOnClickListener {
-
             val latitude = pageBinding.latitude.editText?.text
             if (latitude == null || latitude.toString().isEmpty()) {
                 showMessage(R.string.sdk_location_toast)
@@ -108,7 +107,7 @@ class SdkLocationFragment : PageFragment<FragmentLocationBinding>() {
                 title = "位置信息",
                 desc = "为事件设置经纬度信息",
                 route = PageNav.SdkLocationPage.route(),
-                fragmentClass = SdkLocationFragment::class
+                fragmentClass = SdkLocationFragment::class,
             )
         }
     }

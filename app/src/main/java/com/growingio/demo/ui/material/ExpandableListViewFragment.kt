@@ -39,7 +39,7 @@ import dagger.multibindings.IntoSet
  *
  * @author cpacm 2023/5/11
  */
-class ExpandListViewFragment : ViewBindingFragment<FragmentMaterialExpandedListviewBinding>() {
+class ExpandableListViewFragment : ViewBindingFragment<FragmentMaterialExpandedListviewBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class ExpandListViewFragment : ViewBindingFragment<FragmentMaterialExpandedListv
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialExpandedListviewBinding {
         return FragmentMaterialExpandedListviewBinding.inflate(inflater, container, false)
     }
@@ -57,6 +57,7 @@ class ExpandListViewFragment : ViewBindingFragment<FragmentMaterialExpandedListv
         super.onViewCreated(view, savedInstanceState)
         binding.expandableListView.setAdapter(ExpandableSampleAdapter())
 
+        binding.expandableListView.setOnGroupClickListener { p0, p1, p2, p3 -> false }
         binding.expandableListView.setOnChildClickListener { expandableListView, view, i, i2, l ->
             false
         }
@@ -98,7 +99,7 @@ class ExpandListViewFragment : ViewBindingFragment<FragmentMaterialExpandedListv
                 icon = R.drawable.ic_lists,
                 title = "ExpandableListView",
                 route = PageNav.MaterialExpandablePage.route(),
-                fragmentClass = ExpandListViewFragment::class
+                fragmentClass = ExpandableListViewFragment::class,
             )
         }
     }
@@ -140,11 +141,11 @@ class ExpandListViewFragment : ViewBindingFragment<FragmentMaterialExpandedListv
             groupPosition: Int,
             isExpanded: Boolean,
             convertView: View?,
-            parent: ViewGroup?
+            parent: ViewGroup?,
         ): View {
             var newView = convertView
             if (newView == null) {
-                newView = lif.inflate(R.layout.listview_group_item, parent, false);
+                newView = lif.inflate(R.layout.listview_group_item, parent, false)
             }
             val group = getGroup(groupPosition) as String
             val tvGroup = newView!!.findViewById(R.id.group) as TextView
@@ -160,11 +161,11 @@ class ExpandListViewFragment : ViewBindingFragment<FragmentMaterialExpandedListv
             childPosition: Int,
             isExpanded: Boolean,
             convertView: View?,
-            parent: ViewGroup?
+            parent: ViewGroup?,
         ): View {
             var newView = convertView
             if (newView == null) {
-                newView = lif.inflate(R.layout.listview_child_item, parent, false);
+                newView = lif.inflate(R.layout.listview_child_item, parent, false)
             }
             val item = getChild(groupPosition, childPosition) as String
             val tvChild = newView!!.findViewById(R.id.childName) as TextView
@@ -177,8 +178,5 @@ class ExpandListViewFragment : ViewBindingFragment<FragmentMaterialExpandedListv
         override fun isChildSelectable(p0: Int, p1: Int): Boolean {
             return true
         }
-
     }
 }
-
-

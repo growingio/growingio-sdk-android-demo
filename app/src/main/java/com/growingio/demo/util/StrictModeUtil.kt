@@ -34,27 +34,29 @@ fun enableStrictMode() {
                 .penaltyLog()
                 .permitDiskReads()
                 .permitDiskWrites()
-                .build()
+                .build(),
         )
 
-        StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
-            .detectActivityLeaks()
-            .detectLeakedClosableObjects()
-            .detectLeakedRegistrationObjects()
-            .detectFileUriExposure()
-            .apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    detectContentUriWithoutPermission()
+        StrictMode.setVmPolicy(
+            StrictMode.VmPolicy.Builder()
+                .detectActivityLeaks()
+                .detectLeakedClosableObjects()
+                .detectLeakedRegistrationObjects()
+                .detectFileUriExposure()
+                .apply {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        detectContentUriWithoutPermission()
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        detectCredentialProtectedWhileLocked()
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                        detectIncorrectContextUse()
+                        detectUnsafeIntentLaunch()
+                    }
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    detectCredentialProtectedWhileLocked()
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    detectIncorrectContextUse()
-                    detectUnsafeIntentLaunch()
-                }
-            }
-            .penaltyLog()
-            .build())
+                .penaltyLog()
+                .build(),
+        )
     }
 }

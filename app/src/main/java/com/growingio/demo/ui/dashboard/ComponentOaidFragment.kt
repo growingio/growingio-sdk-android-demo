@@ -23,7 +23,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.oaid.OaidConfig
 import com.growingio.android.oaid.OaidLibraryGioModule
-import com.growingio.android.sdk.TrackerContext
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.events.TrackEventGenerator
 import com.growingio.android.sdk.track.middleware.OaidHelper
@@ -94,7 +93,6 @@ class ComponentOaidFragment : PageFragment<FragmentComponentOaidBinding>() {
 
     @SourceCode
     private fun registerOaidComponent(oaid: String) {
-
         val oaidConfig = OaidConfig()
         oaidConfig.setProvideOaid(oaid)
 
@@ -127,7 +125,7 @@ class ComponentOaidFragment : PageFragment<FragmentComponentOaidBinding>() {
                 title = "OAID 标识符",
                 desc = "移动智能终端补充设备标识符，由国内移动安全联盟MSA统一提供。",
                 route = PageNav.ComponentOaidPage.route(),
-                fragmentClass = ComponentOaidFragment::class
+                fragmentClass = ComponentOaidFragment::class,
             )
         }
     }

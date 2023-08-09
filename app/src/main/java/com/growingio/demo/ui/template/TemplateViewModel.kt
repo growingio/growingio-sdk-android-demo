@@ -4,7 +4,7 @@
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
  *   You may obtain a copy of the License at
- *  
+ *
  *        http://ww.apache.org/licenses/LICENSE-2.0
  *
  *   Unless required by applicable law or agreed to in writing, software
@@ -28,7 +28,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TemplateViewModel @Inject constructor(
-    private val application: Application
+    private val application: Application,
 ) : ViewModel() {
 
     private val _templates = MutableLiveData<List<TemplateItem>>().apply {
@@ -38,26 +38,25 @@ class TemplateViewModel @Inject constructor(
                 getString(R.string.template_compose_title),
                 getString(R.string.template_compose_desc),
                 R.drawable.ic_compose,
-                ""
+                "",
             ),
             TemplateItem(
                 2,
                 getString(R.string.template_flutter_title),
                 getString(R.string.template_flutter_desc),
                 R.drawable.ic_flutter,
-                ""
+                "",
             ),
             TemplateItem(
                 3,
                 getString(R.string.template_rn_title),
                 getString(R.string.template_rn_desc),
                 R.drawable.ic_react,
-                ""
+                "",
             ),
         )
     }
     val templates: LiveData<List<TemplateItem>> = _templates
-
 
     private fun getString(resId: Int): String {
         return application.getString(resId)

@@ -121,7 +121,6 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
         GrowingAutotracker.get().registerComponent(ProtobufLibraryModule())
     }
 
-
     @dagger.Module
     @InstallIn(SingletonComponent::class)
     object Module {
@@ -134,7 +133,7 @@ class ComponentProtobufFragment : PageFragment<FragmentComponentProtobufBinding>
                 title = "数据格式",
                 desc = "SDK目前可以支持 Protobuf 和 Json 数据格式上传。",
                 route = PageNav.ComponentProtobufPage.route(),
-                fragmentClass = ComponentProtobufFragment::class
+                fragmentClass = ComponentProtobufFragment::class,
             )
         }
     }

@@ -23,17 +23,16 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.google.common.truth.Truth
-import com.growingio.demo.R
 import com.growingio.android.sdk.track.events.AutotrackEventType
 import com.growingio.android.sdk.track.events.CustomEvent
 import com.growingio.android.sdk.track.events.TrackEventType
 import com.growingio.demo.AbstractGrowingTestUnit
+import com.growingio.demo.R
 import com.growingio.demo.launchFragmentInHiltContainer
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.concurrent.TimeoutException
-
 
 /**
  * <p>
@@ -103,6 +102,4 @@ class SdkFilterFragmentTest : AbstractGrowingTestUnit() {
             Truth.assertThat(e).isInstanceOf(TimeoutException::class.java)
         }
     }
-
-
 }

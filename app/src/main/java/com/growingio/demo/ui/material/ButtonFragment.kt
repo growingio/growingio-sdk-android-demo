@@ -18,7 +18,9 @@
 package com.growingio.demo.ui.material
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
 import com.growingio.demo.databinding.FragmentMaterialButtonBinding
@@ -38,7 +40,7 @@ class ButtonFragment : ViewBindingFragment<FragmentMaterialButtonBinding>() {
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialButtonBinding {
         return FragmentMaterialButtonBinding.inflate(inflater, container, false)
     }
@@ -52,7 +54,7 @@ class ButtonFragment : ViewBindingFragment<FragmentMaterialButtonBinding>() {
 
         binding.fab.setOnClickListener { }
         binding.expanedFab.setOnClickListener { }
-        binding.radioGroup.setOnCheckedChangeListener { _, _ ->  }
+        binding.radioGroup.setOnCheckedChangeListener { _, _ -> }
     }
 
     @dagger.Module
@@ -66,7 +68,7 @@ class ButtonFragment : ViewBindingFragment<FragmentMaterialButtonBinding>() {
                 icon = R.drawable.ic_button,
                 title = "Material Button",
                 route = PageNav.MaterialButtonPage.route(),
-                fragmentClass = ButtonFragment::class
+                fragmentClass = ButtonFragment::class,
             )
         }
     }

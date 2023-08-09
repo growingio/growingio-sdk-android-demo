@@ -30,33 +30,33 @@ import android.webkit.WebView
 class SyntaxHighlighterWebView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : WebView(context, attrs, defStyleAttr) {
 
     @SuppressLint("SetJavaScriptEnabled")
     fun bindSyntaxHighlighter(
         formattedSourceCode: String,
         language: String,
-        showLineNumbers: Boolean = false
+        showLineNumbers: Boolean = false,
     ) {
         settings.javaScriptEnabled = true
         loadDataWithBaseURL(
-            ANDROID_ASSETS_PATH /* baseUrl */,
+            ANDROID_ASSETS_PATH,
             prismJsHtmlContent(
                 formattedSourceCode,
                 language,
-                showLineNumbers
-            ) /* html-data */,
-            "text/html" /* mimeType */,
-            "utf-8" /* encoding */,
-            "" /* failUrl */
+                showLineNumbers,
+            ),
+            "text/html",
+            "utf-8",
+            "",
         )
     }
 
     private fun prismJsHtmlContent(
         formattedSourceCode: String,
         language: String,
-        showLineNumbers: Boolean = true
+        showLineNumbers: Boolean = true,
     ): String {
         return """<!DOCTYPE html>
 <html>
@@ -77,7 +77,7 @@ class SyntaxHighlighterWebView @JvmOverloads constructor(
 </head>
 <body>
 <pre class="${if (showLineNumbers) "line-numbers" else ""}">
-<code class="language-${language}">${formattedSourceCode}</code>
+<code class="language-$language">$formattedSourceCode</code>
 </pre>
 </body>
 </html>

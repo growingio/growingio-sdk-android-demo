@@ -80,7 +80,7 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
 
 //        binding.facingSwitch.setOnCheckedChangeListener(this)
 
-        //initNavigation(binding.control)
+        // initNavigation(binding.control)
 
         launchPermission(android.Manifest.permission.CAMERA) {
             if (it) {
@@ -92,7 +92,6 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
         }
     }
 
-
     private fun observerCameraProvider() {
         ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))
             .get(CameraXViewModel::class.java)
@@ -102,7 +101,6 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
                 bindAllCameraUseCases()
             }
     }
-
 
     override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
         if (cameraProvider == null) {
@@ -129,7 +127,7 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
         Toast.makeText(
             applicationContext,
             "This device does not have lens with facing: $newLensFacing",
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_SHORT,
         )
             .show()
     }
@@ -173,7 +171,7 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
 //        }
         previewUseCase = builder.build()
         previewUseCase!!.setSurfaceProvider(previewView!!.getSurfaceProvider())
-        cameraProvider!!.bindToLifecycle(/* lifecycleOwner= */ this, cameraSelector!!, previewUseCase)
+        cameraProvider!!.bindToLifecycle(this, cameraSelector!!, previewUseCase)
     }
 
     private fun bindAnalysisUseCase() {
@@ -188,9 +186,12 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
         }
         imageProcessor = BarcodeScannerProcessor(this) {
             if (it.size == 1) {
-                setResult(RESULT_OK, Intent().apply {
-                    putExtra("barcode", it[0])
-                })
+                setResult(
+                    RESULT_OK,
+                    Intent().apply {
+                        putExtra("barcode", it[0])
+                    },
+                )
                 finish()
             }
         }
@@ -224,11 +225,10 @@ class CameraXLivePreviewActivity : PermissionActivity(), CompoundButton.OnChecke
                     Log.e(TAG, "Failed to process image. Error: " + e.localizedMessage)
                     Toast.makeText(applicationContext, e.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
-            }
+            },
         )
-        cameraProvider!!.bindToLifecycle(/* lifecycleOwner= */ this, cameraSelector!!, analysisUseCase)
+        cameraProvider!!.bindToLifecycle(this, cameraSelector!!, analysisUseCase)
     }
-
 
     companion object {
         private const val TAG = "CameraXLivePreview"

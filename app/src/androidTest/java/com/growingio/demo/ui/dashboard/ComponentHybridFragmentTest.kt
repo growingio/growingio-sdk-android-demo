@@ -25,19 +25,17 @@ import androidx.test.espresso.web.webdriver.Locator
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.google.common.truth.Truth
-import com.growingio.demo.R
 import com.growingio.android.sdk.track.events.AutotrackEventType
-import com.growingio.android.sdk.track.events.CustomEvent
 import com.growingio.android.sdk.track.events.PageEvent
 import com.growingio.android.sdk.track.events.TrackEventType
 import com.growingio.android.sdk.track.events.ViewElementEvent
 import com.growingio.android.sdk.track.events.hybrid.HybridCustomEvent
 import com.growingio.demo.AbstractGrowingTestUnit
+import com.growingio.demo.R
 import com.growingio.demo.launchFragmentInHiltContainer
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 /**
  * <p>
@@ -65,7 +63,6 @@ class ComponentHybridFragmentTest : AbstractGrowingTestUnit() {
             }
             false
         }, validateAtLast = true) {
-
         }
     }
 

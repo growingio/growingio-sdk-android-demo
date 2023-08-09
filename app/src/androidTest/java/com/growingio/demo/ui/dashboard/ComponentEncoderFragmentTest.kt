@@ -18,28 +18,22 @@
 package com.growingio.demo.ui.dashboard
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isChecked
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.google.common.truth.Truth
-import com.growingio.demo.R
 import com.growingio.android.sdk.track.events.AutotrackEventType
 import com.growingio.android.sdk.track.events.PageEvent
-import com.growingio.android.sdk.track.events.TrackEventType
-import com.growingio.android.sdk.track.events.ViewElementEvent
-import com.growingio.android.sdk.track.events.VisitEvent
 import com.growingio.demo.AbstractGrowingTestUnit
+import com.growingio.demo.R
 import com.growingio.demo.launchFragmentInHiltContainer
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.concurrent.TimeoutException
-
 
 /**
  * <p>
@@ -67,7 +61,6 @@ class ComponentEncoderFragmentTest : AbstractGrowingTestUnit() {
             }
             false
         }) {
-
         }
     }
 
@@ -80,7 +73,6 @@ class ComponentEncoderFragmentTest : AbstractGrowingTestUnit() {
             }) {
                 onView(withId(R.id.encoderSwitch)).perform(click()).check(ViewAssertions.matches(isChecked()))
                 onView(withId(R.id.testBtn)).perform(click())
-
             }
         } catch (e: Exception) {
             Truth.assertThat(e).isInstanceOf(TimeoutException::class.java)

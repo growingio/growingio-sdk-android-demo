@@ -39,7 +39,7 @@ class BarcodeScannerProcessor(context: Context, private val barcodeCallback: (co
     private val barcodeScanner: BarcodeScanner = BarcodeScanning.getClient(
         BarcodeScannerOptions.Builder()
             .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
-            .build()
+            .build(),
     )
 
     override fun stop() {
@@ -80,15 +80,15 @@ class BarcodeScannerProcessor(context: Context, private val barcodeCallback: (co
                     MANUAL_TESTING_LOG,
                     String.format(
                         "Detected barcode's bounding box: %s",
-                        barcode.boundingBox!!.flattenToString()
-                    )
+                        barcode.boundingBox!!.flattenToString(),
+                    ),
                 )
                 Log.v(
                     MANUAL_TESTING_LOG,
                     String.format(
                         "Expected corner point size is 4, get %d",
-                        barcode.cornerPoints!!.size
-                    )
+                        barcode.cornerPoints!!.size,
+                    ),
                 )
                 for (point in barcode.cornerPoints!!) {
                     Log.v(
@@ -96,75 +96,75 @@ class BarcodeScannerProcessor(context: Context, private val barcodeCallback: (co
                         String.format(
                             "Corner point is located at: x = %d, y = %d",
                             point.x,
-                            point.y
-                        )
+                            point.y,
+                        ),
                     )
                 }
                 Log.v(
                     MANUAL_TESTING_LOG,
-                    "barcode display value: " + barcode.displayValue
+                    "barcode display value: " + barcode.displayValue,
                 )
                 Log.v(
                     MANUAL_TESTING_LOG,
-                    "barcode raw value: " + barcode.rawValue
+                    "barcode raw value: " + barcode.rawValue,
                 )
                 val dl = barcode.driverLicense
                 if (dl != null) {
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license city: " + dl.addressCity
+                        "driver license city: " + dl.addressCity,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license state: " + dl.addressState
+                        "driver license state: " + dl.addressState,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license street: " + dl.addressStreet
+                        "driver license street: " + dl.addressStreet,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license zip code: " + dl.addressZip
+                        "driver license zip code: " + dl.addressZip,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license birthday: " + dl.birthDate
+                        "driver license birthday: " + dl.birthDate,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license document type: " + dl.documentType
+                        "driver license document type: " + dl.documentType,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license expiry date: " + dl.expiryDate
+                        "driver license expiry date: " + dl.expiryDate,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license first name: " + dl.firstName
+                        "driver license first name: " + dl.firstName,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license middle name: " + dl.middleName
+                        "driver license middle name: " + dl.middleName,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license last name: " + dl.lastName
+                        "driver license last name: " + dl.lastName,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license gender: " + dl.gender
+                        "driver license gender: " + dl.gender,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license issue date: " + dl.issueDate
+                        "driver license issue date: " + dl.issueDate,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license issue country: " + dl.issuingCountry
+                        "driver license issue country: " + dl.issuingCountry,
                     )
                     Log.v(
                         MANUAL_TESTING_LOG,
-                        "driver license number: " + dl.licenseNumber
+                        "driver license number: " + dl.licenseNumber,
                     )
                 }
             }

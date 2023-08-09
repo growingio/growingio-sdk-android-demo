@@ -29,7 +29,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
-import java.util.logging.Logger
 
 /**
  * <p>
@@ -94,7 +93,6 @@ open class BaseFragment : Fragment() {
         }
         permissionsLaunch.launch(permissions)
     }
-
 
     private var permissionLauncher: ActivityResultLauncher<String>? = null
     private var permissionCallback: ActivityResultCallback<Boolean>? = null

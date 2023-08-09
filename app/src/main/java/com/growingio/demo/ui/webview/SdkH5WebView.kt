@@ -23,7 +23,11 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.AttributeSet
-import android.webkit.*
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 
 @SuppressLint("SetJavaScriptEnabled")
 class SdkH5WebView : WebView {
@@ -37,7 +41,7 @@ class SdkH5WebView : WebView {
     init {
         val webSettings = settings
         webSettings.javaScriptEnabled = true
-        webSettings.useWideViewPort = true//自适应屏幕
+        webSettings.useWideViewPort = true // 自适应屏幕
         webSettings.mediaPlaybackRequiresUserGesture = true
         webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
         webSettings.allowFileAccess = true
@@ -84,7 +88,6 @@ class SdkH5WebView : WebView {
             onWebViewChangedListener?.onResourceLoad(url)
             super.onLoadResource(view, url)
         }
-
     }
 
     private inner class DefaultWebChromeClient : WebChromeClient() {

@@ -20,18 +20,12 @@ package com.growingio.demo.util
 import com.growingio.android.sdk.track.events.EventFilterInterceptor
 import com.growingio.android.sdk.track.events.base.BaseField
 import com.growingio.android.sdk.track.events.helper.DefaultEventFilterInterceptor
-import com.growingio.android.sdk.track.log.BaseLogger
-import com.growingio.android.sdk.track.log.ILogger
 import com.growingio.android.sdk.track.log.Logger
 import com.growingio.code.annotation.SourceCode
-import com.growingio.demo.data.GrowingIOLoggerItem
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import java.lang.ref.WeakReference
-import java.util.PriorityQueue
-import javax.inject.Singleton
 
 /**
  * <p>
@@ -87,7 +81,8 @@ object GrowingIOManager {
             }
 
             override fun filterEventField(
-                type: String, fieldArea: MutableMap<String, Boolean>
+                type: String,
+                fieldArea: MutableMap<String, Boolean>,
             ): MutableMap<String, Boolean> {
                 fieldArea[BaseField.LANGUAGE] = false
                 return super.filterEventField(type, fieldArea)
@@ -117,11 +112,9 @@ object GrowingIOManager {
 
         override fun filterEventField(
             type: String,
-            fieldArea: MutableMap<String, Boolean>
+            fieldArea: MutableMap<String, Boolean>,
         ): MutableMap<String, Boolean> {
             return innerFilterInterceptor?.filterEventField(type, fieldArea) ?: fieldArea
         }
-
     }
 }
-

@@ -2,8 +2,6 @@ package com.growingio.demo
 
 import org.junit.Test
 
-import org.junit.Assert.*
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -46,5 +44,4 @@ class FragmentTest {
             super.onCreate()
         }
     }
-
 }

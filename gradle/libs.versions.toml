@@ -118,6 +118,7 @@ androidx-test-truth = { module = "androidx.test.ext:truth", version.ref = "andro
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 espresso-web = { module = "androidx.test.espresso:espresso-web", version.ref = "espresso" }
 espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso" }
+espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso" }
 
 androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camerax" }
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camerax" }
@@ -199,7 +200,7 @@ navigation = ["androidx-navigation-fragment", "androidx-navigation-ui"]
 
 test = ["junit", "truth", "robolectric", "kotlin-coroutines-test", "json-test"]
 androidx-test = ["androidx-test-core", "androidx-test-junit", "androidx-test-runner", "androidx-test-rules", "androidx-test-truth"]
-espresso = ["espresso-core", "espresso-web", "espresso-contrib"]
+espresso = ["espresso-core", "espresso-web", "espresso-contrib", "espresso-intents"]
 
 accompanist = ["accompanist-flowlayout", "accompanist-insetsui", "accompanist-navigation-animation", "accompanist-swiperefresh", "accompanist-pager-pager", "accompanist-pager-indicators", "accompanist-permissions"]
 

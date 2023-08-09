@@ -17,9 +17,10 @@
 
 package com.growingio.demo.ui.material
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
@@ -40,7 +41,7 @@ class AppCompatDialogFragment : ViewBindingFragment<FragmentMaterialDialogBindin
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialDialogBinding {
         return FragmentMaterialDialogBinding.inflate(inflater, container, false)
     }
@@ -69,7 +70,6 @@ class AppCompatDialogFragment : ViewBindingFragment<FragmentMaterialDialogBindin
                 .setCancelable(true)
                 .show()
         }
-
     }
 
     @dagger.Module
@@ -83,7 +83,7 @@ class AppCompatDialogFragment : ViewBindingFragment<FragmentMaterialDialogBindin
                 icon = R.drawable.ic_dialog,
                 title = "AlertDialog",
                 route = PageNav.MaterialDialogPage.route(),
-                fragmentClass = AppCompatDialogFragment::class
+                fragmentClass = AppCompatDialogFragment::class,
             )
         }
     }

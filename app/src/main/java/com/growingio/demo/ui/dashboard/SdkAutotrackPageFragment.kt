@@ -21,14 +21,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.collection.arrayMapOf
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.data.SdkIcon
 import com.growingio.demo.data.SdkIntroItem
 import com.growingio.demo.databinding.FragmentAutotrackPageBinding
-import com.growingio.demo.databinding.FragmentImpressionBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment
 import dagger.Provides
@@ -49,7 +47,7 @@ class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //设置当前页面可以发送Page页面事件
+        // 设置当前页面可以发送Page页面事件
         GrowingAutotracker.get().autotrackPage(this, this.javaClass.simpleName)
     }
 
@@ -80,14 +78,12 @@ class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
             pageBinding.attributeList.addAttribute()
         }
 
-
         pageBinding.subBtn.setOnClickListener {
             pageBinding.controlBtn.clearChecked()
             if (pageBinding.attributeList.attributeSize() <= 0) {
                 return@setOnClickListener
             }
             pageBinding.attributeList.subAttribute()
-
         }
 
         pageBinding.attributeBtn.setOnClickListener {
@@ -105,17 +101,16 @@ class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
 
     @SourceCode
     private fun sendPageAttributes(attributes: Map<String, String>) {
-        //多次设置当前页面属性，不会多次发送Page事件
-        //页面属性将会合并至无埋点事件中
+        // 多次设置当前页面属性，不会多次发送Page事件
+        // 页面属性将会合并至无埋点事件中
         GrowingAutotracker.get().setPageAttributes(this, attributes)
     }
 
     @SourceCode
     private fun sendPageAlias(alias: String) {
-        //多次设置当前页面别名，不会多次发送Page事件
+        // 多次设置当前页面别名，不会多次发送Page事件
         GrowingAutotracker.get().autotrackPage(this, alias)
     }
-
 
     @dagger.Module
     @InstallIn(SingletonComponent::class)
@@ -129,9 +124,8 @@ class SdkAutotrackPageFragment : PageFragment<FragmentAutotrackPageBinding>() {
                 title = "页面事件",
                 desc = "设置发送Page事件的API",
                 route = PageNav.SdkAutotrackerPage.route(),
-                fragmentClass = SdkAutotrackPageFragment::class
+                fragmentClass = SdkAutotrackPageFragment::class,
             )
         }
     }
-
 }

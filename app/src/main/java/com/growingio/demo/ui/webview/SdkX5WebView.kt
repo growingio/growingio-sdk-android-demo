@@ -41,7 +41,7 @@ class SdkX5WebView : WebView {
     init {
         val webSettings = settings
         webSettings.javaScriptEnabled = true
-        webSettings.useWideViewPort = true//自适应屏幕
+        webSettings.useWideViewPort = true // 自适应屏幕
         webSettings.mediaPlaybackRequiresUserGesture = true
         webSettings.mixedContentMode = WebSettings.LOAD_DEFAULT
         webSettings.allowFileAccess = true
@@ -87,7 +87,6 @@ class SdkX5WebView : WebView {
             onWebViewChangedListener?.onResourceLoad(url)
             super.onLoadResource(view, url)
         }
-
     }
 
     private inner class DefaultWebChromeClient : WebChromeClient() {

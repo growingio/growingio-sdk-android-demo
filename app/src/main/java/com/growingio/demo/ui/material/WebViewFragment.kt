@@ -18,13 +18,12 @@
 package com.growingio.demo.ui.material
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
-import com.google.android.material.button.MaterialButtonToggleGroup
-import com.google.android.material.button.MaterialButtonToggleGroup.OnButtonCheckedListener
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
-import com.growingio.demo.databinding.FragmentMaterialButtonBinding
 import com.growingio.demo.databinding.FragmentMaterialWebviewBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.ViewBindingFragment
@@ -54,7 +53,7 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialWebviewBinding {
         return FragmentMaterialWebviewBinding.inflate(inflater, container, false)
     }
@@ -92,7 +91,6 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
                 1 -> findParentNavController()?.navigate(PageNav.WidgetAndroidX5Page.toUrl(url))
             }
         }
-
     }
 
     override fun onDestroy() {
@@ -111,7 +109,7 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
                 icon = R.drawable.ic_placeholder,
                 title = "WebView",
                 route = PageNav.MaterialWebViewPage.route(),
-                fragmentClass = WebViewFragment::class
+                fragmentClass = WebViewFragment::class,
             )
         }
     }

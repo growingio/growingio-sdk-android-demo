@@ -87,7 +87,7 @@ class SdkDataCollectFragment : PageFragment<FragmentDataCollectBinding>() {
                 title = "数据开关",
                 desc = "数据开关可以控制SDK是否采集和发数",
                 route = PageNav.SdkDataCollectPage.route(),
-                fragmentClass = SdkDataCollectFragment::class
+                fragmentClass = SdkDataCollectFragment::class,
             )
         }
     }

@@ -23,8 +23,8 @@ import com.growingio.demo.data.settingsDataStore
 import com.growingio.demo.navgraph.FragmentNav
 import com.growingio.demo.navgraph.NavGraph.MAIN_GRAPH
 import com.growingio.demo.navgraph.PageNav
-import com.growingio.demo.ui.webview.AndroidH5Fragment
 import com.growingio.demo.ui.home.HomeFragment
+import com.growingio.demo.ui.webview.AndroidH5Fragment
 import com.growingio.demo.ui.webview.AndroidX5Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -75,8 +75,8 @@ class MainActivity : AppCompatActivity() {
                         FragmentNavigatorDestinationBuilder(
                             provider[FragmentNavigator::class],
                             item.route,
-                            item.fragmentClass
-                        )
+                            item.fragmentClass,
+                        ),
                     )
                 }
 
@@ -85,8 +85,8 @@ class MainActivity : AppCompatActivity() {
                         FragmentNavigatorDestinationBuilder(
                             provider[FragmentNavigator::class],
                             item.route,
-                            item.fragmentClass
-                        )
+                            item.fragmentClass,
+                        ),
                     )
                 }
 
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
 
         dialog.findViewById<TextView>(R.id.policyLink)?.setOnClickListener {
-            //open policy link
+            // open policy link
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.dialog_policy_link)))
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)

@@ -22,7 +22,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.webkit.WebView
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
-import com.growingio.android.sdk.track.providers.ConfigurationProvider
 
 /**
  * <p>
@@ -32,7 +31,7 @@ import com.growingio.android.sdk.track.providers.ConfigurationProvider
 class GioHybridWebView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : WebView(context, attrs, defStyleAttr) {
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -40,11 +39,11 @@ class GioHybridWebView @JvmOverloads constructor(
         settings.javaScriptEnabled = true
         settings.domStorageEnabled = true
         loadDataWithBaseURL(
-            ANDROID_ASSETS_PATH /* baseUrl */,
-            loadGioHybridHtmlFromAsset("gioHybridUat.html") /* html-data */,
-            "text/html" /* mimeType */,
-            "utf-8" /* encoding */,
-            "" /* failUrl */
+            ANDROID_ASSETS_PATH,
+            loadGioHybridHtmlFromAsset("gioHybridUat.html"),
+            "text/html",
+            "utf-8",
+            "",
         )
     }
 

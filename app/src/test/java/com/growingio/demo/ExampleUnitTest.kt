@@ -3,8 +3,6 @@ package com.growingio.demo
 import com.google.protobuf.ByteString
 import com.growingio.android.protobuf.EventV3Protocol
 import org.junit.Test
-
-import org.junit.Assert.*
 import java.lang.StringBuilder
 
 /**
@@ -32,7 +30,6 @@ class ExampleUnitTest {
             println("No matching found.")
         }
     }
-
 
     @Test
     fun transferPb2Json() {
@@ -82,18 +79,15 @@ class ExampleUnitTest {
                         }
 
                         EventV3Protocol.EventType::class.java -> {
-                            println("$jsonName:${this}")
+                            println("$jsonName:$this")
                         }
 
                         Map::class.java -> {
                             println("$jsonName:${this as Map<String, String>}")
                         }
-
                     }
                 }
             }
         }
-
-
     }
 }

@@ -22,10 +22,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.growingio.android.encoder.EncoderLibraryGioModule
-import com.growingio.android.sdk.TrackerContext
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.middleware.http.EventEncoder
-import com.growingio.android.sdk.track.providers.ConfigurationProvider
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.BuildConfig
 import com.growingio.demo.R
@@ -104,7 +102,6 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
         GrowingAutotracker.get().context.configurationProvider.core().isDebugEnabled = BuildConfig.DEBUG
     }
 
-
     @dagger.Module
     @InstallIn(SingletonComponent::class)
     object Module {
@@ -117,7 +114,7 @@ class ComponentEncoderFragment : PageFragment<FragmentComponentEncoderBinding>()
                 title = "数据加密",
                 desc = "SDK 加密模块默认使用 snappy 数据压缩和 xor 简单加密方式，作用于数据网络上传的阶段",
                 route = PageNav.ComponentEncoderPage.route(),
-                fragmentClass = ComponentEncoderFragment::class
+                fragmentClass = ComponentEncoderFragment::class,
             )
         }
     }

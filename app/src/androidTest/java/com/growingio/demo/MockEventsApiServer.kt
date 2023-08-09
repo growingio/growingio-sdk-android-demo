@@ -23,7 +23,6 @@ import com.google.common.truth.Truth
 import com.google.protobuf.ByteString
 import com.growingio.android.protobuf.EventV3Protocol
 import com.growingio.android.protobuf.ProtobufDataLoader
-import com.growingio.android.protobuf.ProtobufLibraryModule
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.events.ActivateEvent
 import com.growingio.android.sdk.track.events.AppClosedEvent
@@ -42,7 +41,6 @@ import com.growingio.android.sdk.track.events.hybrid.HybridCustomEvent
 import com.growingio.android.sdk.track.events.hybrid.HybridPageEvent
 import com.growingio.android.sdk.track.events.hybrid.HybridViewElementEvent
 import com.growingio.android.sdk.track.middleware.format.EventFormatData
-import com.growingio.android.sdk.track.providers.ConfigurationProvider
 import com.growingio.android.sdk.track.providers.EventBuilderProvider
 import com.growingio.demo.GrowingAndroidJUnitRunner.Companion.MOCK_SERVER_PORT
 import okhttp3.HttpUrl
@@ -186,7 +184,6 @@ class MockEventsApiServer(private val eventDispatcher: (event: BaseEvent) -> Uni
         Truth.assertThat(baseEvent.urlScheme).isEqualTo(configurationProvider.core().getUrlScheme())
         Truth.assertThat(baseEvent.appState).isIn(listOf("FOREGROUND", "BACKGROUND"))
         Truth.assertThat(baseEvent.eventSequenceId).isAtLeast(0)
-
     }
 
     private fun checkPath(uri: HttpUrl?) {
@@ -198,7 +195,6 @@ class MockEventsApiServer(private val eventDispatcher: (event: BaseEvent) -> Uni
         val tm = uri.queryParameter("stm")?.toLong() ?: 0L
         Truth.assertThat(System.currentTimeMillis() - tm).isAtMost(5000)
     }
-
 
     private fun transferPb2Json(dto: EventV3Protocol.EventV3Dto): JSONObject {
         val json = JSONObject()
@@ -248,12 +244,10 @@ class MockEventsApiServer(private val eventDispatcher: (event: BaseEvent) -> Uni
                             }
                             json.put(jsonName.toString(), jsonObject)
                         }
-
                     }
                 }
             }
         }
         return json
     }
-
 }

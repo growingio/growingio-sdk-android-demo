@@ -18,10 +18,11 @@
 package com.growingio.demo.ui.material
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
-import com.growingio.demo.databinding.FragmentMaterialButtonBinding
 import com.growingio.demo.databinding.FragmentMaterialCheckboxBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.ViewBindingFragment
@@ -39,7 +40,7 @@ class CheckBoxFragment : ViewBindingFragment<FragmentMaterialCheckboxBinding>() 
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialCheckboxBinding {
         return FragmentMaterialCheckboxBinding.inflate(inflater, container, false)
     }
@@ -48,13 +49,10 @@ class CheckBoxFragment : ViewBindingFragment<FragmentMaterialCheckboxBinding>() 
         super.onViewCreated(view, savedInstanceState)
 
         binding.checkbox1.setOnCheckedChangeListener { _, _ ->
-
         }
         binding.checkbox2.setOnCheckedChangeListener { _, _ ->
-
         }
         binding.checkbox3.setOnCheckedChangeListener { _, _ ->
-
         }
     }
 
@@ -69,7 +67,7 @@ class CheckBoxFragment : ViewBindingFragment<FragmentMaterialCheckboxBinding>() 
                 icon = R.drawable.ic_checkbox,
                 title = "CheckBox",
                 route = PageNav.MaterialCheckBoxPage.route(),
-                fragmentClass = CheckBoxFragment::class
+                fragmentClass = CheckBoxFragment::class,
             )
         }
     }

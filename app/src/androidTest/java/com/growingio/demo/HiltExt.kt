@@ -22,6 +22,7 @@ package com.growingio.demo
  *
  * @author cpacm 2023/8/3
  */
+
 import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
@@ -29,13 +30,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StyleRes
 import androidx.core.util.Preconditions
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.click
-import com.google.common.truth.Truth
+import androidx.test.espresso.matcher.BoundedMatcher
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import com.google.android.material.slider.Slider
+import org.hamcrest.Description
+import org.hamcrest.Matcher
 
 /**
  * launchFragmentInContainer from the androidx.fragment:fragment-testing library
@@ -49,22 +55,22 @@ import com.google.common.truth.Truth
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,
     @StyleRes themeResId: Int = R.style.AppTheme_Immerse,
-    crossinline action: Fragment.() -> Unit = {}
+    crossinline action: Fragment.() -> Unit = {},
 ) {
     val startActivityIntent = Intent.makeMainActivity(
         ComponentName(
             ApplicationProvider.getApplicationContext(),
-            HiltTestActivity::class.java
-        )
+            HiltTestActivity::class.java,
+        ),
     ).putExtra(
         "androidx.fragment.app.testing.FragmentScenario.EmptyFragmentActivity.THEME_EXTRAS_BUNDLE_KEY",
-        themeResId
+        themeResId,
     )
 
     ActivityScenario.launch<HiltTestActivity>(startActivityIntent).onActivity { activity ->
         val fragment: Fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
             Preconditions.checkNotNull(T::class.java.classLoader),
-            T::class.java.name
+            T::class.java.name,
         )
         fragment.arguments = fragmentArgs
         activity.supportFragmentManager
@@ -74,7 +80,6 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
 
         fragment.action()
     }
-
 }
 
 fun clickOnViewChild(viewId: Int) = object : ViewAction {
@@ -85,5 +90,55 @@ fun clickOnViewChild(viewId: Int) = object : ViewAction {
     @SuppressLint("CheckResult")
     override fun perform(uiController: UiController, view: View) {
         click().perform(uiController, view.findViewById(viewId))
+    }
+}
+
+fun openDrawer(drawerEdgeGravity: Int): ViewAction {
+    return object : ViewAction {
+        override fun getConstraints(): Matcher<View> {
+            return isAssignableFrom(DrawerLayout::class.java)
+        }
+
+        override fun getDescription(): String {
+            return "Opens the drawer"
+        }
+
+        override fun perform(uiController: UiController, view: View) {
+            uiController.loopMainThreadUntilIdle()
+            val drawerLayout = view as DrawerLayout
+            drawerLayout.openDrawer(drawerEdgeGravity)
+
+            // Wait for a full second to let the inner ViewDragHelper complete the operation
+            uiController.loopMainThreadForAtLeast(1000)
+        }
+    }
+}
+
+fun withValue(expectedValue: Float): Matcher<View?> {
+    return object : BoundedMatcher<View?, Slider>(Slider::class.java) {
+        override fun describeTo(description: Description) {
+            description.appendText("expected: $expectedValue")
+        }
+
+        override fun matchesSafely(slider: Slider?): Boolean {
+            return slider?.value == expectedValue
+        }
+    }
+}
+
+fun setValue(value: Float): ViewAction {
+    return object : ViewAction {
+        override fun getDescription(): String {
+            return "Set Slider value to $value"
+        }
+
+        override fun getConstraints(): Matcher<View> {
+            return isAssignableFrom(Slider::class.java)
+        }
+
+        override fun perform(uiController: UiController?, view: View) {
+            val seekBar = view as Slider
+            seekBar.value = value
+        }
     }
 }

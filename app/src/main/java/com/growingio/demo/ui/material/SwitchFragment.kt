@@ -18,7 +18,9 @@
 package com.growingio.demo.ui.material
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
 import com.growingio.demo.databinding.FragmentMaterialSwitchBinding
@@ -38,7 +40,7 @@ class SwitchFragment : ViewBindingFragment<FragmentMaterialSwitchBinding>() {
 
     override fun createViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?
+        container: ViewGroup?,
     ): FragmentMaterialSwitchBinding {
         return FragmentMaterialSwitchBinding.inflate(inflater, container, false)
     }
@@ -47,11 +49,11 @@ class SwitchFragment : ViewBindingFragment<FragmentMaterialSwitchBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.materialSwitch.setOnCheckedChangeListener { _, _ ->
-            //Hook Inject
+            // Hook Inject
         }
 
         binding.switchCompat.setOnCheckedChangeListener { _, _ ->
-            //Hook Inject
+            // Hook Inject
         }
     }
 
@@ -66,7 +68,7 @@ class SwitchFragment : ViewBindingFragment<FragmentMaterialSwitchBinding>() {
                 icon = R.drawable.ic_switch,
                 title = "Switch",
                 route = PageNav.MaterialSwitchPage.route(),
-                fragmentClass = SwitchFragment::class
+                fragmentClass = SwitchFragment::class,
             )
         }
     }

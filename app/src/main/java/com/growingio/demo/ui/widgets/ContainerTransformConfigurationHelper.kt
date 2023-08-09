@@ -71,7 +71,7 @@ class ContainerTransformConfigurationHelper {
     fun showConfigurationChooser(
         context: Context?,
         contentView: View?,
-        onDismissListener: DialogInterface.OnDismissListener?
+        onDismissListener: DialogInterface.OnDismissListener?,
     ) {
         val bottomSheetDialog = BottomSheetDialog(context!!)
         bottomSheetDialog.setContentView(contentView!!)
@@ -102,7 +102,7 @@ class ContainerTransformConfigurationHelper {
      */
     fun configure(
         transform: com.google.android.material.transition.platform.MaterialContainerTransform,
-        entering: Boolean
+        entering: Boolean,
     ) {
         val duration = if (entering) enterDuration else returnDuration
         if (duration != NO_DURATION) {
@@ -211,7 +211,7 @@ class ContainerTransformConfigurationHelper {
         controlX1: Float,
         controlY1: Float,
         controlX2: Float,
-        controlY2: Float
+        controlY2: Float,
     ) : Interpolator {
         private val interpolator: Interpolator
 

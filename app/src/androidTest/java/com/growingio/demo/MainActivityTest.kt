@@ -25,14 +25,12 @@ import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.events.AppClosedEvent
 import com.growingio.android.sdk.track.events.AutotrackEventType
 import com.growingio.android.sdk.track.events.PageEvent
-import com.growingio.android.sdk.track.events.TrackEventType
 import com.growingio.android.sdk.track.events.base.BaseEvent
 import com.growingio.android.sdk.track.providers.EventBuilderProvider
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 /**
  * <p>
@@ -47,7 +45,6 @@ class MainActivityTest : AbstractGrowingTestUnit() {
     @JvmField
     val activityScenarioRule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
 
-
     @Before
     override fun setup() {
         super.setup()
@@ -60,7 +57,7 @@ class MainActivityTest : AbstractGrowingTestUnit() {
     @Test
     fun openMainActivity() {
         waitEvent(AutotrackEventType.PAGE)
-        //waitEvent(TrackEventType.APP_CLOSED)
+        // waitEvent(TrackEventType.APP_CLOSED)
 
         activityScenarioRule.scenario.close()
     }

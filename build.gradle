@@ -23,6 +23,8 @@ plugins {
 
     alias libs.plugins.protobuf apply false
 
+    alias libs.plugins.spotless apply false
+
 }
 
 allprojects {
@@ -33,6 +35,35 @@ allprojects {
 
             // Set JVM target to 17
             jvmTarget = JavaVersion.VERSION_17
+        }
+    }
+}
+
+//./gradlew spotlessCheck  ==> check code
+//./gradlew spotlessApply  ==> format code
+subprojects {
+    apply plugin: "com.diffplug.spotless"
+    spotless {
+        java {
+            target '**/*.java'
+            licenseHeaderFile rootProject.file('gradle/java.header')
+
+            removeUnusedImports()
+        }
+        kotlin {
+            target '**/*.kt'
+            targetExclude("$buildDir/**/*.kt")
+            licenseHeaderFile rootProject.file('gradle/java.header')
+
+            ktlint()
+        }
+        groovyGradle {
+            target '*.gradle'
+            greclipse()
+        }
+
+        format 'xml', {
+            target '**/*.xml'
         }
     }
 }
