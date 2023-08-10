@@ -173,5 +173,3 @@ dependencies {
 	// disable Incremental compilation fails
 	ksp project(path: ':code-annotation:processor')
 }
-
-apply from: "${rootProject.projectDir}/gradle/jacoco.gradle"
