@@ -50,25 +50,25 @@ class DashboardFragmentTest : AbstractGrowingTestUnit() {
         super.setup()
     }
 
-//    @Test
-//    fun onDocumentButtonTest() {
-//        runEventTest(AutotrackEventType.VIEW_CLICK, onEvent = { baseEvent ->
-//            if (baseEvent is ViewElementEvent) {
-//                Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
-//                Truth.assertThat(baseEvent.textValue).isEqualTo("查看文档 >>")
-//                Truth.assertThat(baseEvent.path).isEqualTo("/DashboardFragment")
-//                Truth.assertThat(baseEvent.xpath)
-//                    .isEqualTo("/HiltTestActivity/DashboardFragment/CoordinatorLayout/RecyclerView/ConstraintLayout/MaterialCardView/MaterialButton")
-//                Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/dashboardRv/-/sdkBanner/docLink")
-//                return@runEventTest true
-//            }
-//            false
-//        }) {
-//            onView(withId(R.id.dashboardRv)).perform(
-//                actionOnItemAtPosition<RecyclerView.ViewHolder>(0, clickOnViewChild(R.id.docLink)),
-//            )
-//        }
-//    }
+    @Test
+    fun onDocumentButtonTest() {
+        runEventTest(AutotrackEventType.VIEW_CLICK, onEvent = { baseEvent ->
+            if (baseEvent is ViewElementEvent) {
+                Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
+                Truth.assertThat(baseEvent.textValue).isEqualTo("查看文档 >>")
+                Truth.assertThat(baseEvent.path).isEqualTo("/DashboardFragment")
+                Truth.assertThat(baseEvent.xpath)
+                    .isEqualTo("/HiltTestActivity/DashboardFragment/CoordinatorLayout/RecyclerView/ConstraintLayout/MaterialCardView/MaterialButton")
+                Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/dashboardRv/-/sdkBanner/docLink")
+                return@runEventTest true
+            }
+            false
+        }) {
+            onView(withId(R.id.dashboardRv)).perform(
+                actionOnItemAtPosition<RecyclerView.ViewHolder>(0, clickOnViewChild(R.id.docLink)),
+            )
+        }
+    }
 
     @Test
     fun onDashboardItemTest() {

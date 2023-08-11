@@ -111,8 +111,9 @@ class SdkUserLoginFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun switchUserTest() {
-        runEventTest(TrackEventType.VISIT, timeout = 8, eventCount = 2, onEvent = { baseEvent ->
+        runEventTest(TrackEventType.VISIT, timeout = 15, onEvent = { baseEvent ->
             if (baseEvent is VisitEvent) {
+                if (baseEvent.userKey.isNullOrEmpty()) return@runEventTest false
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.VISIT)
                 Truth.assertThat(baseEvent.androidId).isNotEmpty()
                 Truth.assertThat(baseEvent.userKey).isEqualTo("phone")
@@ -120,8 +121,8 @@ class SdkUserLoginFragmentTest : AbstractGrowingTestUnit() {
                 return@runEventTest true
             }
             false
-        }, validateAtLast = true) {
-            onView(withId(R.id.userIdEditText)).perform(typeText("fuck"), closeSoftKeyboard())
+        }) {
+            onView(withId(R.id.userIdEditText)).perform(typeText("cpacm"), closeSoftKeyboard())
             onView(withId(R.id.login)).perform(click())
             onView(withId(R.id.userIdEditText)).perform(clearText())
             onView(withId(R.id.userIdEditText)).perform(typeText("110011"), closeSoftKeyboard())

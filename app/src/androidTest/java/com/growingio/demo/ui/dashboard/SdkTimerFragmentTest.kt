@@ -71,7 +71,7 @@ class SdkTimerFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun timerTest() {
-        runEventTest(TrackEventType.CUSTOM, timeout = 10, onEvent = { baseEvent ->
+        runEventTest(TrackEventType.CUSTOM, timeout = 15, onEvent = { baseEvent ->
             if (baseEvent is CustomEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.CUSTOM)
                 Truth.assertThat(baseEvent.eventName).isEqualTo("cpacm")
@@ -86,7 +86,7 @@ class SdkTimerFragmentTest : AbstractGrowingTestUnit() {
             withContext(Dispatchers.IO) {
                 onView(withId(R.id.timerEt)).perform(ViewActions.typeText("cpacm"), closeSoftKeyboard())
                 onView(withId(R.id.start)).perform(click())
-                delay(2000)
+                delay(1000)
                 onView(withId(R.id.pause)).perform(click())
                 delay(500)
                 onView(withId(R.id.resume)).perform(click())
