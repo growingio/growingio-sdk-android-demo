@@ -19,7 +19,6 @@ plugins {
     alias libs.plugins.hilt.android apply false
 
     alias libs.plugins.growingio.plugin apply false
-    // alias libs.plugins.giokit.plugin apply false
 
     alias libs.plugins.protobuf apply false
 
