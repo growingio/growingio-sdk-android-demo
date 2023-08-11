@@ -34,12 +34,14 @@ import com.google.common.truth.Truth.assertThat
 import com.google.common.util.concurrent.Uninterruptibles
 import com.growingio.android.sdk.track.TrackMainThread
 import com.growingio.demo.GrowingAndroidJUnitRunner
+import com.growingio.demo.MainActivity
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.not
 import org.json.JSONObject
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.concurrent.TimeUnit
+
 
 /**
  * <p>
@@ -57,7 +59,7 @@ class CircleServiceTest : WebServicesTest() {
             )
         val intent = Intent()
         intent.data = Uri.parse(uri)
-        ActivityScenario.launch<Activity>(intent)
+        ActivityScenario.launch<MainActivity>(intent)
 
         setOnReceivedMessageListener(object : OnReceivedMessageListener {
             override fun onReceivedRefreshScreenshotMessage(message: JSONObject?) {

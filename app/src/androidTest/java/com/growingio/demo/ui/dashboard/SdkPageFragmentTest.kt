@@ -77,7 +77,7 @@ class SdkPageFragmentTest : AbstractGrowingTestUnit() {
             }
             false
         }, validateAtLast = true) {
-            onView(withId(R.id.aliasEt)).perform(ViewActions.typeText("cpacm"))
+            onView(withId(R.id.aliasEt)).perform(ViewActions.typeText("cpacm"), ViewActions.closeSoftKeyboard())
             onView(withId(R.id.aliasBtn)).perform(click())
 
             onView(withId(R.id.aliasEt)).perform(ViewActions.clearText())

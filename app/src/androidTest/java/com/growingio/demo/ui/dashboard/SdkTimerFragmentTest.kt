@@ -20,6 +20,7 @@ package com.growingio.demo.ui.dashboard
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -83,7 +84,7 @@ class SdkTimerFragmentTest : AbstractGrowingTestUnit() {
             false
         }) {
             withContext(Dispatchers.IO) {
-                onView(withId(R.id.timerEt)).perform(ViewActions.typeText("cpacm"))
+                onView(withId(R.id.timerEt)).perform(ViewActions.typeText("cpacm"), closeSoftKeyboard())
                 onView(withId(R.id.start)).perform(click())
                 delay(2000)
                 onView(withId(R.id.pause)).perform(click())

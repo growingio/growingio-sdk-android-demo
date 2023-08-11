@@ -44,7 +44,7 @@
         android:text="@string/sdk_event_timer_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerEt" />
+        app:layout_constraintTop_toBottomOf="@+id/timerInput" />
 
     <TextView
         android:id="@+id/timer"

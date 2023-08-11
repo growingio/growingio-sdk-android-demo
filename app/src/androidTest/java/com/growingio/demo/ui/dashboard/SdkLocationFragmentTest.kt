@@ -19,6 +19,7 @@ package com.growingio.demo.ui.dashboard
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -115,8 +116,9 @@ class SdkLocationFragmentTest : AbstractGrowingTestUnit() {
             }
             false
         }, validateAtLast = true) {
-            onView(withId(R.id.latitudeEt)).perform(typeText("25"))
-            onView(withId(R.id.longitudeEt)).perform(typeText("90"))
+            onView(withId(R.id.latitudeEt)).perform(typeText("25"), closeSoftKeyboard())
+            onView(withId(R.id.longitudeEt)).perform(typeText("90"), closeSoftKeyboard())
+
             onView(withId(R.id.settle)).perform(click())
 
             onView(withId(R.id.clean)).perform(click())

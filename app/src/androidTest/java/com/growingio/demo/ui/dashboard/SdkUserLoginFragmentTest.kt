@@ -20,6 +20,7 @@ package com.growingio.demo.ui.dashboard
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.clearText
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -78,13 +79,16 @@ class SdkUserLoginFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.path).isEqualTo("/SdkUserLoginFragment")
                 Truth.assertThat(baseEvent.xpath)
                     .isEqualTo("/HiltTestActivity/SdkUserLoginFragment/ConstraintLayout/FrameLayout/ConstraintLayout/TextInputLayout/FrameLayout/TextInputEditText")
-                Truth.assertThat(baseEvent.xIndex).isAnyOf("/0/content/0/apiLayout/0/userKey/0/userKeyEditText", "/0/content/0/apiLayout/0/userId/0/userIdEditText")
+                Truth.assertThat(baseEvent.xIndex).isAnyOf(
+                    "/0/content/0/apiLayout/0/userKey/0/userKeyEditText",
+                    "/0/content/0/apiLayout/0/userId/0/userIdEditText"
+                )
                 return@runEventTest true
             }
             false
         }) {
             onView(withId(R.id.userIdEditText)).perform(typeText("cpacm@gmail.com"))
-            onView(withId(R.id.userKeyEditText)).perform(typeText("email"))
+            onView(withId(R.id.userKeyEditText)).perform(typeText("email"), closeSoftKeyboard())
         }
     }
 
@@ -99,8 +103,8 @@ class SdkUserLoginFragmentTest : AbstractGrowingTestUnit() {
             }
             false
         }) {
-            onView(withId(R.id.userIdEditText)).perform(typeText("cpacm@gmail.com"))
-            onView(withId(R.id.userKeyEditText)).perform(typeText("email"))
+            onView(withId(R.id.userIdEditText)).perform(typeText("cpacm@gmail.com"), closeSoftKeyboard())
+            onView(withId(R.id.userKeyEditText)).perform(typeText("email"), closeSoftKeyboard())
             onView(withId(R.id.login)).perform(click())
         }
     }
@@ -117,11 +121,11 @@ class SdkUserLoginFragmentTest : AbstractGrowingTestUnit() {
             }
             false
         }, validateAtLast = true) {
-            onView(withId(R.id.userIdEditText)).perform(typeText("fuck"))
+            onView(withId(R.id.userIdEditText)).perform(typeText("fuck"), closeSoftKeyboard())
             onView(withId(R.id.login)).perform(click())
             onView(withId(R.id.userIdEditText)).perform(clearText())
-            onView(withId(R.id.userIdEditText)).perform(typeText("110011"))
-            onView(withId(R.id.userKeyEditText)).perform(typeText("phone"))
+            onView(withId(R.id.userIdEditText)).perform(typeText("110011"), closeSoftKeyboard())
+            onView(withId(R.id.userKeyEditText)).perform(typeText("phone"), closeSoftKeyboard())
             onView(withId(R.id.login)).perform(click())
         }
     }
@@ -157,7 +161,7 @@ class SdkUserLoginFragmentTest : AbstractGrowingTestUnit() {
             false
         }, validateAtLast = true) {
             onView(withId(R.id.userIdEditText)).perform(typeText("cpacm@gmail.com"))
-            onView(withId(R.id.userKeyEditText)).perform(typeText("email"))
+            onView(withId(R.id.userKeyEditText)).perform(typeText("email"), closeSoftKeyboard())
             onView(withId(R.id.login)).perform(click())
 
             onView(withId(R.id.userClear)).perform(click())

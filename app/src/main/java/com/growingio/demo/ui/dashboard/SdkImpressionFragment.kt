@@ -64,6 +64,10 @@ class SdkImpressionFragment : PageFragment<FragmentImpressionBinding>() {
             cleanViewImpression()
         }
 
+        pageBinding.impScroll.setOnClickListener {
+            pageBinding.scrollView.fullScroll(View.FOCUS_DOWN)
+        }
+
         loadAssetCode(this)
 
         setDefaultLogFilter("level:debug ImpressionProvider")

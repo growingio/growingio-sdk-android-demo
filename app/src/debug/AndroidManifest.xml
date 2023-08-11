@@ -5,7 +5,7 @@
     <application>
         <activity
             android:name=".HiltTestActivity"
-            android:exported="false">
+            android:exported="true">
         </activity>
     </application>
 

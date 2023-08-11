@@ -19,7 +19,6 @@ package com.growingio.demo.ui.dashboard
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -84,7 +83,7 @@ class SdkImpressionFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun viewScrollImpressionTest() {
-        runEventTest(TrackEventType.CUSTOM, onEvent = { baseEvent ->
+        runEventTest(TrackEventType.CUSTOM, timeout = 10, onEvent = { baseEvent ->
             if (baseEvent is PageLevelCustomEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.CUSTOM)
                 Truth.assertThat(baseEvent.eventName).isEqualTo("ImpressionProvider")
@@ -96,7 +95,7 @@ class SdkImpressionFragmentTest : AbstractGrowingTestUnit() {
             false
         }) {
             onView(withId(R.id.settleBtn)).perform(click())
-            onView(withId(R.id.scrollView)).perform(swipeUp())
+            onView(withId(R.id.impScroll)).perform(click())
         }
     }
 }
