@@ -71,8 +71,8 @@ class SdkUniqueTagFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.textValue).isEqualTo("测试按钮")
                 Truth.assertThat(baseEvent.path).isEqualTo("/SdkUniqueTagFragment")
                 Truth.assertThat(baseEvent.xpath)
-                    .isEqualTo("/HiltTestActivity/SdkUniqueTagFragment/ConstraintLayout/FrameLayout/ConstraintLayout/MaterialButton")
-                Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/apiLayout/0/unique")
+                    .isEqualTo("/unique")
+                Truth.assertThat(baseEvent.xIndex).isEqualTo("/testBtn")
                 return@runEventTest true
             }
             false
