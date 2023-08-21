@@ -171,7 +171,7 @@ class MockEventsApiServer(private val eventDispatcher: (event: BaseEvent) -> Uni
 
     private fun checkBaseEvent(baseEvent: BaseEvent) {
         val configurationProvider = GrowingAutotracker.get().context.configurationProvider
-        Truth.assertThat(baseEvent.platform).isAnyOf("Android", "web")
+        Truth.assertThat(baseEvent.platform).isEqualTo("Android")
         Truth.assertThat(baseEvent.platformVersion).isEqualTo(Build.VERSION.RELEASE ?: "UNKNOWN")
         Truth.assertThat(baseEvent.deviceId).isNotEmpty()
         globalEventId?.apply { Truth.assertThat(this).isEqualTo(baseEvent.deviceId) }
