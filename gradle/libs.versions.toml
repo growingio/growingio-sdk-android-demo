@@ -169,7 +169,7 @@ markwon-image = { module = "io.noties.markwon:image", version.ref = "markwon" }
 markwon-image-coil = { module = "io.noties.markwon:image-coil", version.ref = "markwon" }
 markwon-syntax-highlight = { module = "io.noties.markwon:syntax-highlight", version.ref = "markwon" }
 
-leakCanary = "com.squareup.leakcanary:leakcanary-android:2.7"
+leakCanary = "com.squareup.leakcanary:leakcanary-android:2.12"
 
 junit = "junit:junit:4.13.2"
 truth = "com.google.truth:truth:1.1.3"

@@ -160,6 +160,8 @@ dependencies {
 	debugImplementation libs.androidx.fragment.testing
 	//debugImplementation libs.androidx.test.core
 
+	debugImplementation libs.leakCanary
+
 	implementation platform("com.growingio.android:autotracker-bom:${libs.versions.growingio.get()}")
 	implementation 'com.growingio.android:autotracker'
 	implementation 'com.growingio.android:encoder'
