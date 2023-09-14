@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.growingio.demo.data.SdkIntroItem
 import com.growingio.demo.databinding.FragmentDashboardBinding
 import com.growingio.demo.ui.base.ViewBindingFragment
+import com.growingio.demo.ui.home.HomeSettingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -42,6 +43,11 @@ class DashboardFragment : ViewBindingFragment<FragmentDashboardBinding>() {
                 findParentNavController()?.navigate(item.route)
             }
         })
+
+        binding.accountIv.setOnClickListener {
+            HomeSettingFragment().show(childFragmentManager, "project_setting")
+        }
+
         viewModel.refreshData()
     }
 
@@ -60,6 +66,7 @@ class DashboardFragment : ViewBindingFragment<FragmentDashboardBinding>() {
                     is SdkItemState.SdkItemSet -> {
                         (binding.dashboardRv.adapter as DashboardAdapter).loadData(it.set)
                     }
+
                     else -> {}
                 }
             }

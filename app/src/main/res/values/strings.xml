@@ -46,6 +46,20 @@
     <string name="dashboard_page_intro">INTRO</string>
     <string name="dashboard_page_code">CODE</string>
 
+    <string name="setting_project_hint">设置SDK的项目ID</string>
+    <string name="setting_project_id">ProjectId</string>
+    <string name="setting_project_id_hint">项目的AccountId</string>
+    <string name="setting_url_scheme">URLScheme</string>
+    <string name="setting_url_scheme_hint">用于唤醒App</string>
+    <string name="setting_url_scheme_hint2">重新设置后，请在该App内进入圈选服务</string>
+    <string name="setting_data_source_id">DataSourceId</string>
+    <string name="setting_data_source_id_hint">数据源 ID</string>
+    <string name="setting_server_host">收数地址</string>
+    <string name="setting_server_host_hint">用于接收数据的服务器地址</string>
+    <string name="setting_sdk_btn">设置</string>
+    <string name="setting_settle_hint">请设置正确的配置</string>
+    <string name="setting_settle_hint2">SDK 配置未做改变！</string>
+
     <string name="sdk_log_hint">可以打开右下角的 Logcat 查看SDK的运行日志。</string>
     <string name="sdk_init_title">初始化</string>
     <string name="sdk_autotrack_option">无埋点配置</string>
@@ -139,6 +153,11 @@
     <string name="component_advert_generate">默认链接</string>
     <string name="component_advert_default_url">https://ads-uat.growingio.cn/k4budVa</string>
     <string name="component_advert_parse">解析链接</string>
+    <string name="component_webservice">圈选服务</string>
+    <string name="component_webservice_hint">用于启动圈选或者数据校验服务</string>
+    <string name="component_webservice_toast">请扫描二维码获取链接</string>
+    <string name="component_webservice_et_hint">扫描二维码连接电脑与移动应用</string>
+    <string name="component_webservice_helper">访问链接启动服务</string>
 
     <string name="material_test_btn">测试</string>
     <string name="material_button">Material Button</string>

@@ -57,6 +57,7 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object ComponentProtobufPage : PageNav(FragmentNav.DashBoard, "protobuf")
     object ComponentOaidPage : PageNav(FragmentNav.DashBoard, "oaid")
     object ComponentAdvertPage : PageNav(FragmentNav.DashBoard, "advert")
+    object ComponentWebServicePage : PageNav(FragmentNav.DashBoard, "webService")
 
     object MaterialRecyclerViewPage : PageNav(FragmentNav.UI, "recyclerview")
     object MaterialBottomAppBarPage : PageNav(FragmentNav.UI, "bottomappbar")

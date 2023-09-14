@@ -7,6 +7,11 @@ option java_multiple_files = true;
 message Settings {
   bool agree_policy = 1;
 
+  string project_id = 2;
+  string datasource_id = 3;
+  string url_scheme = 4;
+  string server_host = 5;
+
   //int64 timestamp = 8;
   //int32 event_sequence_id = 15;
   //map<string, string> extra_sdk = 21;//VisitEvent

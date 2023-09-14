@@ -18,6 +18,7 @@
 package com.growingio.demo.ui.webview
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -28,6 +29,9 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.growingio.android.sdk.autotrack.GrowingAutotracker
+import com.growingio.android.sdk.track.listener.event.ActivityLifecycleEvent
+import com.growingio.android.sdk.track.providers.DeepLinkProvider
 
 @SuppressLint("SetJavaScriptEnabled")
 class SdkH5WebView : WebView {
@@ -68,7 +72,16 @@ class SdkH5WebView : WebView {
 
     private inner class BaseWebClient : WebViewClient() {
 
-        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+        override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest?): Boolean {
+            if (request?.url?.scheme?.startsWith("growing.") == true) {
+                val deepLinkProvider =
+                    GrowingAutotracker.get().context.getProvider<DeepLinkProvider>(DeepLinkProvider::class.java)
+                val activity = view.context as? Activity
+                val intent = Intent.parseUri(request.url.toString(), Intent.URI_ALLOW_UNSAFE)
+                val event = ActivityLifecycleEvent.createOnNewIntentEvent(activity, intent)
+                deepLinkProvider.onActivityLifecycle(event)
+                return true
+            }
             return super.shouldOverrideUrlLoading(view, request)
         }
 
