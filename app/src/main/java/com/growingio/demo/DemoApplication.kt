@@ -47,23 +47,6 @@ class DemoApplication : Application() {
     }
 }
 
-// class GiokitInitializer : Initializer<Boolean> {
-//    override fun create(context: Context): Boolean {
-//        if (context is Application) {
-//            GioKit.with(context)
-//                .attach(false)
-//                .build()
-//            return true
-//        }
-//        return false
-//    }
-//
-//    override fun dependencies(): MutableList<Class<out Initializer<*>>> {
-//        return mutableListOf()
-//    }
-//
-// }
-
 class GrowingioInitializer : Initializer<Autotracker> {
 
     @EntryPoint
@@ -90,7 +73,7 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setEventFilterInterceptor(growingIOProvider)
                 .setIdMappingEnabled(true)
                 .setImpressionScale(0f)
-                .downgrade()
+                //.downgrade()
 
         //it's demo logic
         configWithDataStore(context, autotrackConfiguration)
