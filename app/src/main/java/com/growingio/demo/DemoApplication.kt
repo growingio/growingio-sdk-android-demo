@@ -66,6 +66,8 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setDataCollectionServerHost(GROWINGIO_SERVER_HOST)
                 .setChannel("demo")
                 .setDebugEnabled(BuildConfig.DEBUG)
+                .setAndroidIdEnabled(true)
+                .setRequireAppProcessesEnabled(true)
                 .setDataCollectionEnabled(agreePolicy)
                 .setCellularDataLimit(10)
                 .setDataUploadInterval(15)

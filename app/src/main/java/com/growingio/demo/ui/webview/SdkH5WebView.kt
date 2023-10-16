@@ -56,6 +56,7 @@ class SdkH5WebView : WebView {
         webSettings.loadsImagesAutomatically = true
         webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         webSettings.setSupportZoom(true)
+        setWebContentsDebuggingEnabled(true)
 
         this.setDownloadListener { url, _, _, _, _ ->
             try {

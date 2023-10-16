@@ -173,7 +173,7 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
         transition.endView = binding.logcatView
         transition.addTarget(binding.logcatView)
         TransitionManager.beginDelayedTransition(binding.root, transition)
-        binding.logcatFab.visibility = View.INVISIBLE
+        binding.logcatFab.visibility = View.GONE
         binding.logcatView.visibility = View.VISIBLE
     }
 
@@ -185,7 +185,7 @@ abstract class PageFragment<T : ViewBinding> : ViewBindingFragment<FragmentPageB
 
         TransitionManager.beginDelayedTransition(binding.root, transition)
         binding.logcatFab.visibility = View.VISIBLE
-        binding.logcatView.visibility = View.INVISIBLE
+        binding.logcatView.visibility = View.GONE
     }
 
     override fun onBackPressed(): Boolean {
