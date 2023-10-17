@@ -48,6 +48,8 @@ class GrowingAndroidJUnitRunner : AndroidJUnitRunner() {
                 .setDataSourceId(DATA_SOURCE_ID)
                 .setDataUploadInterval(0)
                 .setIdMappingEnabled(true)
+                .setAndroidIdEnabled(true)
+                .setRequireAppProcessesEnabled(true)
                 .setEventFilterInterceptor(GrowingIOManager.provideEventFilterInterceptor())
                 .setDebugEnabled(true),
             // .addPreloadComponent(JsonLibraryModule())
