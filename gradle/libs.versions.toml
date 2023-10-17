@@ -28,8 +28,7 @@ markwon = "4.6.2"
 
 # growingio
 growingio = "4.0.0"
-growingioPlugin = "3.5.0"
-giokit = "2.0.0"
+growingioPlugin = "4.0.0"
 
 pluginGradle = "8.1.0" #"7.4.2"
 kotlin = "1.8.20"
@@ -53,7 +52,6 @@ protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 growingio-plugin = { id = "com.growingio.android.autotracker", version.ref = "growingioPlugin" }
-giokit-plugin = { id = "com.growingio.giokit", version.ref = "giokit" }
 
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 

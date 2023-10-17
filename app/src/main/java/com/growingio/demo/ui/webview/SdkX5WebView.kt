@@ -51,6 +51,7 @@ class SdkX5WebView : WebView {
         webSettings.databaseEnabled = true
         webSettings.loadsImagesAutomatically = true
         webSettings.setSupportZoom(true)
+        setWebContentsDebuggingEnabled(true)
 
         this.setDownloadListener { url, _, _, _, _ ->
             try {

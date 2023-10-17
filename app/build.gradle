@@ -11,7 +11,6 @@ plugins {
 	alias libs.plugins.protobuf
 
 	id 'com.growingio.android.autotracker'
-	//id 'com.growingio.giokit'
 }
 
 android {
@@ -84,16 +83,14 @@ android {
 growingAutotracker {
 	logEnabled false
 	excludePackages "com.growingio.demo.ui.widgets.LogcatView", "androidx.navigation.fragment.NavHostFragment"
-}
 
-//giokitExt {
-//    debugMode false
-//    enableRelease true
-//    trackFinder {
-//        enable = true
-//        domain = ["com.growingio.demo"]
-//    }
-//}
+	giokit {
+		enabled false  //开启即可
+		autoAttachEnabled true
+		releaseEnabled false
+		autoInstallVersion "2.0.0-SNAPSHOT"
+	}
+}
 
 protobuf {
 	protoc {
@@ -160,7 +157,7 @@ dependencies {
 	debugImplementation libs.androidx.fragment.testing
 	//debugImplementation libs.androidx.test.core
 
-	debugImplementation libs.leakCanary
+	//debugImplementation libs.leakCanary
 
 	implementation platform("com.growingio.android:autotracker-bom:${libs.versions.growingio.get()}")
 	implementation 'com.growingio.android:autotracker'
@@ -169,7 +166,6 @@ dependencies {
 	implementation 'com.growingio.android:oaid'
 	implementation 'com.growingio.android:advert'
 	implementation 'com.growingio.android:json'
-	// implementation "com.growingio.giokit:giokit:${libs.versions.giokit.get()}"
 
 	implementation project(path: ':code-annotation')
 	// disable Incremental compilation fails

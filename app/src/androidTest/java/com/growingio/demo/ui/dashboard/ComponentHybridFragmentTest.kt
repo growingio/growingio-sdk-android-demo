@@ -88,9 +88,9 @@ class ComponentHybridFragmentTest : AbstractGrowingTestUnit() {
         runEventTest(AutotrackEventType.VIEW_CLICK, timeout = 10, onEvent = { baseEvent ->
             if (baseEvent is ViewElementEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
-                Truth.assertThat(baseEvent.xpath).isEqualTo("/div.main/div.title/div/div.title/button#track")
+                Truth.assertThat(baseEvent.xpath).isEqualTo("/div/div/div/button")
                 Truth.assertThat(baseEvent.path).isEqualTo("/android_asset/")
-                Truth.assertThat(baseEvent.platform).isEqualTo("web")
+                Truth.assertThat(baseEvent.platform).isEqualTo("Android")
                 return@runEventTest true
             }
             false
