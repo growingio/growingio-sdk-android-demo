@@ -27,7 +27,7 @@ lottie = "6.0.0"
 markwon = "4.6.2"
 
 # growingio
-growingio = "4.0.0"
+growingio = "4.0.0-SNAPSHOT"
 growingioPlugin = "4.0.0-SNAPSHOT"
 
 pluginGradle = "8.1.0" #"7.4.2"

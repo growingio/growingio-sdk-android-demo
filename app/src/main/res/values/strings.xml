@@ -130,6 +130,10 @@
     <string name="sdk_attributes_value">VALUE</string>
     <string name="sdk_attributes_add">+</string>
     <string name="sdk_attributes_sub">-</string>
+    <string name="sdk_general_props_title">通用属性</string>
+    <string name="sdk_general_props_btn">设置通用属性</string>
+    <string name="sdk_general_props_test_btn">测试自定义事件</string>
+    <string name="sdk_general_props_attribute_toast">请输入有效的通用属性</string>
 
     <string name="component_test_btn">测试按钮</string>
     <string name="component_reset_btn">重置按钮</string>

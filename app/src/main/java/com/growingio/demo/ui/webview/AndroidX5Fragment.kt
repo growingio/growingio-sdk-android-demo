@@ -70,6 +70,7 @@ class AndroidX5Fragment : ViewBindingFragment<FragmentAndroidX5Binding>() {
     }
 
     override fun onDestroyView() {
+        binding.x5Web.removeWebViewChangedListener()
         super.onDestroyView()
     }
 }
