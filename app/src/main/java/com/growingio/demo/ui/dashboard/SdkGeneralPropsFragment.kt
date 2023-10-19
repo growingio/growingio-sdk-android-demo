@@ -105,7 +105,7 @@ class SdkGeneralPropsFragment : PageFragment<FragmentGeneralPropsBinding>() {
         GrowingAutotracker.get().clearGeneralProps()
 
         // 清除特定 key 值的通用属性
-        // GrowingAutotracker.get().clearGeneralProps(key1,key2)
+        // GrowingAutotracker.get().removeGeneralProps(key1,key2)
     }
 
     override fun onDestroy() {
