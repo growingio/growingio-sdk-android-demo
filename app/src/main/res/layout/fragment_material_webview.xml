@@ -88,4 +88,14 @@
         app:layout_constraintTop_toBottomOf="@+id/url" />
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/urlHistory"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="48dp"
+        tools:listitem="@layout/recycler_webview_url_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/jumpBtn" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

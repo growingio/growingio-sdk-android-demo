@@ -164,7 +164,7 @@ dependencies {
 	implementation 'com.growingio.android:encoder'
 	implementation 'com.growingio.android:protobuf'
 	implementation 'com.growingio.android:oaid'
-	implementation 'com.growingio.android:advert'
+	implementation 'com.growingio.android:ads'
 	implementation 'com.growingio.android:json'
 
 	implementation project(path: ':code-annotation')

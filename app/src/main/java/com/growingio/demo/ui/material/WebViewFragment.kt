@@ -17,13 +17,19 @@
 
 package com.growingio.demo.ui.material
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
+import com.growingio.demo.data.settingsDataStore
 import com.growingio.demo.databinding.FragmentMaterialWebviewBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.ViewBindingFragment
@@ -32,6 +38,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import java.net.URLEncoder
 
 /**
@@ -43,6 +51,11 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
 
     private lateinit var barScannerLauncher: ActivityResultLauncher<Void?>
     private var webViewType = 0
+    private val urlHistoryAdapter by lazy {
+        UrlAdapter(requireContext()) {
+            binding.url.editText?.setText(it)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +97,7 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
                 return@setOnClickListener
             }
 
+            urlHistoryAdapter.putUrl(linkUrl.toString())
             val url = URLEncoder.encode(linkUrl.toString())
 
             when (webViewType) {
@@ -91,11 +105,77 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
                 1 -> findParentNavController()?.navigate(PageNav.WidgetAndroidX5Page.toUrl(url))
             }
         }
+
+        binding.urlHistory.adapter = urlHistoryAdapter
+        binding.urlHistory.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onDestroy() {
         super.onDestroy()
         barScannerLauncher.unregister()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    inner class UrlAdapter(val context: Context, val selectItem: (url: String) -> Unit) : RecyclerView.Adapter<UrlAdapter.UrlViewHolder>() {
+        private val urls = arrayListOf<String>()
+
+
+        init {
+            runBlocking {
+                context.settingsDataStore.data.first().urlHistoryList.forEach {
+                    urls.add(0, it)
+                }
+                notifyDataSetChanged()
+            }
+        }
+
+        fun putUrl(url: String) {
+            if (urls.contains(url)) {
+                val index = urls.indexOf(url)
+                urls.removeAt(index)
+                notifyItemRemoved(index)
+            }
+            urls.add(0, url)
+            notifyItemInserted(0)
+
+            runBlocking{
+                val urlHistoryList = context.settingsDataStore.data.first().urlHistoryList.toMutableList()
+                if (urlHistoryList.contains(url)) {
+                    urlHistoryList.remove(url)
+                    urlHistoryList.add(url)
+                } else {
+                    urlHistoryList.add(url)
+                    if (urlHistoryList.size > 10) {
+                        urlHistoryList.removeAt(0)
+                    }
+                }
+                context.settingsDataStore.updateData {
+
+                    it.toBuilder().clearUrlHistory().addAllUrlHistory(urlHistoryList).build()
+                }
+            }
+        }
+
+        override fun onCreateViewHolder(p0: ViewGroup, p1: Int): UrlViewHolder {
+            val view = LayoutInflater.from(p0.context).inflate(R.layout.recycler_webview_url_item, p0, false)
+            return UrlViewHolder(view)
+        }
+
+        override fun getItemCount(): Int {
+            return urls.size
+        }
+
+        override fun onBindViewHolder(p0: UrlViewHolder, p1: Int) {
+            p0.url.text = urls[p1]
+            p0.itemView.setOnClickListener {
+                selectItem.invoke(urls[p1])
+            }
+        }
+
+        inner class UrlViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val url = itemView.findViewById<TextView>(R.id.url)
+        }
+
     }
 
     @dagger.Module

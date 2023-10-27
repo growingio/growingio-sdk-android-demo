@@ -85,6 +85,8 @@ class SdkInitFragment : PageFragment<FragmentInitBinding>() {
             | setIdMappingEnabled          | false | 是否开启多用户身份上报         | 
             | setImpressionScale           | 0f     | 元素曝光事件中的比例因子,范围 [0-1] | 
             | setRequireAppProcessesEnabled | false  | SDK 是否能获取应用多进程ID     | 
+            | setImeiEnabled               | false | 是否采集Imei信息，默认不采集     |
+            | setAndroidIdEnabled               | false | SDK 是否能获取 AndroidId    |
             | addPreloadComponent          | LibraryGioModule,Configurable  | 预注册自定义/预定义模块及其配置文件 |
             
             
