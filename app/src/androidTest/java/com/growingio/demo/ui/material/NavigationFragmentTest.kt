@@ -78,7 +78,7 @@ class NavigationFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.xpath)
                     .isEqualTo("/HiltTestActivity/NavigationFragment/DrawerLayout/NavigationView/NavigationMenuView/NavigationMenuItemView")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/navigationView/design_navigation_view/-")
-                Truth.assertThat(baseEvent.index).isEqualTo(2)
+                Truth.assertThat(baseEvent.index).isEqualTo(3)
                 return@runEventTest true
             }
             false
