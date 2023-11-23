@@ -49,12 +49,6 @@ class DemoApplication : Application() {
 
 class GrowingioInitializer : Initializer<Autotracker> {
 
-    @EntryPoint
-    @InstallIn(SingletonComponent::class)
-    interface GrowingIOProvider {
-        fun eventFilterInterceptor(): EventFilterInterceptor
-    }
-
     @SourceCode
     override fun create(context: Context): Autotracker {
         //val growingIOProvider = EntryPoints.get(context, GrowingIOProvider::class.java)

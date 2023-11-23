@@ -67,7 +67,7 @@ class CircleServiceTest : WebServicesTest() {
                 val jsonArray = message!!.getJSONArray("elements")
                 for (i in 0 until jsonArray.length()) {
                     val element = jsonArray.getJSONObject(i).getString("xpath")
-                    assertThat(element).startsWith("/MainActivity/DecorView/LinearLayout/FrameLayout/FitWindowsLinearLayout/ContentFrameLayout/ConstraintLayout/FragmentContainerView/FragmentContainerView/ConstraintLayout")
+                    assertThat(element).startsWith("/MainActivity/HomeFragment/")
                 }
             }
         })

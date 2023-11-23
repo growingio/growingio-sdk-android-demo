@@ -24,72 +24,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
 
     <script type="text/javascript">
-    // CasperJS 不支持 Object.defineProperty 修改 document 中的默认变量
-    window.history.pushState = null;
-    window._gr_ignore_local_rule = true;
+        // CasperJS 不支持 Object.defineProperty 修改 document 中的默认变量
+        window.history.pushState = null;
+        window._gr_ignore_local_rule = true;
 
 
     </script>
     <script type="text/javascript">
-  !(function (e, n, t, s, c) {
-    var o;
-    e[s] =
-      e[s] ||
-      function () {
-        (e[s].q = e[s].q || []).push(arguments);
-      };
-    (c = c || 'vds'),
-      (e._gio_local_vds = c),
-      (e[c] = null !== (o = e[c]) && void 0 !== o ? o : {}),
-      (e[c].namespace = s);
-    var d = n.createElement('script');
-    var i = n.getElementsByTagName('script')[0];
-    (d.async = !0), (d.src = t), i.parentNode.insertBefore(d, i);
-  })(window, document, 'https://assets.giocdn.com/sdk/webjs/gdp-full.js', 'gdp');
+        !(function (e, n, t, s, c) {
+          var o;
+          e[s] =
+            e[s] ||
+            function () {
+              (e[s].q = e[s].q || []).push(arguments);
+            };
+          (c = c || 'vds'),
+            (e._gio_local_vds = c),
+            (e[c] = null !== (o = e[c]) && void 0 !== o ? o : {}),
+            (e[c].namespace = s);
+          var d = n.createElement('script');
+          var i = n.getElementsByTagName('script')[0];
+          (d.async = !0), (d.src = t), i.parentNode.insertBefore(d, i);
+        })(window, document, 'https://assets.giocdn.com/sdk/webjs/gdp-full.js', 'gdp');
 
-  gdp('init', '<ProjectId>', '<DataSourceId>', {
-    version: 'V2.0.0',
-    host: '<DataServerHost>',
-    debug: true,
-    enableIdMapping: true,
-  });
-</script>
-    <script>
-    function setTrack() {
-      gdp('track', 'test')
-    }
-    function setTrackPro(){
-    gdp('track','test', {type: 'hjh'});
-    }
-    function closeDataCollect(){
-      gdp('setOption', 'dataCollect', false);
-    }
-    function openDataCollect(){
-      gdp('setOption', 'dataCollect', true);
-    }
-
-    function closeAutoTrack(){
-      gdp('setOption', 'autotrack', false);
-    }
-    function openAutoTrack(){
-      gdp('setOption', 'autotrack', true);
-    }
-
-    function setUserIdkey(){
-     gdp('setUserId','cpacm@gmail.com','email')
-    }
-    function setUserIdkey2(){
-     gdp('setUserId',1101001,'phone')
-    }
-    function clearUser(){
-     gdp('clearUserId')
-    }
-    function setUserAttr(){
-        gdp('setUserAttributes', {
-        'gender': 'male',
-        'age': 25
+        gdp('init', '<ProjectId>', '<DataSourceId>', {
+          version: 'V2.0.0',
+          host: '<DataServerHost>',
+          debug: true,
+          enableIdMapping: true,
         });
-    }
+    </script>
+    <script>
+        function setTrack() {
+          alert("cpack");
+          gdp('track', 'test');
+        }
+        function setTrackPro(){
+          gdp('track','test', {type: 'hjh'});
+        }
+        function closeDataCollect(){
+          gdp('setOption', 'dataCollect', false);
+        }
+        function openDataCollect(){
+          gdp('setOption', 'dataCollect', true);
+        }
+
+        function closeAutoTrack(){
+          gdp('setOption', 'autotrack', false);
+        }
+        function openAutoTrack(){
+          gdp('setOption', 'autotrack', true);
+        }
+
+        function setUserIdkey(){
+         gdp('setUserId','cpacm@gmail.com','email')
+        }
+        function setUserIdkey2(){
+         gdp('setUserId',1101001,'phone')
+        }
+        function clearUser(){
+         gdp('clearUserId')
+        }
+        function setUserAttr(){
+            gdp('setUserAttributes', {
+            'gender': 'male',
+            'age': 25
+            });
+        }
 
     </script>
 </head>
@@ -121,6 +122,8 @@
 
             </div>
         </div>
+    </div>
+</div>
 </body>
 
 </html>

@@ -39,7 +39,8 @@ import org.junit.runner.RunWith
 
 /**
  * <p>
- *
+ *     test timeout: withElement(findElement(Locator.ID, "track"))
+ *     fix: https://issuetracker.google.com/issues/37112550
  * @author cpacm 2023/8/8
  */
 @RunWith(AndroidJUnit4::class)
@@ -68,7 +69,7 @@ class ComponentHybridFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun hybridTrackTest() {
-        runEventTest(TrackEventType.CUSTOM, timeout = 10, onEvent = { baseEvent ->
+        runEventTest(TrackEventType.CUSTOM, timeout = 15, onEvent = { baseEvent ->
             if (baseEvent is HybridCustomEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.CUSTOM)
                 Truth.assertThat(baseEvent.eventName).isEqualTo("test")
@@ -78,6 +79,7 @@ class ComponentHybridFragmentTest : AbstractGrowingTestUnit() {
             false
         }) {
             onWebView(ViewMatchers.withId(R.id.hybridWebView))
+                .forceJavascriptEnabled()
                 .withElement(findElement(Locator.ID, "track"))
                 .perform(webClick())
         }
@@ -85,7 +87,7 @@ class ComponentHybridFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun hybridClickTest() {
-        runEventTest(AutotrackEventType.VIEW_CLICK, timeout = 10, onEvent = { baseEvent ->
+        runEventTest(AutotrackEventType.VIEW_CLICK, timeout = 150, onEvent = { baseEvent ->
             if (baseEvent is ViewElementEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
                 Truth.assertThat(baseEvent.xpath).isEqualTo("/div/div/div/button")
@@ -103,7 +105,7 @@ class ComponentHybridFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun hybridAttrsTest() {
-        runEventTest(TrackEventType.CUSTOM, timeout = 10, onEvent = { baseEvent ->
+        runEventTest(TrackEventType.CUSTOM, timeout = 15, onEvent = { baseEvent ->
             if (baseEvent is HybridCustomEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.CUSTOM)
                 Truth.assertThat(baseEvent.eventName).isEqualTo("test")
@@ -122,7 +124,7 @@ class ComponentHybridFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun hybridUserTest() {
-        runEventTest(TrackEventType.CUSTOM, timeout = 10, onEvent = { baseEvent ->
+        runEventTest(TrackEventType.CUSTOM, timeout = 15, onEvent = { baseEvent ->
             if (baseEvent is HybridCustomEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.CUSTOM)
                 Truth.assertThat(baseEvent.eventName).isEqualTo("test")
