@@ -119,7 +119,6 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
     inner class UrlAdapter(val context: Context, val selectItem: (url: String) -> Unit) : RecyclerView.Adapter<UrlAdapter.UrlViewHolder>() {
         private val urls = arrayListOf<String>()
 
-
         init {
             runBlocking {
                 context.settingsDataStore.data.first().urlHistoryList.forEach {
@@ -138,7 +137,7 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
             urls.add(0, url)
             notifyItemInserted(0)
 
-            runBlocking{
+            runBlocking {
                 val urlHistoryList = context.settingsDataStore.data.first().urlHistoryList.toMutableList()
                 if (urlHistoryList.contains(url)) {
                     urlHistoryList.remove(url)
@@ -150,7 +149,6 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
                     }
                 }
                 context.settingsDataStore.updateData {
-
                     it.toBuilder().clearUrlHistory().addAllUrlHistory(urlHistoryList).build()
                 }
             }
@@ -175,7 +173,6 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
         inner class UrlViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val url = itemView.findViewById<TextView>(R.id.url)
         }
-
     }
 
     @dagger.Module

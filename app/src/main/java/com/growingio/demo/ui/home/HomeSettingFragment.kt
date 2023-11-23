@@ -83,16 +83,14 @@ class HomeSettingFragment : BottomSheetDialogFragment() {
                 Snackbar.make(view, R.string.setting_settle_hint, Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            val configuration = GrowingAutotracker.get().context.configurationProvider.core();
+            val configuration = GrowingAutotracker.get().context.configurationProvider.core()
             if (pid == configuration.projectId && data == configuration.dataSourceId && host == configuration.dataCollectionServerHost) {
                 Snackbar.make(view, R.string.setting_settle_hint2, Snackbar.LENGTH_SHORT).show()
                 dismiss()
                 return@setOnClickListener
             }
 
-
             lifecycleScope.launch {
-
                 GrowingAutotracker.shutdown()
                 requireContext().settingsDataStore.updateData {
                     it.toBuilder().setProjectId(pid)
@@ -106,7 +104,6 @@ class HomeSettingFragment : BottomSheetDialogFragment() {
                 sdkInitialize.create(requireActivity())
                 dismiss()
             }
-
         }
     }
 }

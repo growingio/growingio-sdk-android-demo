@@ -26,7 +26,6 @@ import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.data.SdkIcon
 import com.growingio.demo.data.SdkIntroItem
-import com.growingio.demo.databinding.FragmentAutotrackPageBinding
 import com.growingio.demo.databinding.FragmentGeneralPropsBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment

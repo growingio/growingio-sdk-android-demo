@@ -81,7 +81,7 @@ class SdkUserLoginFragmentTest : AbstractGrowingTestUnit() {
                     .isEqualTo("/HiltTestActivity/SdkUserLoginFragment/ConstraintLayout/FrameLayout/ConstraintLayout/TextInputLayout/FrameLayout/TextInputEditText")
                 Truth.assertThat(baseEvent.xIndex).isAnyOf(
                     "/0/content/0/apiLayout/0/userKey/0/userKeyEditText",
-                    "/0/content/0/apiLayout/0/userId/0/userIdEditText"
+                    "/0/content/0/apiLayout/0/userId/0/userIdEditText",
                 )
                 return@runEventTest true
             }

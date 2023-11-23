@@ -79,7 +79,6 @@ class ComponentHybridFragmentTest : AbstractGrowingTestUnit() {
             false
         }) {
             onWebView(ViewMatchers.withId(R.id.hybridWebView))
-                .forceJavascriptEnabled()
                 .withElement(findElement(Locator.ID, "track"))
                 .perform(webClick())
         }
@@ -87,7 +86,7 @@ class ComponentHybridFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun hybridClickTest() {
-        runEventTest(AutotrackEventType.VIEW_CLICK, timeout = 150, onEvent = { baseEvent ->
+        runEventTest(AutotrackEventType.VIEW_CLICK, timeout = 15, onEvent = { baseEvent ->
             if (baseEvent is ViewElementEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
                 Truth.assertThat(baseEvent.xpath).isEqualTo("/div/div/div/button")

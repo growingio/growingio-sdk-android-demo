@@ -135,7 +135,6 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
                 listener.onLinkClick(it)
             }
         }
-
     }
 
     interface DashboardAdapterListener {

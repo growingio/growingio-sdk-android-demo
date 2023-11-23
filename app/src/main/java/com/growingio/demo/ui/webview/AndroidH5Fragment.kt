@@ -69,7 +69,6 @@ class AndroidH5Fragment : ViewBindingFragment<FragmentAndroidH5Binding>() {
         return super.onBackPressed()
     }
 
-
     override fun onDestroyView() {
         binding.h5Web.removeWebViewChangedListener()
         super.onDestroyView()
