@@ -77,6 +77,7 @@ class SdkInitFragment : PageFragment<FragmentInitBinding>() {
             | setChannel                   | null  | 应用的分发渠道             |
             | setDebugEnabled              | false | 调试模式，会打印SDK Log    | 
             | setAndroidIdEnabled          | false   | 是否支持获取AndroidId作为设备ID |
+            | setRequestDetailTimeout       | TimeUnit   | 设置OkHttp请求的默认超时时间 |
             | setCellularDataLimit         | 10   | 每天发送数据的流量限制，单位MB |
             | setDataUploadInterval        | 15    | 数据发送的间隔，单位秒       |
             | setSessionInterval           | 30    | 会话后台留存时长，单位秒     | 
