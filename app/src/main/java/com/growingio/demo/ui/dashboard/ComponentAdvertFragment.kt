@@ -72,7 +72,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
 
         pageBinding.advertSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                registerAdvertComponent()
+                registerAdsComponent()
             } else {
                 unregisterAdvertComponent()
             }
@@ -102,7 +102,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
     }
 
     @SourceCode
-    fun registerAdvertComponent() {
+    fun registerAdsComponent() {
         val config = AdsConfig()
         config.deepLinkHost = "https://ads-uat.growingio.cn"
         config.deepLinkCallback = DeepLinkCallback { params, error, appAwakePassedTime ->

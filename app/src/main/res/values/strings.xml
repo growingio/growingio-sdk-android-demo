@@ -157,6 +157,11 @@
     <string name="component_advert_generate">默认链接</string>
     <string name="component_advert_default_url">https://ads-uat.growingio.cn/k4budVa</string>
     <string name="component_advert_parse">解析链接</string>
+    <string name="component_abtest">A/B测试</string>
+    <string name="component_abtest_hint">请输入实验层ID</string>
+    <string name="component_abtest_helper">用于获取A/B实验结果</string>
+    <string name="component_abtest_fetch">获取</string>
+    <string name="component_abtest_toast">请输入实验层ID</string>
     <string name="component_webservice">圈选服务</string>
     <string name="component_webservice_hint">用于启动圈选或者数据校验服务</string>
     <string name="component_webservice_toast">请扫描二维码获取链接</string>
