@@ -89,7 +89,8 @@ class ComponentABTestFragment : PageFragment<FragmentComponentAbtestBinding>() {
             }
             pageBinding.progressBar.visibility = View.VISIBLE
             pageBinding.progressBar.isIndeterminate = true
-            fetchABTest(deeplinkUrl.toString())
+            val immediately = pageBinding.immediatelySwitch.isChecked
+            fetchABTest(deeplinkUrl.toString(), immediately)
         }
 
         loadAssetCode(this)
@@ -98,22 +99,39 @@ class ComponentABTestFragment : PageFragment<FragmentComponentAbtestBinding>() {
     }
 
     @SourceCode
-    fun fetchABTest(layerId: String) {
+    fun fetchABTest(layerId: String, immediately: Boolean) {
         // 通过接口获取 A/B 测试分组
-        GrowingAutotracker.get().getAbTest(
-            layerId,
-            object : ABTestCallback {
-                override fun onABExperimentReceived(experiment: ABExperiment, dataType: Int) {
-                    pageBinding.progressBar.visibility = View.GONE
-                    pageBinding.resultLabel.text = loadExperimentData(experiment, dataType)
-                }
+        if (immediately) {
+            GrowingAutotracker.get().getAbTestImmediately(
+                layerId,
+                object : ABTestCallback {
+                    override fun onABExperimentReceived(experiment: ABExperiment, dataType: Int) {
+                        pageBinding.progressBar.visibility = View.GONE
+                        pageBinding.resultLabel.text = loadExperimentData(experiment, dataType)
+                    }
 
-                override fun onABExperimentFailed(error: Exception) {
-                    pageBinding.progressBar.visibility = View.GONE
-                    pageBinding.resultLabel.text = error.message
-                }
-            },
-        )
+                    override fun onABExperimentFailed(error: Exception) {
+                        pageBinding.progressBar.visibility = View.GONE
+                        pageBinding.resultLabel.text = error.message
+                    }
+                },
+            )
+        } else {
+            GrowingAutotracker.get().getAbTest(
+                layerId,
+                object : ABTestCallback {
+                    override fun onABExperimentReceived(experiment: ABExperiment, dataType: Int) {
+                        pageBinding.progressBar.visibility = View.GONE
+                        pageBinding.resultLabel.text = loadExperimentData(experiment, dataType)
+                    }
+
+                    override fun onABExperimentFailed(error: Exception) {
+                        pageBinding.progressBar.visibility = View.GONE
+                        pageBinding.resultLabel.text = error.message
+                    }
+                },
+            )
+        }
     }
 
     private fun loadExperimentData(experiment: ABExperiment, dataType: Int): String {
@@ -121,6 +139,7 @@ class ComponentABTestFragment : PageFragment<FragmentComponentAbtestBinding>() {
         when (dataType) {
             ABTestCallback.ABTEST_CACHE -> sb.append("缓存")
             ABTestCallback.ABTEST_HTTP -> sb.append("网络")
+            ABTestCallback.ABTEST_EXPIRED -> sb.append("过期")
         }
         sb.append("\n")
         sb.append("实验层ID：").append(experiment.layerId).append("\n")

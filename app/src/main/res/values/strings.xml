@@ -159,6 +159,7 @@
     <string name="component_advert_parse">解析链接</string>
     <string name="component_abtest">A/B测试</string>
     <string name="component_abtest_hint">请输入实验层ID</string>
+    <string name="component_abtest_immediately">最新数据</string>
     <string name="component_abtest_helper">用于获取A/B实验结果</string>
     <string name="component_abtest_fetch">获取</string>
     <string name="component_abtest_toast">请输入实验层ID</string>

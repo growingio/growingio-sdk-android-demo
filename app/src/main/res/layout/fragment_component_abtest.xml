@@ -37,6 +37,17 @@
             android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/immediatelySwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="false"
+        android:text="@string/component_abtest_immediately"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        app:layout_constraintEnd_toEndOf="@id/abTestFetch"
+        app:layout_constraintTop_toBottomOf="@id/abTestFetch" />
+
 
     <Button
         android:id="@+id/goBtn"
@@ -47,7 +58,7 @@
         android:text="@string/component_abtest_fetch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/abTestFetch" />
+        app:layout_constraintTop_toBottomOf="@+id/immediatelySwitch" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressBar"
