@@ -96,7 +96,7 @@ class ComponentWebServiceFragment : PageFragment<FragmentComponentWebserviceBind
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 25,
+                id = 26,
                 icon = SdkIcon.Component,
                 title = "圈选",
                 desc = "用于快速进入圈选或者数据校验状态，方便用户调试",
