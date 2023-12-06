@@ -63,24 +63,6 @@ class SdkAutotrackOptionsFragment : PageFragment<FragmentAutotrackOptionsBinding
         autotrackerOptions.apply {
             isActivityPageEnabled = false
             isFragmentPageEnabled = false
-            isViewClickEnabled = true
-            isActivityMenuItemClickEnabled = false
-            isToolbarMenuItemClickEnabled = true
-            isTabLayoutTabSelectedEnabled = true
-            isActionMenuItemClickEnabled = true
-            isPopupMenuItemClickEnabled = true
-            isContextMenuItemClickEnabled = true
-            isDialogClickEnabled = true
-            isSpinnerItemClickSelectEnabled = true
-            isAdapterViewItemClickEnabled = true
-            isExpandableListGroupClickEnabled = true
-            isExpandableListChildClickEnabled = true
-            isEditTextChangeEnabled = true
-            isSeekbarChangeEnabled = true
-            isSliderChangeEnabled = true
-            isCompoundButtonCheckEnabled = true
-            isRadioGroupCheckEnabled = true
-            isRatingBarChangeEnabled = true
         }
         /**
          * // 可以在初始化时设置无埋点配置

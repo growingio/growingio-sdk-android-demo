@@ -65,7 +65,7 @@ class ComponentHybridFragment : PageFragment<FragmentComponentHybridBinding>() {
         // 若是在埋点SDK中可以在初始化SDK时，可以提前注册hybrid模块
         /**
          * GrowingTracker.startWithConfiguration(this,
-         *            CdpTrackConfiguration("accountId", "urlScheme")
+         *            TrackConfiguration("accountId", "urlScheme")
          *            //...
          *            .addPreloadComponent(HybridLibraryGioModule()))
          */

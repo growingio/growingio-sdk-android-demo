@@ -17,7 +17,6 @@
 
 package com.growingio.demo.webservices
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.test.core.app.ActivityScenario
@@ -41,7 +40,6 @@ import org.json.JSONObject
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.concurrent.TimeUnit
-
 
 /**
  * <p>
@@ -67,7 +65,7 @@ class CircleServiceTest : WebServicesTest() {
                 val jsonArray = message!!.getJSONArray("elements")
                 for (i in 0 until jsonArray.length()) {
                     val element = jsonArray.getJSONObject(i).getString("xpath")
-                    assertThat(element).startsWith("/MainActivity/DecorView/LinearLayout/FrameLayout/FitWindowsLinearLayout/ContentFrameLayout/ConstraintLayout/FragmentContainerView/FragmentContainerView/ConstraintLayout")
+                    assertThat(element).startsWith("/MainActivity/HomeFragment/")
                 }
             }
         })

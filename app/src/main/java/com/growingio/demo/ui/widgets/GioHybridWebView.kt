@@ -43,7 +43,7 @@ class GioHybridWebView @JvmOverloads constructor(
             loadGioHybridHtmlFromAsset("gioHybridUat.html"),
             "text/html",
             "utf-8",
-            "https://www.growingio.com/",
+            "data:text/html;charset=utf-8;base64,",
         )
         setWebContentsDebuggingEnabled(true)
     }

@@ -27,10 +27,10 @@ lottie = "6.0.0"
 markwon = "4.6.2"
 
 # growingio
-growingio = "4.0.0"
+growingio = "4.0.0-SNAPSHOT"
 growingioPlugin = "4.0.0-SNAPSHOT"
 
-pluginGradle = "8.1.0" #"7.4.2"
+pluginGradle = "8.1.1" #"7.4.2"
 kotlin = "1.8.20"
 ksp = "1.8.20-1.0.11"
 # https://github.com/google/protobuf-gradle-plugin
@@ -38,8 +38,8 @@ ksp = "1.8.20-1.0.11"
 protobufPlugin = "0.9.1"
 protobuf = "3.22.3"
 # https://github.com/google/dagger
-dagger = "2.45"
-hilt = "2.45"
+dagger = "2.48.1"
+hilt = "2.48.1"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "pluginGradle" }

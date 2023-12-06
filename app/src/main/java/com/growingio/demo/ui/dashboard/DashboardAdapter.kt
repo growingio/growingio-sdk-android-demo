@@ -18,12 +18,14 @@
 package com.growingio.demo.ui.dashboard
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.growingio.demo.R
@@ -120,32 +122,54 @@ class DashboardAdapter(private val listener: DashboardAdapterListener) :
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val docLinkButton = itemView.findViewById<Button>(R.id.docLink)
-
-        private val sdkVersionBadge = itemView.findViewById<ImageView>(R.id.sdkVersionBadge)
-        private val sdkPlatformBadge = itemView.findViewById<ImageView>(R.id.sdkPlatformBadge)
-        private val sdkLicenseBadge = itemView.findViewById<ImageView>(R.id.sdkLicenseBadge)
-        private val sdkCodecovBadge = itemView.findViewById<ImageView>(R.id.sdkCodecovBadge)
+        private val badgeList = itemView.findViewById<RecyclerView>(R.id.badgeList)
 
         init {
             val context = itemView.context
             docLinkButton.setOnClickListener {
                 listener.onLinkClick(context.getString(R.string.dashboard_doc_url))
             }
-            sdkVersionBadge.setOnClickListener {
-                listener.onLinkClick(context.getString(R.string.dashboard_sdk_repo))
-            }
 
-            sdkVersionBadge.load(context.getString(R.string.dashboard_sdk_version_badge)) {
-                placeholder(R.drawable.sdk_version)
+            badgeList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            badgeList.adapter = BadgeAdapter(context) {
+                listener.onLinkClick(it)
             }
-            sdkPlatformBadge.load(context.getString(R.string.dashboard_sdk_platform_badge))
-            sdkLicenseBadge.load(context.getString(R.string.dashboard_sdk_license_badge))
-            sdkCodecovBadge.load(context.getString(R.string.dashboard_sdk_codecov_badge))
         }
     }
 
     interface DashboardAdapterListener {
         fun onSdkItemClick(view: View, item: SdkIntroItem)
         fun onLinkClick(url: String)
+    }
+
+    class BadgeAdapter(val context: Context, private val linkCallback: (String) -> Unit) : RecyclerView.Adapter<BadgeAdapter.BadgeViewHolder>() {
+
+        private val badges = arrayOf(
+            R.string.dashboard_sdk_version_badge,
+            R.string.dashboard_sdk_platform_badge,
+            R.string.dashboard_sdk_license_badge,
+            R.string.dashboard_sdk_codecov_badge,
+        )
+
+        class BadgeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val badge = itemView.findViewById<ImageView>(R.id.badge)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, p1: Int): BadgeViewHolder {
+            return BadgeViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.recycler_dashboard_header_item, parent, false),
+            )
+        }
+
+        override fun getItemCount(): Int {
+            return badges.size
+        }
+
+        override fun onBindViewHolder(badgeHolder: BadgeViewHolder, p1: Int) {
+            badgeHolder.badge.load(context.getString(badges[p1]))
+            badgeHolder.badge.setOnClickListener {
+                linkCallback(context.getString(R.string.dashboard_sdk_repo))
+            }
+        }
     }
 }

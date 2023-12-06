@@ -22,18 +22,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
-import com.growingio.android.advert.AdvertConfig
-import com.growingio.android.advert.AdvertLibraryGioModule
-import com.growingio.android.sdk.autotrack.GrowingAutotracker
-import com.growingio.android.sdk.track.log.Logger
-import com.growingio.android.sdk.track.middleware.advert.Activate
-import com.growingio.android.sdk.track.middleware.advert.AdvertResult
-import com.growingio.android.sdk.track.middleware.advert.DeepLinkCallback
-import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.data.SdkIcon
 import com.growingio.demo.data.SdkIntroItem
-import com.growingio.demo.databinding.FragmentComponentAdvertBinding
 import com.growingio.demo.databinding.FragmentComponentWebserviceBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.PageFragment
@@ -105,7 +96,7 @@ class ComponentWebServiceFragment : PageFragment<FragmentComponentWebserviceBind
         @Provides
         fun provideSdkItem(): SdkIntroItem {
             return SdkIntroItem(
-                id = 25,
+                id = 26,
                 icon = SdkIcon.Component,
                 title = "圈选",
                 desc = "用于快速进入圈选或者数据校验状态，方便用户调试",

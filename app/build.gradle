@@ -26,6 +26,11 @@ android {
 
 		buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
 
+		ndk {
+			// Filter for architectures supported by Flutter.
+			abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+		}
+
 		//testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		testInstrumentationRunner "com.growingio.demo.GrowingAndroidJUnitRunner"
 	}
@@ -36,6 +41,14 @@ android {
 			keyPassword "sdk2023"
 			storeFile file("../demo.jks")
 			storePassword "growingio2023"
+		}
+	}
+
+
+	flavorDimensions "channel"
+	productFlavors {
+		github {
+			dimension "channel"
 		}
 	}
 
@@ -86,6 +99,7 @@ growingAutotracker {
 
 	giokit {
 		enabled false  //开启即可
+		trackerFinderEnabled true
 		autoAttachEnabled true
 		releaseEnabled false
 		autoInstallVersion "2.0.0-SNAPSHOT"
@@ -164,8 +178,9 @@ dependencies {
 	implementation 'com.growingio.android:encoder'
 	implementation 'com.growingio.android:protobuf'
 	implementation 'com.growingio.android:oaid'
-	implementation 'com.growingio.android:advert'
+	implementation 'com.growingio.android:ads'
 	implementation 'com.growingio.android:json'
+	implementation 'com.growingio.android:abtest'
 
 	implementation project(path: ':code-annotation')
 	// disable Incremental compilation fails

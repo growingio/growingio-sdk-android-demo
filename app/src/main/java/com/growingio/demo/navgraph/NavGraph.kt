@@ -51,12 +51,14 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object SdkUniqueTagPage : PageNav(FragmentNav.DashBoard, "uniqueTag")
     object SdkEventTimerPage : PageNav(FragmentNav.DashBoard, "eventTimer")
     object SdkAutotrackerPage : PageNav(FragmentNav.DashBoard, "autoPage")
+    object SdkGeneralPopsPage : PageNav(FragmentNav.DashBoard, "generalPops")
 
     object ComponentHybridPage : PageNav(FragmentNav.DashBoard, "hybrid")
     object ComponentEncoderPage : PageNav(FragmentNav.DashBoard, "encoder")
     object ComponentProtobufPage : PageNav(FragmentNav.DashBoard, "protobuf")
     object ComponentOaidPage : PageNav(FragmentNav.DashBoard, "oaid")
     object ComponentAdvertPage : PageNav(FragmentNav.DashBoard, "advert")
+    object ComponentABTestPage : PageNav(FragmentNav.DashBoard, "abTest")
     object ComponentWebServicePage : PageNav(FragmentNav.DashBoard, "webService")
 
     object MaterialRecyclerViewPage : PageNav(FragmentNav.UI, "recyclerview")

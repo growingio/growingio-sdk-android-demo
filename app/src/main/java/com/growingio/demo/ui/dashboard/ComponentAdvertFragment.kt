@@ -22,13 +22,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
-import com.growingio.android.advert.AdvertConfig
-import com.growingio.android.advert.AdvertLibraryGioModule
+import com.growingio.android.ads.AdsConfig
+import com.growingio.android.ads.AdsLibraryGioModule
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.android.sdk.track.log.Logger
-import com.growingio.android.sdk.track.middleware.advert.Activate
-import com.growingio.android.sdk.track.middleware.advert.AdvertResult
-import com.growingio.android.sdk.track.middleware.advert.DeepLinkCallback
+import com.growingio.android.sdk.track.middleware.ads.Activate
+import com.growingio.android.sdk.track.middleware.ads.AdsResult
+import com.growingio.android.sdk.track.middleware.ads.DeepLinkCallback
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.R
 import com.growingio.demo.data.SdkIcon
@@ -72,7 +72,7 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
 
         pageBinding.advertSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                registerAdvertComponent()
+                registerAdsComponent()
             } else {
                 unregisterAdvertComponent()
             }
@@ -98,19 +98,19 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
         loadAssetCode(this)
 
         // https://ads-uat.growingio.cn/k4budVa
-        setDefaultLogFilter("level:debug advertModule")
+        setDefaultLogFilter("level:debug adsModule")
     }
 
     @SourceCode
-    fun registerAdvertComponent() {
-        val config = AdvertConfig()
+    fun registerAdsComponent() {
+        val config = AdsConfig()
         config.deepLinkHost = "https://ads-uat.growingio.cn"
         config.deepLinkCallback = DeepLinkCallback { params, error, appAwakePassedTime ->
             // params: 深度链接参数
             // error: 错误信息
             // appAwakePassedTime: 从app唤醒到调用该回调的时间
             Logger.d(
-                "AdvertModule",
+                "AdsModule",
                 "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime",
             )
         }
@@ -120,11 +120,11 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
          * GrowingAutotracker.startWithConfiguration(this,
          *            AutotrackConfiguration("accountId", "urlScheme")
          *            //...
-         *            .addPreloadComponent(AdvertLibraryGioModule(), config))
+         *            .addPreloadComponent(AdsLibraryGioModule(), config))
          */
 
         // 也可以在运行时再注册
-        GrowingAutotracker.get().registerComponent(AdvertLibraryGioModule(), config)
+        GrowingAutotracker.get().registerComponent(AdsLibraryGioModule(), config)
     }
 
     @SourceCode
@@ -134,14 +134,14 @@ class ComponentAdvertFragment : PageFragment<FragmentComponentAdvertBinding>() {
                 // for test
                 GrowingAutotracker.get().trackCustomEvent("DeepLinkCallback")
                 Logger.d(
-                    "AdvertModule",
+                    "AdsModule",
                     "DeepLinkCallback: params: $params, error: $error, appAwakePassedTime: $appAwakePassedTime",
                 )
             }
     }
 
     private fun unregisterAdvertComponent() {
-        GrowingAutotracker.get().context.registry.unregister(Activate::class.java, AdvertResult::class.java)
+        GrowingAutotracker.get().context.registry.unregister(Activate::class.java, AdsResult::class.java)
     }
 
     override fun onDestroy() {

@@ -62,7 +62,7 @@ class AttributesRecyclerView @JvmOverloads constructor(
 
     fun validAttributes(): Boolean {
         buildSize.indices.forEach { index ->
-            val viewHolder = findViewHolderForAdapterPosition(index) as AddAttrViewHolder
+            val viewHolder = findViewHolderForAdapterPosition(index) as? AddAttrViewHolder ?: return@forEach
             if (viewHolder.keyEt.text.isNullOrEmpty()) {
                 return false
             }

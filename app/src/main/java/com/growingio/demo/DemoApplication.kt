@@ -14,16 +14,11 @@ import coil.memory.MemoryCache
 import com.growingio.android.sdk.autotrack.AutotrackConfiguration
 import com.growingio.android.sdk.autotrack.Autotracker
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
-import com.growingio.android.sdk.track.events.EventFilterInterceptor
 import com.growingio.code.annotation.SourceCode
 import com.growingio.demo.data.settingsDataStore
 import com.growingio.demo.util.GrowingIOManager
 import com.growingio.demo.util.enableStrictMode
-import dagger.hilt.EntryPoint
-import dagger.hilt.EntryPoints
-import dagger.hilt.InstallIn
 import dagger.hilt.android.HiltAndroidApp
-import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Cache
@@ -49,15 +44,9 @@ class DemoApplication : Application() {
 
 class GrowingioInitializer : Initializer<Autotracker> {
 
-    @EntryPoint
-    @InstallIn(SingletonComponent::class)
-    interface GrowingIOProvider {
-        fun eventFilterInterceptor(): EventFilterInterceptor
-    }
-
     @SourceCode
     override fun create(context: Context): Autotracker {
-        //val growingIOProvider = EntryPoints.get(context, GrowingIOProvider::class.java)
+        // val growingIOProvider = EntryPoints.get(context, GrowingIOProvider::class.java)
         val growingIOProvider = GrowingIOManager.provideEventFilterInterceptor()
         val agreePolicy = runBlocking { context.settingsDataStore.data.first().agreePolicy }
         val autotrackConfiguration =
@@ -75,9 +64,9 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setEventFilterInterceptor(growingIOProvider)
                 .setIdMappingEnabled(true)
                 .setImpressionScale(0f)
-                //.downgrade()
+        // .downgrade()
 
-        //it's demo logic
+        // it's demo logic
         configWithDataStore(context, autotrackConfiguration)
         GrowingAutotracker.startWithConfiguration(context, autotrackConfiguration)
 

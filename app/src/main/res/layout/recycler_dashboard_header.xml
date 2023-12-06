@@ -62,41 +62,15 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <ImageView
-        android:id="@+id/sdkVersionBadge"
-        android:layout_width="80dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/badgeList"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="@string/image_description_badge"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sdkBanner" />
-
-    <ImageView
-        android:id="@+id/sdkPlatformBadge"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@string/image_description_badge"
-        app:layout_constraintStart_toEndOf="@id/sdkVersionBadge"
-        app:layout_constraintTop_toTopOf="@+id/sdkVersionBadge" />
-
-    <ImageView
-        android:id="@+id/sdkLicenseBadge"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@string/image_description_badge"
-        app:layout_constraintStart_toEndOf="@id/sdkPlatformBadge"
-        app:layout_constraintTop_toTopOf="@+id/sdkVersionBadge" />
-
-    <ImageView
-        android:id="@+id/sdkCodecovBadge"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@string/image_description_badge"
-        app:layout_constraintStart_toEndOf="@id/sdkLicenseBadge"
-        app:layout_constraintTop_toTopOf="@+id/sdkVersionBadge" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
