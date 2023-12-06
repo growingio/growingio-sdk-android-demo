@@ -58,7 +58,6 @@ class ComponentABTestFragment : PageFragment<FragmentComponentAbtestBinding>() {
     @SourceCode
     fun registerAbTestComponent() {
         val config = ABTestConfig()
-        config.abTestServerHost = "http://117.50.84.75:10060"
         config.setAbTestExpired(10, TimeUnit.MINUTES)
         // 可以在运行时再注册
         GrowingAutotracker.get().registerComponent(ABTestLibraryGioModule(), config)
@@ -90,7 +89,11 @@ class ComponentABTestFragment : PageFragment<FragmentComponentAbtestBinding>() {
             pageBinding.progressBar.visibility = View.VISIBLE
             pageBinding.progressBar.isIndeterminate = true
             val immediately = pageBinding.immediatelySwitch.isChecked
-            fetchABTest(deeplinkUrl.toString(), immediately)
+            if (immediately) {
+                fetchABTestImmediately(deeplinkUrl.toString())
+            } else {
+                fetchABTest(deeplinkUrl.toString())
+            }
         }
 
         loadAssetCode(this)
@@ -99,39 +102,40 @@ class ComponentABTestFragment : PageFragment<FragmentComponentAbtestBinding>() {
     }
 
     @SourceCode
-    fun fetchABTest(layerId: String, immediately: Boolean) {
+    fun fetchABTest(layerId: String) {
         // 通过接口获取 A/B 测试分组
-        if (immediately) {
-            GrowingAutotracker.get().getAbTestImmediately(
-                layerId,
-                object : ABTestCallback {
-                    override fun onABExperimentReceived(experiment: ABExperiment, dataType: Int) {
-                        pageBinding.progressBar.visibility = View.GONE
-                        pageBinding.resultLabel.text = loadExperimentData(experiment, dataType)
-                    }
+        GrowingAutotracker.get().getAbTest(
+            layerId,
+            object : ABTestCallback {
+                override fun onABExperimentReceived(experiment: ABExperiment, dataType: Int) {
+                    pageBinding.progressBar.visibility = View.GONE
+                    pageBinding.resultLabel.text = loadExperimentData(experiment, dataType)
+                }
 
-                    override fun onABExperimentFailed(error: Exception) {
-                        pageBinding.progressBar.visibility = View.GONE
-                        pageBinding.resultLabel.text = error.message
-                    }
-                },
-            )
-        } else {
-            GrowingAutotracker.get().getAbTest(
-                layerId,
-                object : ABTestCallback {
-                    override fun onABExperimentReceived(experiment: ABExperiment, dataType: Int) {
-                        pageBinding.progressBar.visibility = View.GONE
-                        pageBinding.resultLabel.text = loadExperimentData(experiment, dataType)
-                    }
+                override fun onABExperimentFailed(error: Exception) {
+                    pageBinding.progressBar.visibility = View.GONE
+                    pageBinding.resultLabel.text = error.message
+                }
+            },
+        )
+    }
 
-                    override fun onABExperimentFailed(error: Exception) {
-                        pageBinding.progressBar.visibility = View.GONE
-                        pageBinding.resultLabel.text = error.message
-                    }
-                },
-            )
-        }
+    @SourceCode
+    fun fetchABTestImmediately(layerId: String) {
+        GrowingAutotracker.get().getAbTestImmediately(
+            layerId,
+            object : ABTestCallback {
+                override fun onABExperimentReceived(experiment: ABExperiment, dataType: Int) {
+                    pageBinding.progressBar.visibility = View.GONE
+                    pageBinding.resultLabel.text = loadExperimentData(experiment, dataType)
+                }
+
+                override fun onABExperimentFailed(error: Exception) {
+                    pageBinding.progressBar.visibility = View.GONE
+                    pageBinding.resultLabel.text = error.message
+                }
+            },
+        )
     }
 
     private fun loadExperimentData(experiment: ABExperiment, dataType: Int): String {
