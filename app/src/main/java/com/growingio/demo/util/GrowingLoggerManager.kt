@@ -35,9 +35,9 @@ class GrowingLoggerManager @Inject constructor() : BaseLogger() {
     private val loggerObservers = arrayListOf<WeakReference<LoggerObserver>>()
     private val uiHandler = android.os.Handler(Looper.getMainLooper())
 
-    private val loggerQueue = object : PriorityQueue<GrowingIOLoggerItem>(500) {
+    private val loggerQueue = object : PriorityQueue<GrowingIOLoggerItem>(300) {
         override fun offer(e: GrowingIOLoggerItem): Boolean {
-            if (size == 500) {
+            if (size == 300) {
                 poll()
             }
             observeLogger(e)
@@ -50,7 +50,10 @@ class GrowingLoggerManager @Inject constructor() : BaseLogger() {
     }
 
     override fun print(priority: Int, tag: String, message: String, t: Throwable?) {
-        loggerQueue.add(GrowingIOLoggerItem(System.currentTimeMillis(), priority, tag, message))
+        try {
+            loggerQueue.add(GrowingIOLoggerItem(System.currentTimeMillis(), priority, tag, message))
+        } catch (ignored: Exception) {
+        }
     }
 
     fun clear() {

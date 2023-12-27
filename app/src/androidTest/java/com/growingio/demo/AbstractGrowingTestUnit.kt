@@ -92,7 +92,7 @@ abstract class AbstractGrowingTestUnit {
         receivedHandler.add(eventHandler)
         while (countDownLatch.count > 0) {
             if (System.nanoTime() > end) {
-                throw TimeoutException("Already waited for the $eventType Event to pass 5s, timed out")
+                throw TimeoutException("Already waited for the $eventType Event to pass ${timeout}s, timed out")
             }
             Uninterruptibles.sleepUninterruptibly(200, TimeUnit.MILLISECONDS)
         }
