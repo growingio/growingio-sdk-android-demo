@@ -22,7 +22,7 @@ android {
 		minSdk 23
 		targetSdk 34
 		versionCode 1
-		versionName "1.0.0"
+		versionName "2.0.0"
 
 		buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
 
@@ -102,7 +102,7 @@ growingAutotracker {
 		trackerFinderEnabled true
 		autoAttachEnabled true
 		releaseEnabled false
-		autoInstallVersion "2.0.0-SNAPSHOT"
+		autoInstallVersion "2.0.0"
 	}
 }
 
@@ -180,6 +180,7 @@ dependencies {
 	implementation 'com.growingio.android:oaid'
 	implementation 'com.growingio.android:ads'
 	implementation 'com.growingio.android:json'
+	implementation 'com.growingio.android:apm'
 	implementation 'com.growingio.android:abtest'
 
 	implementation project(path: ':code-annotation')
