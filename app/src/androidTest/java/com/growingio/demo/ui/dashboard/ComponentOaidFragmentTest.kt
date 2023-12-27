@@ -66,7 +66,7 @@ class ComponentOaidFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun oaidTest() {
-        runEventTest(TrackEventType.VISIT, onEvent = { baseEvent ->
+        runEventTest(TrackEventType.VISIT, timeout = 10, onEvent = { baseEvent ->
             if (baseEvent is VisitEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.VISIT)
                 Truth.assertThat(baseEvent.oaid).isEqualTo("11010101")

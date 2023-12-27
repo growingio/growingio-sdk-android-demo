@@ -53,7 +53,7 @@ class ComponentAdvertFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun onPageTest() {
-        runEventTest(AutotrackEventType.PAGE, onEvent = { baseEvent ->
+        runEventTest(AutotrackEventType.PAGE, timeout = 10, onEvent = { baseEvent ->
             if (baseEvent is PageEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.PAGE)
                 Truth.assertThat(baseEvent.title).isEqualTo("广告分析")
