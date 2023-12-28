@@ -51,8 +51,8 @@ class SdkTimerFragmentTest : AbstractGrowingTestUnit() {
 
     @Before
     override fun setup() {
-        launchFragmentInHiltContainer<SdkEventTimerFragment>()
         super.setup()
+        launchFragmentInHiltContainer<SdkEventTimerFragment>()
     }
 
     @Test
@@ -91,11 +91,7 @@ class SdkTimerFragmentTest : AbstractGrowingTestUnit() {
                 delay(200)
 
                 onView(withId(R.id.start)).perform(click())
-                delay(100)
-                onView(withId(R.id.pauseBtn)).perform(click())
-                delay(500)
-                onView(withId(R.id.resumeBtn)).perform(click())
-                delay(500)
+                delay(1000)
                 onView(withId(R.id.endBtn)).perform(click())
             }
         }

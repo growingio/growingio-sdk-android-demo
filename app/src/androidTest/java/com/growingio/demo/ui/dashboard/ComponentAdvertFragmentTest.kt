@@ -48,7 +48,7 @@ class ComponentAdvertFragmentTest : AbstractGrowingTestUnit() {
     @Before
     override fun setup() {
         super.setup()
-        launchFragmentInHiltContainer<ComponentAdvertFragment>()
+
     }
 
     @Test
@@ -62,6 +62,7 @@ class ComponentAdvertFragmentTest : AbstractGrowingTestUnit() {
             }
             false
         }) {
+            launchFragmentInHiltContainer<ComponentAdvertFragment>()
         }
     }
 
@@ -75,6 +76,7 @@ class ComponentAdvertFragmentTest : AbstractGrowingTestUnit() {
             }
             false
         }) {
+            launchFragmentInHiltContainer<ComponentAdvertFragment>()
             onView(withId(R.id.advertSwitch)).perform(click()).check(ViewAssertions.matches(isChecked()))
             onView(withId(R.id.defaultBtn)).perform(click())
 
