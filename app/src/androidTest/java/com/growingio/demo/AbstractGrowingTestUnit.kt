@@ -20,7 +20,6 @@ package com.growingio.demo
 import com.google.common.util.concurrent.Uninterruptibles
 import com.growingio.android.sdk.track.events.base.BaseEvent
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.junit.After
@@ -51,6 +50,7 @@ abstract class AbstractGrowingTestUnit {
     }
 
     private fun dispatchEvent(baseEvent: BaseEvent) {
+        System.out.println("MockEventsApiServer: dispatch event.")
         // wait event
         receivedHandler.forEach { handler ->
             if (handler.eventType == baseEvent.eventType) {
@@ -94,12 +94,11 @@ abstract class AbstractGrowingTestUnit {
             if (System.nanoTime() > end) {
                 throw TimeoutException("Already waited for the $eventType Event to pass ${timeout}s, timed out")
             }
-            Uninterruptibles.sleepUninterruptibly(200, TimeUnit.MILLISECONDS)
+            Uninterruptibles.sleepUninterruptibly(500, TimeUnit.MILLISECONDS)
         }
         receivedHandler.remove(eventHandler)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     fun runEventTest(
         eventType: String,
         onEvent: (event: BaseEvent) -> Boolean = this::onEvent,
@@ -115,7 +114,9 @@ abstract class AbstractGrowingTestUnit {
             val countDownLatch = CountDownLatch(eventCount)
             val eventHandler = AwaitHandler(eventType, countDownLatch, onEvent, validateAtLast)
             receivedHandler.add(eventHandler)
+            System.out.println("runTestBodyStart: " + System.nanoTime())
             testBody()
+            System.out.println("runTestBodyEnd: " + System.nanoTime())
             // CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.IO) {
                 while (countDownLatch.count > 0) {
