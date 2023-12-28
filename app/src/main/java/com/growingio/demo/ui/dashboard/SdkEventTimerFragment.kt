@@ -72,7 +72,6 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
 
     @SourceCode
     private fun initTimerView() {
-        pageBinding.timerInput.editText?.setText("DefaultTimer")
         pageBinding.start.setOnClickListener {
             val timer = pageBinding.timerInput.editText?.text
             if (timer == null || timer.toString().isEmpty()) {

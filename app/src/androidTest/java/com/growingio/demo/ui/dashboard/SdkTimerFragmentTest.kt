@@ -84,9 +84,14 @@ class SdkTimerFragmentTest : AbstractGrowingTestUnit() {
             false
         }) {
             withContext(Dispatchers.IO) {
-                closeSoftKeyboard()
+                onView(withId(R.id.timerEt)).perform(ViewActions.typeText("DefaultTimer"), closeSoftKeyboard())
                 onView(withId(R.id.start)).perform(click())
-                delay(1000)
+                delay(200)
+                onView(withId(R.id.delete)).perform(click())
+                delay(200)
+
+                onView(withId(R.id.start)).perform(click())
+                delay(100)
                 onView(withId(R.id.pauseBtn)).perform(click())
                 delay(500)
                 onView(withId(R.id.resumeBtn)).perform(click())
