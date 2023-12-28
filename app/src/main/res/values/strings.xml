@@ -101,9 +101,9 @@
     <string name="sdk_event_timer_desc">用来计算自定义事件从产生到结束经过的时间</string>
     <string name="sdk_event_timer_default">00:00.00</string>
     <string name="sdk_event_timer_start">开始计时</string>
-    <string name="sdk_event_timer_pause">暂停计时</string>
-    <string name="sdk_event_timer_resume">恢复计时</string>
-    <string name="sdk_event_timer_end">结束计时</string>
+    <string name="sdk_event_timer_pause">暂停</string>
+    <string name="sdk_event_timer_resume">恢复</string>
+    <string name="sdk_event_timer_end">结束</string>
     <string name="sdk_event_timer_delete">删除当前计时</string>
     <string name="sdk_event_timer_clean">删除所有计时</string>
     <string name="sdk_event_timer_toast">请输入计时事件名称</string>

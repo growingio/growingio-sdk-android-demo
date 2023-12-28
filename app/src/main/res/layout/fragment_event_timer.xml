@@ -46,49 +46,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timerInput" />
 
-    <TextView
-        android:id="@+id/timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/sdk_event_timer_default"
-        android:textAppearance="@style/TextAppearance.Material3.DisplaySmall"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/start" />
-
     <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/timer" />
+        app:layout_constraintTop_toBottomOf="@+id/start" />
 
     <Button
+        android:layout_marginStart="16dp"
         android:id="@+id/pauseBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:enabled="false"
+        android:layout_marginTop="8dp"
         android:text="@string/sdk_event_timer_pause"
         app:layout_constraintEnd_toStartOf="@+id/resumeBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timer" />
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <Button
         android:id="@+id/resumeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:enabled="false"
         android:text="@string/sdk_event_timer_resume"
         app:layout_constraintBaseline_toBaselineOf="@+id/pauseBtn"
         app:layout_constraintEnd_toStartOf="@+id/endBtn"
         app:layout_constraintStart_toEndOf="@+id/pauseBtn" />
 
     <Button
+        android:layout_marginEnd="16dp"
         android:id="@+id/endBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:enabled="false"
         android:text="@string/sdk_event_timer_end"
         app:layout_constraintBaseline_toBaselineOf="@+id/pauseBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,6 +101,18 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/delete" />
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sdk_event_timer_default"
+        android:textAppearance="@style/TextAppearance.Material3.DisplayMedium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clean" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
