@@ -72,6 +72,7 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
 
     @SourceCode
     private fun initTimerView() {
+        pageBinding.timerInput.editText?.setText("DefaultTimer")
         pageBinding.start.setOnClickListener {
             val timer = pageBinding.timerInput.editText?.text
             if (timer == null || timer.toString().isEmpty()) {
@@ -83,17 +84,17 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
             startState()
         }
 
-        pageBinding.pause.setOnClickListener {
+        pageBinding.pauseBtn.setOnClickListener {
             GrowingAutotracker.get().trackTimerPause(timerId)
             pauseState()
         }
 
-        pageBinding.resume.setOnClickListener {
+        pageBinding.resumeBtn.setOnClickListener {
             GrowingAutotracker.get().trackTimerResume(timerId)
             startState()
         }
 
-        pageBinding.end.setOnClickListener {
+        pageBinding.endBtn.setOnClickListener {
             GrowingAutotracker.get().trackTimerEnd(timerId, mapOf("app" to "demo", "tag" to "TimerCenter"))
             defaultState()
         }
@@ -114,9 +115,9 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
         timerStartMill = 0L
         timerId = null
         pageBinding.start.isEnabled = true
-        pageBinding.pause.isEnabled = false
-        pageBinding.resume.isEnabled = false
-        pageBinding.end.isEnabled = false
+        pageBinding.pauseBtn.isEnabled = false
+        pageBinding.resumeBtn.isEnabled = false
+        pageBinding.endBtn.isEnabled = false
         pageBinding.delete.isEnabled = false
         pageBinding.clean.isEnabled = false
     }
@@ -124,9 +125,9 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
     private fun startState() {
         isTimerRunning = true
         pageBinding.start.isEnabled = false
-        pageBinding.pause.isEnabled = true
-        pageBinding.resume.isEnabled = false
-        pageBinding.end.isEnabled = true
+        pageBinding.pauseBtn.isEnabled = true
+        pageBinding.resumeBtn.isEnabled = false
+        pageBinding.endBtn.isEnabled = true
         pageBinding.delete.isEnabled = true
         pageBinding.clean.isEnabled = true
 
@@ -137,9 +138,9 @@ class SdkEventTimerFragment : PageFragment<FragmentEventTimerBinding>() {
         isTimerRunning = false
         pageBinding.start.isEnabled = false
 
-        pageBinding.pause.isEnabled = false
-        pageBinding.resume.isEnabled = true
-        pageBinding.end.isEnabled = true
+        pageBinding.pauseBtn.isEnabled = false
+        pageBinding.resumeBtn.isEnabled = true
+        pageBinding.endBtn.isEnabled = true
 
         pageBinding.delete.isEnabled = true
         pageBinding.clean.isEnabled = true

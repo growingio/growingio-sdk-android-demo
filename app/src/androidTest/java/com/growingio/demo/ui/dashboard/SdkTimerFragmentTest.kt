@@ -74,7 +74,7 @@ class SdkTimerFragmentTest : AbstractGrowingTestUnit() {
         runEventTest(TrackEventType.CUSTOM, timeout = 15, onEvent = { baseEvent ->
             if (baseEvent is CustomEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.CUSTOM)
-                Truth.assertThat(baseEvent.eventName).isEqualTo("cpacm")
+                Truth.assertThat(baseEvent.eventName).isEqualTo("DefaultTimer")
                 Truth.assertThat(baseEvent.attributes).hasSize(3)
                 Truth.assertThat(baseEvent.attributes).containsEntry("app", "demo")
                 Truth.assertThat(baseEvent.attributes).containsEntry("tag", "TimerCenter")
@@ -84,14 +84,14 @@ class SdkTimerFragmentTest : AbstractGrowingTestUnit() {
             false
         }) {
             withContext(Dispatchers.IO) {
-                onView(withId(R.id.timerEt)).perform(ViewActions.typeText("cpacm"), closeSoftKeyboard())
+                closeSoftKeyboard()
                 onView(withId(R.id.start)).perform(click())
                 delay(1000)
-                onView(withId(R.id.pause)).perform(click())
+                onView(withId(R.id.pauseBtn)).perform(click())
                 delay(500)
-                onView(withId(R.id.resume)).perform(click())
+                onView(withId(R.id.resumeBtn)).perform(click())
                 delay(500)
-                onView(withId(R.id.end)).perform(click())
+                onView(withId(R.id.endBtn)).perform(click())
             }
         }
     }

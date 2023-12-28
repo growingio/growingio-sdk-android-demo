@@ -27,6 +27,7 @@ import org.junit.Before
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * <p>
@@ -50,7 +51,6 @@ abstract class AbstractGrowingTestUnit {
     }
 
     private fun dispatchEvent(baseEvent: BaseEvent) {
-        System.out.println("MockEventsApiServer: dispatch event.")
         // wait event
         receivedHandler.forEach { handler ->
             if (handler.eventType == baseEvent.eventType) {
@@ -108,15 +108,13 @@ abstract class AbstractGrowingTestUnit {
         validateAtLast: Boolean = false,
         testBody: suspend () -> Unit,
     ) {
-        runTest() {
+        runTest(timeout = 20.seconds) {
             val remainingNanos = unit.toNanos(timeout)
             val end = System.nanoTime() + remainingNanos
             val countDownLatch = CountDownLatch(eventCount)
             val eventHandler = AwaitHandler(eventType, countDownLatch, onEvent, validateAtLast)
             receivedHandler.add(eventHandler)
-            System.out.println("runTestBodyStart: " + System.nanoTime())
             testBody()
-            System.out.println("runTestBodyEnd: " + System.nanoTime())
             // CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.IO) {
                 while (countDownLatch.count > 0) {
