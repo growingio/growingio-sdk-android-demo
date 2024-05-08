@@ -77,7 +77,9 @@ class SdkInitFragment : PageFragment<FragmentInitBinding>() {
             | setChannel                   | null  | 应用的分发渠道             |
             | setDebugEnabled              | false | 调试模式，会打印SDK Log    | 
             | setAndroidIdEnabled          | false   | 是否支持获取AndroidId作为设备ID |
-            | setRequestDetailTimeout       | TimeUnit   | 设置OkHttp请求的默认超时时间 |
+            | setRequestTimeout            | TimeUnit   | 设置OkHttp请求的默认超时时间 |
+            | enableFragmentTag             | false     | 是否将Fragment的tag作为无埋点路径的记号 |    |
+            | setPageRuleXml               | xml resource     | 用于自动采集无埋点页面 |    |
             | setCellularDataLimit         | 10   | 每天发送数据的流量限制，单位MB |
             | setDataUploadInterval        | 15    | 数据发送的间隔，单位秒       |
             | setSessionInterval           | 30    | 会话后台留存时长，单位秒     | 
@@ -88,6 +90,7 @@ class SdkInitFragment : PageFragment<FragmentInitBinding>() {
             | setRequireAppProcessesEnabled | false  | SDK 是否能获取应用多进程ID     | 
             | setImeiEnabled               | false | 是否采集Imei信息，默认不采集     |
             | setAndroidIdEnabled               | false | SDK 是否能获取 AndroidId    |
+            | setDataValidityPeriod         | 7      | 数据库数据缓存时间   |
             | addPreloadComponent          | LibraryGioModule,Configurable  | 预注册自定义/预定义模块及其配置文件 |
             
             

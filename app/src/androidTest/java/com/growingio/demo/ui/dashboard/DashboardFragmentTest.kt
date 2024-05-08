@@ -56,7 +56,7 @@ class DashboardFragmentTest : AbstractGrowingTestUnit() {
             if (baseEvent is ViewElementEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
                 Truth.assertThat(baseEvent.textValue).isEqualTo("查看文档 >>")
-                Truth.assertThat(baseEvent.path).isEqualTo("/DashboardFragment")
+                Truth.assertThat(baseEvent.path).isEqualTo("/Dashboard")
                 Truth.assertThat(baseEvent.xpath)
                     .isEqualTo("/HiltTestActivity/DashboardFragment/CoordinatorLayout/RecyclerView/ConstraintLayout/MaterialCardView/MaterialButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/dashboardRv/-/sdkBanner/docLink")
@@ -75,7 +75,7 @@ class DashboardFragmentTest : AbstractGrowingTestUnit() {
         runEventTest(AutotrackEventType.VIEW_CLICK, onEvent = { baseEvent ->
             if (baseEvent is ViewElementEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CLICK)
-                Truth.assertThat(baseEvent.path).isEqualTo("/DashboardFragment")
+                Truth.assertThat(baseEvent.path).isEqualTo("/Dashboard")
                 Truth.assertThat(baseEvent.xpath)
                     .isEqualTo("/HiltTestActivity/DashboardFragment/CoordinatorLayout/RecyclerView/MaterialCardView/ConstraintLayout/MaterialButton")
                 Truth.assertThat(baseEvent.xIndex).isEqualTo("/0/content/0/dashboardRv/-/0/sdkJump")

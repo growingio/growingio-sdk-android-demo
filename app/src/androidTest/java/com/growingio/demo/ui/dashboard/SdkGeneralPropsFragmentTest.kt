@@ -69,7 +69,7 @@ class SdkGeneralPropsFragmentTest : AbstractGrowingTestUnit() {
             if (baseEvent is CustomEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.CUSTOM)
                 Truth.assertThat(baseEvent.eventName).isEqualTo("EventBuilderProvider_Props")
-                Truth.assertThat(baseEvent.attributes).hasSize(3)
+                Truth.assertThat(baseEvent.attributes).hasSize(5)
                 Truth.assertThat(baseEvent.attributes).containsEntry("key0", "value0")
                 Truth.assertThat(baseEvent.attributes).containsEntry("key1", "value1")
                 Truth.assertThat(baseEvent.attributes).containsEntry("key2", "value2")

@@ -21,8 +21,8 @@ android {
 		applicationId "com.growingio.demo"
 		minSdk 23
 		targetSdk 34
-		versionCode 2
-		versionName "2.0.0"
+		versionCode 220
+		versionName "2.2.0"
 
 		buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
 
@@ -98,11 +98,11 @@ growingAutotracker {
 	excludePackages "com.growingio.demo.ui.widgets.LogcatView", "androidx.navigation.fragment.NavHostFragment"
 
 	giokit {
-		enabled false  //开启即可
+		enabled true  //开启即可
 		trackerFinderEnabled true
 		autoAttachEnabled true
 		releaseEnabled false
-		autoInstallVersion "2.0.0"
+		autoInstallVersion "2.1.2"
 	}
 }
 

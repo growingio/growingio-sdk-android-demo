@@ -43,6 +43,10 @@ import dagger.multibindings.IntoSet
 @AndroidEntryPoint
 class SdkDataCollectFragment : PageFragment<FragmentDataCollectBinding>() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentDataCollectBinding {
         return FragmentDataCollectBinding.inflate(inflater, container, false)
     }

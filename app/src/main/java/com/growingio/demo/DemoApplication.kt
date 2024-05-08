@@ -56,6 +56,7 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setChannel("demo")
                 .setDebugEnabled(BuildConfig.DEBUG)
                 .setAndroidIdEnabled(true)
+                .setPageRuleXml(R.xml.growingio_setting)
                 .setRequireAppProcessesEnabled(true)
                 .setDataCollectionEnabled(agreePolicy)
                 .setCellularDataLimit(10)
@@ -64,7 +65,6 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setEventFilterInterceptor(growingIOProvider)
                 .setIdMappingEnabled(true)
                 .setImpressionScale(0f)
-        // .downgrade()
 
         // it's demo logic
         configWithDataStore(context, autotrackConfiguration)
