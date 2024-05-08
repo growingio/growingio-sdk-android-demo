@@ -51,7 +51,9 @@ class GrowingAndroidJUnitRunner : AndroidJUnitRunner() {
                 .setAndroidIdEnabled(true)
                 .setRequireAppProcessesEnabled(true)
                 .setEventFilterInterceptor(GrowingIOManager.provideEventFilterInterceptor())
-                .setDebugEnabled(true),
+                .setDebugEnabled(true)
+                .addPageRule("Dashboard","com.growingio.demo.ui.dashboard.DashboardFragment")
+                .addPageMatchRule("com\\.growingio\\.demo\\.ui.*Fragment")
             // .addPreloadComponent(JsonLibraryModule())
         )
 

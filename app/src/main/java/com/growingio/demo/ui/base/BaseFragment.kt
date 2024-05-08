@@ -51,7 +51,7 @@ open class BaseFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
 
-        GrowingAutotracker.get().autotrackPage(this, this.javaClass.simpleName)
+//        GrowingAutotracker.get().autotrackPage(this, this.javaClass.simpleName)
     }
 
     /**

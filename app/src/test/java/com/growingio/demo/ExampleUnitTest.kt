@@ -13,6 +13,14 @@ import java.lang.StringBuilder
 class ExampleUnitTest {
 
     @Test
+    fun pageMatchTest(){
+        val text = "com/growingio/demo/ui/dashboard/SdkUniqueTagFragment"
+        val regex = Regex("com\\.growingio\\.demo\\.ui\\.dashboard\\.(\\w+)Fragment")
+        val matchResult = text.matches(regex)
+        println(matchResult)
+    }
+
+    @Test
     fun reg() {
         val text = "level:debug cpacm"
 

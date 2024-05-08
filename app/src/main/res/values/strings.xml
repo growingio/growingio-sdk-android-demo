@@ -134,6 +134,10 @@
     <string name="sdk_general_props_btn">设置通用属性</string>
     <string name="sdk_general_props_test_btn">测试自定义事件</string>
     <string name="sdk_general_props_attribute_toast">请输入有效的通用属性</string>
+    <string name="sdk_api_test">其他SDK功能</string>
+    <string name="sdk_api_autotrack">关闭无埋点</string>
+    <string name="sdk_api_event_limit">2M 数据测试</string>
+    <string name="sdk_api_autotrack_hint">请重新启动应用进程来恢复无埋点采集</string>
 
     <string name="component_test_btn">测试按钮</string>
     <string name="component_reset_btn">重置按钮</string>

@@ -45,6 +45,10 @@ class SdkGeneralPropsFragment : PageFragment<FragmentGeneralPropsBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        GrowingAutotracker.get().setDynamicGeneralPropsGenerator {
+            hashMapOf("page1" to "pagevalue1", "page2" to "pagevalue2")
+        }
     }
 
     override fun createPageBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentGeneralPropsBinding {
@@ -110,6 +114,7 @@ class SdkGeneralPropsFragment : PageFragment<FragmentGeneralPropsBinding>() {
     override fun onDestroy() {
         super.onDestroy()
         clearGeneralProps()
+        GrowingAutotracker.get().setDynamicGeneralPropsGenerator(null)
     }
 
     @dagger.Module
