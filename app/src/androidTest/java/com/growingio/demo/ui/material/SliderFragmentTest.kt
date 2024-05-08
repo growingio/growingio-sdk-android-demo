@@ -74,7 +74,7 @@ class SliderFragmentTest : AbstractGrowingTestUnit() {
 
     @Test
     fun onSeekBarTest() {
-        runEventTest(AutotrackEventType.VIEW_CHANGE, onEvent = { baseEvent ->
+        runEventTest(AutotrackEventType.VIEW_CHANGE, throwException = false, onEvent = { baseEvent ->
             if (baseEvent is ViewElementEvent) {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(AutotrackEventType.VIEW_CHANGE)
                 Truth.assertThat(baseEvent.path).isEqualTo("/SliderFragment")

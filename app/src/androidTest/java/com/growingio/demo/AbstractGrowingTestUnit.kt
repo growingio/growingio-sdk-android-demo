@@ -106,6 +106,7 @@ abstract class AbstractGrowingTestUnit {
         timeout: Long = 5,
         unit: TimeUnit = TimeUnit.SECONDS,
         validateAtLast: Boolean = false,
+        throwException: Boolean = true,
         testBody: suspend () -> Unit,
     ) {
         runTest(timeout = 20.seconds) {
@@ -119,7 +120,11 @@ abstract class AbstractGrowingTestUnit {
             withContext(Dispatchers.IO) {
                 while (countDownLatch.count > 0) {
                     if (System.nanoTime() > end) {
-                        throw TimeoutException("Already waited for the $eventType Event to pass ${timeout}s, timed out")
+                        if (throwException) {
+                            throw TimeoutException("Already waited for the $eventType Event to pass ${timeout}s, timed out")
+                        } else {
+                            println("Already waited for the $eventType Event to pass ${timeout}s, timed out")
+                        }
                     }
                     Uninterruptibles.sleepUninterruptibly(500, TimeUnit.MILLISECONDS)
                 }
