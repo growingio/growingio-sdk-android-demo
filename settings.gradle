@@ -7,12 +7,19 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    //repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
         mavenLocal()
         maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
+
+        String flutterStorageUrl = System.getenv("FLUTTER_STORAGE_BASE_URL") ?: "https://storage.googleapis.com"
+        maven {
+            url flutterStorageUrl + "/download.flutter.io"
+        }
+        maven { url "flutterapp/build/host/outputs/repo" }
     }
 }
 
@@ -20,3 +27,7 @@ rootProject.name = "Demo"
 include ':app'
 include ':code-annotation'
 include ':code-annotation:processor'
+
+// for flutter module
+setBinding(new Binding([gradle: this]))
+evaluate(new File(settingsDir, 'flutterapp/.android/include_flutter.groovy'))
