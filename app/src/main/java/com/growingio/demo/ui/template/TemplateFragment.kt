@@ -28,6 +28,7 @@ import com.growingio.demo.data.TemplateItem
 import com.growingio.demo.databinding.FragmentTemplateBinding
 import com.growingio.demo.ui.base.ViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
+import io.flutter.embedding.android.FlutterActivity
 
 @AndroidEntryPoint
 class TemplateFragment : ViewBindingFragment<FragmentTemplateBinding>(), TemplateAdapter.TemplateAdapterListener {
@@ -51,6 +52,15 @@ class TemplateFragment : ViewBindingFragment<FragmentTemplateBinding>(), Templat
     }
 
     override fun onItemClick(view: View, item: TemplateItem) {
+        // flutter
+        if (item.sort == 2) {
+            startActivity(
+                FlutterActivity
+                    .withCachedEngine("material3_engine")
+                    .build(requireContext())
+            )
+            return
+        }
         Toast.makeText(context, "敬请期待", Toast.LENGTH_SHORT).show()
     }
 

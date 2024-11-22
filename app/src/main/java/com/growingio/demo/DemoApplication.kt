@@ -20,6 +20,9 @@ import com.growingio.demo.data.settingsDataStore
 import com.growingio.demo.util.GrowingIOManager
 import com.growingio.demo.util.enableStrictMode
 import dagger.hilt.android.HiltAndroidApp
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
+import io.flutter.embedding.engine.dart.DartExecutor
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Cache
@@ -40,6 +43,17 @@ class DemoApplication : Application() {
         super.onCreate()
 
         enableStrictMode()
+
+        createFlutterEngine()
+    }
+
+    private lateinit var flutterEngine: FlutterEngine
+    private fun createFlutterEngine() {
+        flutterEngine = FlutterEngine(this)
+        flutterEngine.dartExecutor.executeDartEntrypoint(
+            DartExecutor.DartEntrypoint.createDefault()
+        )
+        FlutterEngineCache.getInstance().put("material3_engine", flutterEngine)
     }
 }
 
