@@ -27,8 +27,8 @@ lottie = "6.0.0"
 markwon = "4.6.2"
 
 # growingio
-growingio = "4.3.0"
-growingioPlugin = "4.2.0"
+growingio = "4.3.3-SNAPSHOT"
+growingioPlugin = "4.3.0"
 
 pluginGradle = "8.1.1" #"7.4.2"
 kotlin = "1.8.20"
@@ -74,6 +74,7 @@ androidx-activity = "androidx.activity:activity-ktx:1.7.0"
 androidx-fragment = "androidx.fragment:fragment-ktx:1.6.1"
 androidx-fragment-testing = "androidx.fragment:fragment-testing:1.6.1"
 androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
+androidx-webkit = "androidx.webkit:webkit:1.12.1"
 
 androidx-archCoreTesting = "androidx.arch.core:core-testing:2.2.0"
 androidx-collection = "androidx.collection:collection-ktx:1.2.0"
@@ -192,7 +193,7 @@ barcode-scanning = "com.google.mlkit:barcode-scanning:17.1.0"
 
 [bundles]
 
-androidx = ["androidx-core", "androidx-appcompat", "androidx-activity", "androidx-fragment", "androidx-constraintlayout", "androidx-datastore", "androidx-startup"]
+androidx = ["androidx-core", "androidx-appcompat", "androidx-webkit","androidx-activity", "androidx-fragment", "androidx-constraintlayout", "androidx-datastore", "androidx-startup"]
 lifecycle-viewmodel = ["androidx-lifecycle-viewmodel-ktx", "androidx-lifecycle-compiler"]
 navigation = ["androidx-navigation-fragment", "androidx-navigation-ui"]
 

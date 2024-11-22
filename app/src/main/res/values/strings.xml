@@ -236,6 +236,7 @@
     <string name="material_webview_input_hint">请输入跳转的链接</string>
     <string name="material_webview_input_helper">可以使用不同的WebView查看效果</string>
     <string name="material_webview_go">访问</string>
+    <string name="material_webview_giokit">是否注入 Web Giokit</string>
 
 
     <string name="template_compose_title">Compose Demo</string>

@@ -74,7 +74,7 @@ class ComponentWebServiceFragment : PageFragment<FragmentComponentWebserviceBind
                 return@setOnClickListener
             }
             val url = URLEncoder.encode(deeplinkUrl.toString())
-            findParentNavController()?.navigate(PageNav.WidgetAndroidH5Page.toUrl(url))
+            findParentNavController()?.navigate(PageNav.WidgetAndroidH5Page.toUrl(url, false))
         }
 
         loadAssetCode(this)

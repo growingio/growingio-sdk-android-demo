@@ -41,6 +41,7 @@
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:text="@string/material_webview_x5" />
 
         <Button
@@ -76,26 +77,34 @@
             android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/webGiokit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/material_webview_giokit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/url" />
+
     <Button
         android:id="@+id/jumpBtn"
         style="@style/Widget.Material3.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:text="@string/material_webview_go"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/url" />
-
+        app:layout_constraintTop_toBottomOf="@+id/webGiokit" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/urlHistory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="48dp"
-        tools:listitem="@layout/recycler_webview_url_item"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/jumpBtn" />
+        app:layout_constraintTop_toBottomOf="@id/jumpBtn"
+        tools:listitem="@layout/recycler_webview_url_item" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

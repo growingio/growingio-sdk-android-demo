@@ -54,7 +54,6 @@ class SdkH5WebView : WebView {
         webSettings.loadWithOverviewMode = true
         webSettings.databaseEnabled = true
         webSettings.loadsImagesAutomatically = true
-        webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         webSettings.setSupportZoom(true)
         setWebContentsDebuggingEnabled(true)
 
@@ -70,6 +69,7 @@ class SdkH5WebView : WebView {
         webViewClient = BaseWebClient()
         webChromeClient = DefaultWebChromeClient()
     }
+
 
     private inner class BaseWebClient : WebViewClient() {
 
@@ -111,6 +111,7 @@ class SdkH5WebView : WebView {
             onWebViewChangedListener?.onTitleChanged(title)
             super.onReceivedTitle(view, title)
         }
+
     }
 
     fun setOnWebViewChangedListener(onWebViewChangedListener: OnWebViewChangedListener) {

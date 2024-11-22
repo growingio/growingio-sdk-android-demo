@@ -21,8 +21,8 @@ android {
 		applicationId "com.growingio.demo"
 		minSdk 23
 		targetSdk 34
-		versionCode 220
-		versionName "2.2.0"
+		versionCode 222
+		versionName "2.2.2"
 
 		buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
 
@@ -155,9 +155,8 @@ dependencies {
 
 	implementation libs.bundles.camerax
 	implementation libs.barcode.scanning
-	implementation files('libs/tbs_sdk_44051.jar')
 
-	kapt libs.hilt.compiler
+    kapt libs.hilt.compiler
 	kapt libs.androidx.lifecycle.compiler
 
 	testImplementation libs.junit

@@ -100,10 +100,9 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
             urlHistoryAdapter.putUrl(linkUrl.toString())
             val url = URLEncoder.encode(linkUrl.toString())
 
-            when (webViewType) {
-                0 -> findParentNavController()?.navigate(PageNav.WidgetAndroidH5Page.toUrl(url))
-                1 -> findParentNavController()?.navigate(PageNav.WidgetAndroidX5Page.toUrl(url))
-            }
+            val enableWebGiokit = binding.webGiokit.isChecked
+
+            findParentNavController()?.navigate(PageNav.WidgetAndroidH5Page.toUrl(url, enableWebGiokit))
         }
 
         binding.urlHistory.adapter = urlHistoryAdapter
