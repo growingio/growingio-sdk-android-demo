@@ -172,6 +172,7 @@
     <string name="component_webservice_toast">请扫描二维码获取链接</string>
     <string name="component_webservice_et_hint">扫描二维码连接电脑与移动应用</string>
     <string name="component_webservice_helper">访问链接启动服务</string>
+    <string name="component_flutter">Flutter</string>
 
     <string name="material_test_btn">测试</string>
     <string name="material_button">Material Button</string>
@@ -245,6 +246,7 @@
     <string name="template_flutter_desc">Flutter 集成GrowingIO SDK 的实例演示</string>
     <string name="template_rn_title">RN Demo</string>
     <string name="template_rn_desc">ReactNative 集成GrowingIO SDK 的实例演示</string>
+    <string name="template_flutter_dialog_title">Flutter Engine Loading</string>
 
 
     <string name="sample_text" translatable="false">

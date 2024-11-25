@@ -185,11 +185,9 @@ dependencies {
 	implementation 'com.growingio.android:json'
 	implementation 'com.growingio.android:apm'
 	implementation 'com.growingio.android:abtest'
+	implementation 'com.growingio.android:flutter'
 
-	debugImplementation 'com.growingio.flutterapp:flutter_debug:1.0'
-	profileImplementation 'com.growingio.flutterapp:flutter_profile:1.0'
-	releaseImplementation 'com.growingio.flutterapp:flutter_release:1.0'
-
+	implementation project(path: ':flutter')
 	implementation project(path: ':code-annotation')
 	// disable Incremental compilation fails
 	ksp project(path: ':code-annotation:processor')

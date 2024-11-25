@@ -19,7 +19,6 @@ dependencyResolutionManagement {
         maven {
             url flutterStorageUrl + "/download.flutter.io"
         }
-        maven { url "flutterapp/build/host/outputs/repo" }
     }
 }
 
@@ -31,3 +30,4 @@ include ':code-annotation:processor'
 // for flutter module
 setBinding(new Binding([gradle: this]))
 evaluate(new File(settingsDir, 'flutterapp/.android/include_flutter.groovy'))
+
