@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".DemoApplication"
@@ -44,8 +44,10 @@
 
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="ads-uat.growingio.cn"
                     android:pathPattern="/k4bud.*"
@@ -55,15 +57,21 @@
 
         <activity
             android:name="io.flutter.embedding.android.FlutterActivity"
-            android:theme="@style/AppTheme.Immerse"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
+            android:theme="@style/AppTheme.Immerse"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".ui.camera.CameraXLivePreviewActivity"
             android:exported="true"
             android:theme="@style/AppTheme.Immerse" />
+
+        <activity
+            android:name=".compose.ComposeActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.Immerse"
+            android:windowSoftInputMode="adjustResize"/>
 
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -77,9 +85,9 @@
             <meta-data
                 android:name="com.growingio.demo.CoilInitializer"
                 android:value="androidx.startup" />
-<!--            <meta-data-->
-<!--                android:name="com.growingio.demo.GiokitInitializer"-->
-<!--                android:value="androidx.startup" />-->
+            <!--            <meta-data-->
+            <!--                android:name="com.growingio.demo.GiokitInitializer"-->
+            <!--                android:value="androidx.startup" />-->
         </provider>
     </application>
 

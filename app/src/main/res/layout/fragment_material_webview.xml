@@ -86,6 +86,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/url" />
 
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/webJs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/material_webview_js"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/webGiokit" />
+
     <Button
         android:id="@+id/jumpBtn"
         style="@style/Widget.Material3.Button"
@@ -95,13 +104,13 @@
         android:text="@string/material_webview_go"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/webGiokit" />
+        app:layout_constraintTop_toBottomOf="@+id/webJs" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/urlHistory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/jumpBtn"
         tools:listitem="@layout/recycler_webview_url_item" />

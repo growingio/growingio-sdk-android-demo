@@ -401,7 +401,7 @@ class ComponentFlutterFragment : PageFragment<FragmentFlutterBinding>() {
                 id = 27,
                 icon = SdkIcon.Component,
                 title = "Flutter",
-                desc = "使用 Flutter 插件，可以完成代码埋点的统计和上报。",
+                desc = "使用 Flutter 插件，可以完成Flutter的代码埋点的统计和上报。",
                 route = PageNav.ComponentFlutterPage.route(),
                 fragmentClass = ComponentFlutterFragment::class,
             )

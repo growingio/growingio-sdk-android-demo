@@ -23,31 +23,14 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
 import com.google.protobuf.InvalidProtocolBufferException
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 import java.io.InputStream
 import java.io.OutputStream
-import javax.inject.Singleton
 
 /**
  * <p>
  *     datastore for protobuf
  * @author cpacm 2023/4/14
  */
-@InstallIn(SingletonComponent::class)
-@Module
-object DataStoreModule {
-
-    @Provides
-    @Singleton
-    fun provideDataStore(@ApplicationContext context: Context): DataStore<Settings> {
-        return context.settingsDataStore
-    }
-}
-
 object SettingsSerializer : Serializer<Settings> {
     override val defaultValue: Settings
         get() = Settings.getDefaultInstance()

@@ -66,7 +66,7 @@ class AndroidH5Fragment : ViewBindingFragment<FragmentAndroidH5Binding>() {
     }
 
     val giokitScript =
-        "javascript:(function(){try{var p=document.createElement('script');p.src='https://assets.giocdn.com/sdk/webjs/giokit.min.js';p.onload=function(){var gioKit = new window.GioKit({ cssHref: 'https://bangumi.oss-cn-hangzhou.aliyuncs.com/giokit.css' })};document.head.appendChild(p);}catch(e){}})()"
+        "javascript:(function(){try{var p=document.createElement('script');p.src='https://assets.giocdn.com/sdk/webjs/giokit.min.js';p.onload=function(){var gioKit = new window.GioKit()};document.head.appendChild(p);}catch(e){}})()"
 
     override fun onBackPressed(): Boolean {
         if (binding.h5Web.canGoBack()) {

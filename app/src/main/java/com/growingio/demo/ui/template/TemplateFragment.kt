@@ -18,6 +18,7 @@
 package com.growingio.demo.ui.template
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.growingio.demo.R
+import com.growingio.demo.compose.ComposeActivity
 import com.growingio.demo.data.TemplateItem
 import com.growingio.demo.databinding.FragmentTemplateBinding
 import com.growingio.demo.ui.base.ViewBindingFragment
@@ -63,8 +65,13 @@ class TemplateFragment : ViewBindingFragment<FragmentTemplateBinding>(), Templat
     }
 
     override fun onItemClick(view: View, item: TemplateItem) {
-        // flutter
-        if (item.sort == 2) {
+
+        if (item.sort == 1) {
+            //jetpack compose
+            startActivity(Intent(requireContext(), ComposeActivity::class.java))
+            return
+        } else if (item.sort == 2) {
+            // flutter
             if (FlutterEngineCache.getInstance().get(FLUTTER_ENGINE_ID) == null) {
                 createFlutterEngineAndStart()
             } else {

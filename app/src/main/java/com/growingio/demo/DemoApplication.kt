@@ -11,6 +11,7 @@ import coil.decode.ImageDecoderDecoder
 import coil.decode.SvgDecoder
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
+import com.growingio.android.compose.ComposeLibraryGioModule
 import com.growingio.android.encoder.EncoderLibraryGioModule
 import com.growingio.android.sdk.autotrack.AutotrackConfiguration
 import com.growingio.android.sdk.autotrack.Autotracker
@@ -66,11 +67,11 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setEventFilterInterceptor(growingIOProvider)
                 .setIdMappingEnabled(true)
                 .setImpressionScale(0f)
-                .setAutoJsSdkInject(true)
+                .setAutoJsSdkInject(false)
 
                 .addPreloadComponent(EncoderLibraryGioModule())
+                .addPreloadComponent(ComposeLibraryGioModule())
 
-        autotrackConfiguration.isRequireAppProcessesEnabled = false
         // it's demo logic
         configWithDataStore(context, autotrackConfiguration)
         GrowingAutotracker.startWithConfiguration(context, autotrackConfiguration)
