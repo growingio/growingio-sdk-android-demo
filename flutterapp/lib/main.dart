@@ -16,7 +16,7 @@ void main() {
   var option = AutotrackerConfiguration(
       "0a1b4118dd954ec3bcc69da5138bdb96", "baffd6fb52b78ca7", "growing.bd71d91eb56f5f53");
   option.dataCollectServerHost = "https://napi.growingio.com";
-  option.debugEnabled = false;
+  option.debugEnabled = true;
   option.dataCollectionEnable = true;
   option.androidConfig = AndroidConfiguration(
       channel: "google",

@@ -73,11 +73,9 @@ fun JetsnackApp() {
                     composableWithCompositionLocal(
                         route = MainDestinations.HOME_ROUTE
                     ) { backStackEntry ->
-                        GrowingComposePage(alias = "MainContainer") {
-                            MainContainer(
-                                onSnackSelected = jetsnackNavController::navigateToSnackDetail
-                            )
-                        }
+                        MainContainer(
+                            onSnackSelected = jetsnackNavController::navigateToSnackDetail
+                        )
                     }
 
                     composableWithCompositionLocal(

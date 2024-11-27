@@ -13,6 +13,7 @@ import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import com.growingio.android.compose.ComposeLibraryGioModule
 import com.growingio.android.encoder.EncoderLibraryGioModule
+import com.growingio.android.flutter.FlutterLibraryGioModule
 import com.growingio.android.sdk.autotrack.AutotrackConfiguration
 import com.growingio.android.sdk.autotrack.Autotracker
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
@@ -70,6 +71,7 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setAutoJsSdkInject(false)
 
                 .addPreloadComponent(EncoderLibraryGioModule())
+                .addPreloadComponent(FlutterLibraryGioModule())
                 .addPreloadComponent(ComposeLibraryGioModule())
 
         // it's demo logic

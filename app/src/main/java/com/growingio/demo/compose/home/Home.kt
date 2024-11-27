@@ -135,7 +135,7 @@ fun NavGraphBuilder.addHomeGraph(
     modifier: Modifier = Modifier
 ) {
     composable(HomeSections.FEED.route) { from ->
-        GrowingComposePage("Feed", modifier) {
+        GrowingComposePage("Feed") {
             Feed(
                 onSnackClick = { id, origin -> onSnackSelected(id, origin, from) },
                 modifier
@@ -143,7 +143,7 @@ fun NavGraphBuilder.addHomeGraph(
         }
     }
     composable(HomeSections.SEARCH.route) { from ->
-        GrowingComposePage("Search", modifier) {
+        GrowingComposePage("Search") {
             Search(
                 onSnackClick = { id, origin -> onSnackSelected(id, origin, from) },
                 modifier
@@ -151,7 +151,7 @@ fun NavGraphBuilder.addHomeGraph(
         }
     }
     composable(HomeSections.CART.route) { from ->
-        GrowingComposePage("Cart", modifier) {
+        GrowingComposePage("Cart") {
             Cart(
                 onSnackClick = { id, origin -> onSnackSelected(id, origin, from) },
                 modifier
@@ -160,7 +160,7 @@ fun NavGraphBuilder.addHomeGraph(
 
     }
     composable(HomeSections.PROFILE.route) {
-        GrowingComposePage("Profile", modifier) {
+        GrowingComposePage("Profile") {
             Profile(modifier)
         }
     }
