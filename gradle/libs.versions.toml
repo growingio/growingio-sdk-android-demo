@@ -28,19 +28,19 @@ lottie = "6.0.0"
 markwon = "4.6.2"
 
 # growingio
-growingio = "4.4.0-SNAPSHOT"
-growingioPlugin = "4.4.0-SNAPSHOT"
+growingio = "4.4.0"
+growingioPlugin = "4.4.0"
 
-pluginGradle = "8.1.1" #"7.4.2"
-kotlin = "2.0.0"
-ksp = "2.0.0-1.0.21"
+pluginGradle = "8.7.3" #"7.4.2"
+kotlin = "2.0.21"
+ksp = "2.0.21-1.0.26"
 # https://github.com/google/protobuf-gradle-plugin
 # error with 0.9.2 https://github.com/google/protobuf-gradle-plugin/issues/656
 protobufPlugin = "0.9.1"
 protobuf = "3.22.3"
 # https://github.com/google/dagger
-dagger = "2.52"
-hilt = "2.52"
+dagger = "2.54"
+hilt = "2.54"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "pluginGradle" }

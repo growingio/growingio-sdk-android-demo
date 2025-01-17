@@ -16,12 +16,12 @@ plugins {
 
 android {
     namespace 'com.growingio.demo'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.growingio.demo"
         minSdk 23
-        targetSdk 34
+        targetSdk 35
         versionCode 222
         versionName "2.2.2"
 
