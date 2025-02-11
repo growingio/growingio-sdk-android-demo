@@ -77,6 +77,8 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object MaterialTextFieldPage : PageNav(FragmentNav.UI, "textfield")
     object MaterialWebViewPage : PageNav(FragmentNav.UI, "webview")
     object MaterialExpandablePage : PageNav(FragmentNav.UI, "expandable")
+    object MaterialViewPagerPage : PageNav(FragmentNav.UI, "viewpager")
+    object MaterialRecyclerViewHorPage : PageNav(FragmentNav.UI, "recyclerview_hor")
 
     object WidgetAndroidH5Page : PageNav(FragmentNav.Widgets, "androidH5", params = arrayListOf("url", "giokit")) {
         fun toUrl(url: String, webGiokit: Boolean): String {

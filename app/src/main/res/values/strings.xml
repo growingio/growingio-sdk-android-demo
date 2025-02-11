@@ -216,6 +216,8 @@
         <item>Item 3</item>
         <item>Item 4</item>
     </string-array>
+    <string name="material_recyclerview_hor">ViewSlider</string>
+    <string name="material_viewpager2">ViewPager</string>
     <string name="material_navigation">Navigation</string>
     <string name="material_navigation_drawer">NavigationDrawer</string>
     <string name="material_navigation_drawer_open">Show Navigation Drawer</string>

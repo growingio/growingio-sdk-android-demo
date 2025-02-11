@@ -22,8 +22,8 @@ android {
         applicationId "com.growingio.demo"
         minSdk 23
         targetSdk 35
-        versionCode 222
-        versionName "2.2.2"
+        versionCode 230
+        versionName "2.3.0"
 
         buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
 
