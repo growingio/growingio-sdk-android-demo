@@ -34,6 +34,7 @@ abstract class ViewBindingFragment<T : ViewBinding> : BaseFragment() {
 
     private var _binding: T? = null
     val binding get() = _binding!!
+    fun onBindCreated() = _binding != null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = createViewBinding(inflater, container)

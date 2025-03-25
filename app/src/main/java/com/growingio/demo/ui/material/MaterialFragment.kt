@@ -47,10 +47,12 @@ class MaterialFragment : ViewBindingFragment<FragmentMaterialBinding>() {
     private fun lifecycleStateBinding() {
         lifecycleScope.launch {
             viewModel.materialItemState.collect {
+                if (!onBindCreated()) return@collect
                 when (it) {
                     is MaterialItemState.MaterialItemSet -> {
                         (binding.materialRv.adapter as MaterialAdapter).loadData(it.set)
                     }
+
                     else -> {}
                 }
             }

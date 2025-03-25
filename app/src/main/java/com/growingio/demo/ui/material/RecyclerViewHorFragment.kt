@@ -17,18 +17,25 @@
 
 package com.growingio.demo.ui.material
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
 import com.growingio.demo.databinding.FragmentMaterialRecyclerHorBinding
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.base.ViewBindingFragment
+import com.growingio.demo.ui.material.ViewPager2Fragment.Companion.PAGE_ARRAY
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -57,6 +64,9 @@ class RecyclerViewHorFragment : ViewBindingFragment<FragmentMaterialRecyclerHorB
 
         val snapHelper = androidx.recyclerview.widget.PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.recycler)
+
+        binding.viewPager.adapter = ViewPagerSampleAdapter(requireContext(), childFragmentManager)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
 
     @dagger.Module
@@ -74,6 +84,26 @@ class RecyclerViewHorFragment : ViewBindingFragment<FragmentMaterialRecyclerHorB
             )
         }
     }
+}
+
+class ViewPagerSampleAdapter(val context:Context,fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+
+    override fun getItem(position: Int): Fragment {
+        val resId = PAGE_ARRAY[position]
+        val content = context.getString(resId)
+        return TestFragment.newInstance(content, position)
+    }
+
+    override fun getCount(): Int {
+        return PAGE_ARRAY.size
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        val resId = PAGE_ARRAY[position]
+        return context.getString(resId)
+    }
+
+
 }
 
 class RecyclerHorSampleAdapter : RecyclerView.Adapter<RecyclerHorSampleAdapter.SliderViewHolder>() {

@@ -103,7 +103,7 @@ class ViewPager2Fragment : ViewBindingFragment<FragmentMaterialViewpager2Binding
         override fun createFragment(position: Int): Fragment {
             val resId = PAGE_ARRAY[position]
             val content = getString(resId)
-            return TestFragment.newInstance(content)
+            return TestFragment.newInstance(content, position)
         }
 
         override fun getItemCount(): Int {
