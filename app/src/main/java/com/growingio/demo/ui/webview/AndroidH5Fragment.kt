@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.growingio.demo.databinding.FragmentAndroidH5Binding
 import com.growingio.demo.ui.base.ViewBindingFragment
 import java.net.URLDecoder
@@ -44,7 +45,7 @@ class AndroidH5Fragment : ViewBindingFragment<FragmentAndroidH5Binding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.toolbar.setNavigationOnClickListener {
-            super.onBackPressed()
+            findNavController().navigateUp()
         }
 
         binding.toolbar.title = "Android WebView"
@@ -59,14 +60,18 @@ class AndroidH5Fragment : ViewBindingFragment<FragmentAndroidH5Binding>() {
 
         val url = arguments?.getString("url") ?: "about:blank"
         binding.h5Web.loadUrl(URLDecoder.decode(url))
-    }
 
-    override fun onBackPressed(): Boolean {
-        if (binding.h5Web.canGoBack()) {
-            binding.h5Web.goBack()
-            return true
+        binding.preBtn.setOnClickListener {
+            if (binding.h5Web.canGoBack()) {
+                binding.h5Web.goBack()
+            }
         }
-        return super.onBackPressed()
+
+        binding.nextBtn.setOnClickListener {
+            if (binding.h5Web.canGoForward()) {
+                binding.h5Web.goForward()
+            }
+        }
     }
 
     override fun onDestroyView() {

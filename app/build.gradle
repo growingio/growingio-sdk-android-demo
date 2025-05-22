@@ -15,14 +15,13 @@ plugins {
 
 android {
 	namespace 'com.growingio.demo'
-	compileSdk 34
+	compileSdk 35
 
 	defaultConfig {
 		applicationId "com.growingio.demo"
 		minSdk 23
-		targetSdk 34
-		versionCode 220
-		versionName "2.2.0"
+		versionCode 230
+		versionName "2.3.0"
 
 		buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
 
@@ -182,6 +181,7 @@ dependencies {
 	implementation 'com.growingio.android:json'
 	implementation 'com.growingio.android:apm'
 	implementation 'com.growingio.android:abtest'
+	implementation 'com.growingio.android:platform'
 
 	implementation project(path: ':code-annotation')
 	// disable Incremental compilation fails
