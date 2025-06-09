@@ -34,10 +34,10 @@ import com.growingio.demo.data.TemplateItem
 import com.growingio.demo.databinding.FragmentTemplateBinding
 import com.growingio.demo.ui.base.ViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
-//import io.flutter.embedding.android.FlutterActivity
-//import io.flutter.embedding.engine.FlutterEngine
-//import io.flutter.embedding.engine.FlutterEngineCache
-//import io.flutter.embedding.engine.dart.DartExecutor
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
+import io.flutter.embedding.engine.dart.DartExecutor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -72,11 +72,11 @@ class TemplateFragment : ViewBindingFragment<FragmentTemplateBinding>(), Templat
             return
         } else if (item.sort == 2) {
             // flutter
-//            if (FlutterEngineCache.getInstance().get(FLUTTER_ENGINE_ID) == null) {
-//                createFlutterEngineAndStart()
-//            } else {
-//                startFlutterEngine()
-//            }
+            if (FlutterEngineCache.getInstance().get(FLUTTER_ENGINE_ID) == null) {
+                createFlutterEngineAndStart()
+            } else {
+                startFlutterEngine()
+            }
             return
         }
         Toast.makeText(context, "敬请期待", Toast.LENGTH_SHORT).show()
@@ -96,7 +96,6 @@ class TemplateFragment : ViewBindingFragment<FragmentTemplateBinding>(), Templat
         super.onDestroyView()
     }
 
-    /**
     private fun createFlutterEngineAndStart() {
         lifecycleScope.launch {
             val dialog = withContext(Dispatchers.Main) {
@@ -126,7 +125,6 @@ class TemplateFragment : ViewBindingFragment<FragmentTemplateBinding>(), Templat
                 .build(requireContext().applicationContext)
         )
     }
-    **/
 
     companion object {
         const val FLUTTER_ENGINE_ID = "flutter_engine"
