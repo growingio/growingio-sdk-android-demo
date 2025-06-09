@@ -128,7 +128,7 @@ class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
         return try {
             navController.navigate(route, options)
             navController.currentDestination?.route == route
-        } catch (e: IllegalArgumentException) {
+        } catch (e: Exception) {
             false
         }
     }

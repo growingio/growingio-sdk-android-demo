@@ -19,18 +19,6 @@ plugins {
     alias libs.plugins.spotless apply false
 }
 
-allprojects {
-    tasks.withType(KotlinCompile).configureEach {
-        kotlinOptions {
-            // Treat all Kotlin warnings as errors
-            // allWarningsAsErrors = true
-
-            // Set JVM target to 17
-            jvmTarget = JavaVersion.VERSION_17
-        }
-    }
-}
-
 //./gradlew spotlessCheck  ==> check code
 //./gradlew spotlessApply  ==> format code
 subprojects {
