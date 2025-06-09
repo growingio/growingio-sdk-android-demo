@@ -211,7 +211,7 @@ dependencies {
     implementation libs.growingio.flutter
     implementation libs.growingio.compose
 
-    implementation project(path: ':flutter')
+    //implementation project(path: ':flutter')
     implementation project(path: ':code-annotation')
     // disable Incremental compilation fails
     ksp project(path: ':code-annotation:processor')
