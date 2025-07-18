@@ -1,7 +1,6 @@
 pluginManagement {
     repositories {
         google()
-        maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
         gradlePluginPortal()
         mavenLocal()
     }
@@ -12,7 +11,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://central.sonatype.com/repository/maven-snapshots/" }
         mavenLocal()
 
         String flutterStorageUrl = System.getenv("FLUTTER_STORAGE_BASE_URL") ?: "https://storage.googleapis.com"
@@ -28,6 +27,6 @@ include ':code-annotation'
 include ':code-annotation:processor'
 
 // for flutter module
-setBinding(new Binding([gradle: this]))
-evaluate(new File(settingsDir, 'flutterapp/.android/include_flutter.groovy'))
+//setBinding(new Binding([gradle: this]))
+//evaluate(new File(settingsDir, 'flutterapp/.android/include_flutter.groovy'))
 

@@ -29,7 +29,7 @@ markwon = "4.6.2"
 
 # growingio
 growingio = "4.4.3"
-growingioPlugin = "4.4.0"
+growingioPlugin = "4.4.4"
 
 pluginGradle = "8.10.0" #"7.4.2"
 kotlin = "2.1.20"

@@ -16,12 +16,12 @@ plugins {
 
 android {
     namespace 'com.growingio.demo'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.growingio.demo"
         minSdk 23
-        targetSdk 35
+        targetSdk 36
         versionCode 230
         versionName "2.3.0"
 
@@ -211,7 +211,7 @@ dependencies {
     implementation libs.growingio.flutter
     implementation libs.growingio.compose
 
-    implementation project(path: ':flutter')
+//    implementation project(path: ':flutter')
     implementation project(path: ':code-annotation')
     // disable Incremental compilation fails
     ksp project(path: ':code-annotation:processor')

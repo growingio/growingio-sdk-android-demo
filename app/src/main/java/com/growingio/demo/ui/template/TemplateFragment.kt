@@ -17,7 +17,6 @@
 
 package com.growingio.demo.ui.template
 
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,17 +26,16 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.growingio.demo.R
 import com.growingio.demo.compose.ComposeActivity
 import com.growingio.demo.data.TemplateItem
 import com.growingio.demo.databinding.FragmentTemplateBinding
 import com.growingio.demo.ui.base.ViewBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
-import io.flutter.embedding.android.FlutterActivity
-import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.embedding.engine.FlutterEngineCache
-import io.flutter.embedding.engine.dart.DartExecutor
+//import io.flutter.embedding.android.FlutterActivity
+//import io.flutter.embedding.engine.FlutterEngine
+//import io.flutter.embedding.engine.FlutterEngineCache
+//import io.flutter.embedding.engine.dart.DartExecutor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -70,61 +68,62 @@ class TemplateFragment : ViewBindingFragment<FragmentTemplateBinding>(), Templat
             //jetpack compose
             startActivity(Intent(requireContext(), ComposeActivity::class.java))
             return
-        } else if (item.sort == 2) {
-            // flutter
-            if (FlutterEngineCache.getInstance().get(FLUTTER_ENGINE_ID) == null) {
-                createFlutterEngineAndStart()
-            } else {
-                startFlutterEngine()
-            }
-            return
+//        } else if (item.sort == 2) {
+//            // flutter
+//            if (FlutterEngineCache.getInstance().get(FLUTTER_ENGINE_ID) == null) {
+//                createFlutterEngineAndStart()
+//            } else {
+//                startFlutterEngine()
+//            }
+//            return
+//        }
         }
         Toast.makeText(context, "敬请期待", Toast.LENGTH_SHORT).show()
     }
 
-    private fun showFlutterEngineLoading(): Dialog {
-        val dialog = MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.template_flutter_dialog_title)
-            .setIcon(R.drawable.ic_flutter)
-            .setView(R.layout.dialog_flutter_loading)
-            .create()
-        dialog.show()
-        return dialog
-    }
+//    private fun showFlutterEngineLoading(): Dialog {
+//        val dialog = MaterialAlertDialogBuilder(requireContext())
+//            .setTitle(R.string.template_flutter_dialog_title)
+//            .setIcon(R.drawable.ic_flutter)
+//            .setView(R.layout.dialog_flutter_loading)
+//            .create()
+//        dialog.show()
+//        return dialog
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
     }
 
-    private fun createFlutterEngineAndStart() {
-        lifecycleScope.launch {
-            val dialog = withContext(Dispatchers.Main) {
-                showFlutterEngineLoading()
-            }
-            val flutterEngine = FlutterEngine(requireContext().applicationContext)
-            flutterEngine.dartExecutor.executeDartEntrypoint(
-                DartExecutor.DartEntrypoint.createDefault()
-            )
-            FlutterEngineCache.getInstance().put(FLUTTER_ENGINE_ID, flutterEngine)
+//    private fun createFlutterEngineAndStart() {
+//        lifecycleScope.launch {
+//            val dialog = withContext(Dispatchers.Main) {
+//                showFlutterEngineLoading()
+//            }
+//            val flutterEngine = FlutterEngine(requireContext().applicationContext)
+//            flutterEngine.dartExecutor.executeDartEntrypoint(
+//                DartExecutor.DartEntrypoint.createDefault()
+//            )
+//            FlutterEngineCache.getInstance().put(FLUTTER_ENGINE_ID, flutterEngine)
+//
+//            withContext(Dispatchers.Default) {
+//                // wait 2s for flutter engine init
+//                delay(2000)
+//            }
+//            withContext(Dispatchers.Main) {
+//                dialog.dismiss()
+//                startFlutterEngine()
+//            }
+//        }
+//    }
 
-            withContext(Dispatchers.Default) {
-                // wait 2s for flutter engine init
-                delay(2000)
-            }
-            withContext(Dispatchers.Main) {
-                dialog.dismiss()
-                startFlutterEngine()
-            }
-        }
-    }
-
-    private fun startFlutterEngine() {
-        startActivity(
-            FlutterActivity
-                .withCachedEngine(FLUTTER_ENGINE_ID)
-                .build(requireContext().applicationContext)
-        )
-    }
+//    private fun startFlutterEngine() {
+//        startActivity(
+//            FlutterActivity
+//                .withCachedEngine(FLUTTER_ENGINE_ID)
+//                .build(requireContext().applicationContext)
+//        )
+//    }
 
     companion object {
         const val FLUTTER_ENGINE_ID = "flutter_engine"
