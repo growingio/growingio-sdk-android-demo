@@ -25,7 +25,6 @@ import com.growingio.demo.navgraph.NavGraph.MAIN_GRAPH
 import com.growingio.demo.navgraph.PageNav
 import com.growingio.demo.ui.home.HomeFragment
 import com.growingio.demo.ui.webview.AndroidH5Fragment
-import com.growingio.demo.ui.webview.AndroidX5Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
@@ -92,12 +91,6 @@ class MainActivity : AppCompatActivity() {
 
                 fragment<AndroidH5Fragment>(PageNav.WidgetAndroidH5Page.route()) {
                     argument(PageNav.WidgetAndroidH5Page.paramName()) {
-                        type = NavType.StringType
-                    }
-                }
-
-                fragment<AndroidX5Fragment>(PageNav.WidgetAndroidX5Page.route()) {
-                    argument(PageNav.WidgetAndroidX5Page.paramName()) {
                         type = NavType.StringType
                     }
                 }

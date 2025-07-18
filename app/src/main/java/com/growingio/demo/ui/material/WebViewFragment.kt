@@ -27,6 +27,9 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.checkbox.MaterialCheckBox
+import com.growingio.android.hybrid.HybridConfig
+import com.growingio.android.sdk.autotrack.GrowingAutotracker
 import com.growingio.demo.R
 import com.growingio.demo.data.MaterialItem
 import com.growingio.demo.data.settingsDataStore
@@ -51,6 +54,7 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
 
     private lateinit var barScannerLauncher: ActivityResultLauncher<Void?>
     private var webViewType = 0
+    private var autoWebJsInject = false
     private val urlHistoryAdapter by lazy {
         UrlAdapter(requireContext()) {
             binding.url.editText?.setText(it)
@@ -62,6 +66,9 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
         barScannerLauncher = registerForActivityResult(BarScanner(requireContext())) {
             binding.url.editText?.setText(it)
         }
+
+        val hybridConfig = GrowingAutotracker.get().context.configurationProvider.getConfiguration<HybridConfig>(HybridConfig::class.java)
+        autoWebJsInject = hybridConfig?.isAutoGrowingJsSdk ?: false
     }
 
     override fun createViewBinding(
@@ -100,9 +107,17 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
             urlHistoryAdapter.putUrl(linkUrl.toString())
             val url = URLEncoder.encode(linkUrl.toString())
 
-            when (webViewType) {
-                0 -> findParentNavController()?.navigate(PageNav.WidgetAndroidH5Page.toUrl(url))
-                1 -> findParentNavController()?.navigate(PageNav.WidgetAndroidX5Page.toUrl(url))
+            val enableWebGiokit = binding.webGiokit.isChecked
+
+            findParentNavController()?.navigate(PageNav.WidgetAndroidH5Page.toUrl(url, enableWebGiokit))
+        }
+
+        binding.webJs.setOnCheckedChangeListener { checkBox, checked ->
+            val hybridConfig = GrowingAutotracker.get().context.configurationProvider.getConfiguration<HybridConfig>(HybridConfig::class.java)
+            if (checked) {
+                hybridConfig?.setAutoJsSdkInject(true)
+            } else {
+                hybridConfig?.setAutoJsSdkInject(false)
             }
         }
 
@@ -113,6 +128,10 @@ class WebViewFragment : ViewBindingFragment<FragmentMaterialWebviewBinding>() {
     override fun onDestroy() {
         super.onDestroy()
         barScannerLauncher.unregister()
+        if (!autoWebJsInject) {
+            val hybridConfig = GrowingAutotracker.get().context.configurationProvider.getConfiguration<HybridConfig>(HybridConfig::class.java)
+            hybridConfig?.setAutoJsSdkInject(false)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

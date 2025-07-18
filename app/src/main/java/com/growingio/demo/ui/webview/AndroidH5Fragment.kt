@@ -43,6 +43,9 @@ class AndroidH5Fragment : ViewBindingFragment<FragmentAndroidH5Binding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val url = arguments?.getString("url") ?: "about:blank"
+        val enableGiokit = arguments?.getString("giokit") ?: "false"
+
         binding.toolbar.setNavigationOnClickListener {
             super.onBackPressed()
         }
@@ -50,16 +53,20 @@ class AndroidH5Fragment : ViewBindingFragment<FragmentAndroidH5Binding>() {
         binding.toolbar.title = "Android WebView"
         binding.h5Web.setOnWebViewChangedListener(object : SdkH5WebView.OnWebViewChangedListener {
             override fun onLoadingProgress(progress: Int) {
+                if (progress == 100 && enableGiokit == "true") {
+                    binding.h5Web.evaluateJavascript(giokitScript) {}
+                }
             }
 
             override fun onTitleChanged(title: String?) {
                 binding.toolbar.title = title
             }
         })
-
-        val url = arguments?.getString("url") ?: "about:blank"
         binding.h5Web.loadUrl(URLDecoder.decode(url))
     }
+
+    val giokitScript =
+        "javascript:(function(){try{var p=document.createElement('script');p.src='https://assets.giocdn.com/sdk/webjs/giokit.min.js';p.onload=function(){var gioKit = new window.GioKit()};document.head.appendChild(p);}catch(e){}})()"
 
     override fun onBackPressed(): Boolean {
         if (binding.h5Web.canGoBack()) {

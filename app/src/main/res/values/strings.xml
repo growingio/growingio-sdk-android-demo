@@ -172,6 +172,7 @@
     <string name="component_webservice_toast">请扫描二维码获取链接</string>
     <string name="component_webservice_et_hint">扫描二维码连接电脑与移动应用</string>
     <string name="component_webservice_helper">访问链接启动服务</string>
+    <string name="component_flutter">Flutter</string>
 
     <string name="material_test_btn">测试</string>
     <string name="material_button">Material Button</string>
@@ -215,6 +216,8 @@
         <item>Item 3</item>
         <item>Item 4</item>
     </string-array>
+    <string name="material_recyclerview_hor">ViewSlider</string>
+    <string name="material_viewpager2">ViewPager</string>
     <string name="material_navigation">Navigation</string>
     <string name="material_navigation_drawer">NavigationDrawer</string>
     <string name="material_navigation_drawer_open">Show Navigation Drawer</string>
@@ -236,6 +239,8 @@
     <string name="material_webview_input_hint">请输入跳转的链接</string>
     <string name="material_webview_input_helper">可以使用不同的WebView查看效果</string>
     <string name="material_webview_go">访问</string>
+    <string name="material_webview_giokit">是否注入 Web Giokit</string>
+    <string name="material_webview_js">是否注入 GIO Web JS</string>
 
 
     <string name="template_compose_title">Compose Demo</string>
@@ -244,6 +249,7 @@
     <string name="template_flutter_desc">Flutter 集成GrowingIO SDK 的实例演示</string>
     <string name="template_rn_title">RN Demo</string>
     <string name="template_rn_desc">ReactNative 集成GrowingIO SDK 的实例演示</string>
+    <string name="template_flutter_dialog_title">Flutter Engine Loading</string>
 
 
     <string name="sample_text" translatable="false">
@@ -253,4 +259,51 @@
     \n\n\t\tAenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh. Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc, quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus convallis.
     \n\n\t\tPhasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper, libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
   </string>
+
+    <!-- Compose -->
+    <string name="compose_home_feed">Home</string>
+    <string name="compose_home_search">Search</string>
+    <string name="compose_home_cart">My Cart</string>
+    <string name="compose_home_profile">Profile</string>
+    <string name="compose_label_filters">Filters</string>
+    <string name="compose_label_select_delivery">Select delivery address</string>
+    <string name="compose_label_increase">Increase</string>
+    <string name="compose_label_decrease">Decrease</string>
+    <string name="compose_work_in_progress">This is currently work in progress</string>
+    <string name="compose_grab_beverage">Grab a beverage and check back later!</string>
+    <string name="compose_close">Close</string>
+    <string name="compose_back">Back</string>
+    <string name="compose_reset">Reset</string>
+    <string name="compose_sort">Sort</string>
+    <string name="compose_price">Price</string>
+    <string name="compose_category">Category</string>
+    <string name="compose_lifestyle">LifeStyle</string>
+    <string name="compose_max_calories">Max Calories</string>
+    <string name="compose_per_serving">per serving</string>
+    <string name="compose_detail_header">Details</string>
+    <string name="compose_see_more">SEE MORE</string>
+    <string name="compose_see_less">SEE LESS</string>
+    <string name="compose_ingredients">Ingredients</string>
+    <string name="compose_ingredients_list">Vanilla, Almond Flour, Eggs, Butter, Cream, Sugar</string>
+    <string name="compose_quantity">Qty</string>
+    <string name="compose_add_to_cart">ADD TO CART</string>
+    <string name="compose_search_jetsnack">Search Jetsnack</string>
+    <string name="compose_search_no_matches">No matches for “%1s”</string>
+    <string name="compose_search_no_matches_retry">Try broadening your search</string>
+    <string name="compose_search_count">%1d items</string>
+    <string name="compose_label_add">Add to cart</string>
+    <string name="compose_label_search">Perform search</string>
+    <string name="compose_cart_order_header">Order (%1s)</string>
+    <plurals name="compose_cart_order_count">
+        <item quantity="one">%1d item</item>
+        <item quantity="other">%1d items</item>
+    </plurals>
+    <string name="compose_cart_summary_header">Summary</string>
+    <string name="compose_cart_subtotal_label">Subtotal</string>
+    <string name="compose_cart_shipping_label">Shipping &amp; Handling</string>
+    <string name="compose_cart_total_label">Total</string>
+    <string name="compose_cart_checkout">Checkout</string>
+    <string name="compose_cart_increase_error">There was an error and the quantity couldn\'t be increased. Please try again.</string>
+    <string name="compose_cart_decrease_error">There was an error and the quantity couldn\'t be decreased. Please try again.</string>
+    <string name="compose_remove">Remove item</string>
 </resources>

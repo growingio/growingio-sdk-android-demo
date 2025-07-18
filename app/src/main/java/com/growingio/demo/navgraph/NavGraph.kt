@@ -61,6 +61,8 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object ComponentAdvertPage : PageNav(FragmentNav.DashBoard, "advert")
     object ComponentABTestPage : PageNav(FragmentNav.DashBoard, "abTest")
     object ComponentWebServicePage : PageNav(FragmentNav.DashBoard, "webService")
+    object ComponentFlutterPage : PageNav(FragmentNav.DashBoard, "flutter")
+    object ComponentComposePage : PageNav(FragmentNav.DashBoard, "compose")
 
     object MaterialRecyclerViewPage : PageNav(FragmentNav.UI, "recyclerview")
     object MaterialBottomAppBarPage : PageNav(FragmentNav.UI, "bottomappbar")
@@ -75,10 +77,12 @@ internal sealed class PageNav(val root: FragmentNav, val path: String? = null, v
     object MaterialTextFieldPage : PageNav(FragmentNav.UI, "textfield")
     object MaterialWebViewPage : PageNav(FragmentNav.UI, "webview")
     object MaterialExpandablePage : PageNav(FragmentNav.UI, "expandable")
+    object MaterialViewPagerPage : PageNav(FragmentNav.UI, "viewpager")
+    object MaterialRecyclerViewHorPage : PageNav(FragmentNav.UI, "recyclerview_hor")
 
-    object WidgetAndroidH5Page : PageNav(FragmentNav.Widgets, "androidH5", params = arrayListOf("url")) {
-        fun toUrl(url: String): String {
-            return route().replace("{${paramName()}}", url)
+    object WidgetAndroidH5Page : PageNav(FragmentNav.Widgets, "androidH5", params = arrayListOf("url", "giokit")) {
+        fun toUrl(url: String, webGiokit: Boolean): String {
+            return route().replace("{${paramName()}}", url).replace("{${paramName(1)}}", webGiokit.toString())
         }
     }
 

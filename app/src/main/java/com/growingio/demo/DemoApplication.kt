@@ -11,6 +11,9 @@ import coil.decode.ImageDecoderDecoder
 import coil.decode.SvgDecoder
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
+import com.growingio.android.compose.ComposeLibraryGioModule
+import com.growingio.android.encoder.EncoderLibraryGioModule
+import com.growingio.android.flutter.FlutterLibraryGioModule
 import com.growingio.android.sdk.autotrack.AutotrackConfiguration
 import com.growingio.android.sdk.autotrack.Autotracker
 import com.growingio.android.sdk.autotrack.GrowingAutotracker
@@ -55,9 +58,9 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setDataCollectionServerHost(GROWINGIO_SERVER_HOST)
                 .setChannel("demo")
                 .setDebugEnabled(BuildConfig.DEBUG)
-                .setAndroidIdEnabled(true)
+                .setAndroidIdEnabled(false)
                 .setPageRuleXml(R.xml.growingio_setting)
-                .setRequireAppProcessesEnabled(true)
+                .setRequireAppProcessesEnabled(false)
                 .setDataCollectionEnabled(agreePolicy)
                 .setCellularDataLimit(10)
                 .setDataUploadInterval(15)
@@ -65,6 +68,11 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setEventFilterInterceptor(growingIOProvider)
                 .setIdMappingEnabled(true)
                 .setImpressionScale(0f)
+                .setAutoJsSdkInject(false)
+
+                .addPreloadComponent(EncoderLibraryGioModule())
+                .addPreloadComponent(FlutterLibraryGioModule())
+                .addPreloadComponent(ComposeLibraryGioModule())
 
         // it's demo logic
         configWithDataStore(context, autotrackConfiguration)

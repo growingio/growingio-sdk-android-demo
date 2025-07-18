@@ -1,189 +1,218 @@
 plugins {
-	id 'com.android.application'
+    id 'com.android.application'
 
-	id 'com.google.dagger.hilt.android'
+    id 'com.google.dagger.hilt.android'
 
-	id 'org.jetbrains.kotlin.android'
-	id 'org.jetbrains.kotlin.kapt'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp'
 
-	id 'com.google.devtools.ksp'
+    alias libs.plugins.protobuf
 
-	alias libs.plugins.protobuf
+    alias libs.plugins.growingio.plugin
+    alias libs.plugins.growingio.compose.plugin
 
-	id 'com.growingio.android.autotracker'
+    alias libs.plugins.compose
 }
 
 android {
-	namespace 'com.growingio.demo'
-	compileSdk 34
+    namespace 'com.growingio.demo'
+    compileSdk 36
 
-	defaultConfig {
-		applicationId "com.growingio.demo"
-		minSdk 23
-		targetSdk 34
-		versionCode 220
-		versionName "2.2.0"
+    defaultConfig {
+        applicationId "com.growingio.demo"
+        minSdk 23
+        targetSdk 36
+        versionCode 230
+        versionName "2.3.0"
 
-		buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
+        buildConfigField("String", "GROWINGIO_SDK_VERSION", "\"${libs.versions.growingio.get()}\"")
 
-		ndk {
-			// Filter for architectures supported by Flutter.
-			abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
-		}
+        ndk {
+            // Filter for architectures supported by Flutter.
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+        }
 
-		//testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-		testInstrumentationRunner "com.growingio.demo.GrowingAndroidJUnitRunner"
-	}
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.growingio.demo.GrowingAndroidJUnitRunner"
+    }
 
-	signingConfigs {
-		release {
-			keyAlias "com.growingio.demo"
-			keyPassword "sdk2023"
-			storeFile file("../demo.jks")
-			storePassword "growingio2023"
-		}
-	}
+    signingConfigs {
+        release {
+            keyAlias "com.growingio.demo"
+            keyPassword "sdk2023"
+            storeFile file("../demo.jks")
+            storePassword "growingio2023"
+        }
+    }
 
 
-	flavorDimensions "channel"
-	productFlavors {
-		github {
-			dimension "channel"
-		}
-	}
+    flavorDimensions "channel"
+    productFlavors {
+        github {
+            dimension "channel"
+        }
+    }
 
-	buildTypes {
-		debug {
-			testCoverageEnabled = true
-			minifyEnabled false
-		}
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+            minifyEnabled false
+        }
 
-		release {
-			signingConfig signingConfigs.release
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-		}
-	}
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
 
-	applicationVariants.all { variant ->
-		variant.outputs.each { output ->
-			output.outputFileName = "GrowingIO-DEMO-${defaultConfig.versionName}.apk"
-		}
-	}
+        profile {
+            initWith debug
+        }
+    }
 
-	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_17
-		targetCompatibility JavaVersion.VERSION_17
-	}
-	kotlinOptions {
-		jvmTarget = '17'
-	}
-	buildFeatures {
-		viewBinding true
-		buildConfig true
-	}
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFileName = "GrowingIO-DEMO-${defaultConfig.versionName}.apk"
+        }
+    }
 
-	sourceSets {
-		main {
-			proto {
-				srcDir 'src/main/proto'
-				include '**/*.proto'
-			}
-		}
-	}
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        compose true
+        viewBinding true
+        buildConfig true
+    }
+
+    packaging.resources {
+        // Multiple dependency bring these files in. Exclude them to enable
+        // our test APK to build (has no effect on our AARs)
+        excludes += "/META-INF/AL2.0"
+        excludes += "/META-INF/LGPL2.1"
+    }
+
+    sourceSets {
+        main {
+            proto {
+                srcDir 'src/main/proto'
+                include '**/*.proto'
+            }
+        }
+    }
 }
 
 growingAutotracker {
-	logEnabled false
-	excludePackages "com.growingio.demo.ui.widgets.LogcatView", "androidx.navigation.fragment.NavHostFragment"
+    logEnabled false
+    excludePackages "com.growingio.demo.ui.widgets.LogcatView", "androidx.navigation.fragment.NavHostFragment"
 
-	giokit {
-		enabled true  //开启即可
-		trackerFinderEnabled true
-		autoAttachEnabled true
-		releaseEnabled false
-		autoInstallVersion "2.1.2"
-	}
+    giokit {
+        enabled true  //开启即可
+        trackerFinderEnabled true
+        autoAttachEnabled true
+        releaseEnabled false
+        autoInstallVersion "2.1.2"
+    }
 }
 
 protobuf {
-	protoc {
-		artifact = "com.google.protobuf:protoc:${libs.versions.protobuf.get()}"
-	}
-	generateProtoTasks {
-		all().configureEach { task ->
-			task.builtins {
-				java {
-					option "lite"
-				}
-			}
-		}
-	}
+    protoc {
+        artifact = "com.google.protobuf:protoc:${libs.versions.protobuf.get()}"
+    }
+    generateProtoTasks {
+        all().configureEach { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
+    }
 }
 
 ksp {
-	arg("source.dir", "${projectDir}/src/main/assets/code/")
+    arg("source.dir", "${projectDir}/src/main/assets/code/")
 }
 
 configurations {
-	implementation.exclude group: 'org.jetbrains', module: 'annotations'
+    implementation.exclude group: 'org.jetbrains', module: 'annotations'
 }
 
 dependencies {
 
-	implementation libs.bundles.androidx
-	implementation libs.bundles.lifecycle.viewmodel
-	implementation libs.bundles.navigation
+    implementation libs.bundles.androidx
+    implementation libs.bundles.lifecycle.viewmodel
+    implementation libs.bundles.navigation
+    implementation libs.androidx.constraintlayout.compose
 
-	implementation libs.google.material
+    implementation libs.google.material
 
-	implementation libs.androidx.splashscreen
-	implementation libs.hilt.library
+    implementation libs.androidx.splashscreen
+    implementation libs.hilt.library
 
 
-	implementation libs.kotlin.stdlib
-	implementation libs.kotlin.coroutines.core
-	implementation libs.kotlin.coroutines.android
-	implementation libs.kotlin.coroutines.guava
+    implementation libs.kotlin.stdlib
+    implementation libs.kotlin.coroutines.core
+    implementation libs.kotlin.coroutines.android
+    implementation libs.kotlin.coroutines.guava
 
-	implementation libs.androidx.datastore
-	implementation libs.protobuf.javalite
-	implementation libs.lottie
+    implementation libs.androidx.datastore
+    implementation libs.protobuf.javalite
+    implementation libs.lottie
 
-	implementation libs.bundles.coil
-	implementation libs.bundles.markwon
+    implementation libs.bundles.coil
+    implementation libs.bundles.markwon
 
-	implementation libs.bundles.camerax
-	implementation libs.barcode.scanning
-	implementation files('libs/tbs_sdk_44051.jar')
+    implementation libs.bundles.camerax
+    implementation libs.barcode.scanning
 
-	kapt libs.hilt.compiler
-	kapt libs.androidx.lifecycle.compiler
+    ksp libs.hilt.compiler
+    ksp libs.androidx.lifecycle.compiler
 
-	testImplementation libs.junit
-	testImplementation libs.kotlin.coroutines.test
-	androidTestImplementation libs.bundles.androidx.test
-	androidTestImplementation libs.kotlin.coroutines.test
-	androidTestImplementation(libs.bundles.espresso) {
-		exclude module: "protobuf-lite"
-	}
-	androidTestImplementation libs.okhttp.mockwebserver
-	debugImplementation libs.androidx.fragment.testing
-	//debugImplementation libs.androidx.test.core
+    testImplementation libs.junit
+    testImplementation libs.kotlin.coroutines.test
+    androidTestImplementation libs.bundles.androidx.test
+    androidTestImplementation libs.kotlin.coroutines.test
+    androidTestImplementation(libs.bundles.espresso) {
+        exclude module: "protobuf-lite"
+    }
+    androidTestImplementation libs.okhttp.mockwebserver
+    debugImplementation libs.androidx.fragment.testing
+    //debugImplementation libs.androidx.test.core
 
-	//debugImplementation libs.leakCanary
+    //debugImplementation libs.leakCanary
 
-	implementation platform("com.growingio.android:autotracker-bom:${libs.versions.growingio.get()}")
-	implementation 'com.growingio.android:autotracker'
-	implementation 'com.growingio.android:encoder'
-	implementation 'com.growingio.android:protobuf'
-	implementation 'com.growingio.android:oaid'
-	implementation 'com.growingio.android:ads'
-	implementation 'com.growingio.android:json'
-	implementation 'com.growingio.android:apm'
-	implementation 'com.growingio.android:abtest'
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.androidx.activity.compose
+    implementation libs.androidx.compose.runtime
+    implementation libs.androidx.compose.foundation
+    implementation libs.androidx.compose.foundation.layout
+    implementation libs.androidx.compose.ui
+    implementation libs.androidx.compose.ui.util
+    implementation libs.androidx.compose.material3
+    implementation libs.androidx.compose.animation
+    implementation libs.androidx.compose.material.iconsExtended
+    implementation libs.androidx.compose.ui.tooling.preview
+    debugImplementation libs.androidx.compose.ui.tooling
 
-	implementation project(path: ':code-annotation')
-	// disable Incremental compilation fails
-	ksp project(path: ':code-annotation:processor')
+    implementation platform(libs.growingio.autotracker.bom)
+    implementation libs.growingio.autotracker
+    implementation libs.growingio.encoder
+    implementation libs.growingio.protobuf
+    implementation libs.growingio.oaid
+    implementation libs.growingio.ads
+    implementation libs.growingio.json
+    implementation libs.growingio.apm
+    implementation libs.growingio.abtest
+    implementation libs.growingio.flutter
+    implementation libs.growingio.compose
+
+//    implementation project(path: ':flutter')
+    implementation project(path: ':code-annotation')
+    // disable Incremental compilation fails
+    ksp project(path: ':code-annotation:processor')
 }
