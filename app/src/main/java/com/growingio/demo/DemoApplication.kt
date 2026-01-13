@@ -57,7 +57,7 @@ class GrowingioInitializer : Initializer<Autotracker> {
                 .setDataSourceId(GROWINGIO_DATASOURCE_ID)
                 .setDataCollectionServerHost(GROWINGIO_SERVER_HOST)
                 .setChannel("demo")
-                .setDebugEnabled(BuildConfig.DEBUG)
+                .setDebugEnabled(false)
                 .setAndroidIdEnabled(false)
                 .setPageRuleXml(R.xml.growingio_setting)
                 .setRequireAppProcessesEnabled(false)

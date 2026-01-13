@@ -52,7 +52,7 @@ class AttributesRecyclerView @JvmOverloads constructor(
 
     fun subAttribute() {
         if (buildSize.size <= 0) return
-        buildSize.removeLast()
+        buildSize.removeAt(buildSize.lastIndex)
         attrAdapter.notifyItemRemoved(buildSize.size)
     }
 

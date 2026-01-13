@@ -72,6 +72,10 @@ class SdkDataCollectFragment : PageFragment<FragmentDataCollectBinding>() {
         pageBinding.collectTestBtn.setOnClickListener {
             GrowingAutotracker.get().trackCustomEvent("DataCollection")
         }
+
+        pageBinding.collectFlushBtn.setOnClickListener {
+            GrowingAutotracker.get().flushEvents()
+        }
     }
 
     override fun onDestroy() {
