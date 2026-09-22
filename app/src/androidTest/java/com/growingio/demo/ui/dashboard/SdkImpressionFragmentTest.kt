@@ -88,8 +88,10 @@ class SdkImpressionFragmentTest : AbstractGrowingTestUnit() {
                 Truth.assertThat(baseEvent.eventType).isEqualTo(TrackEventType.CUSTOM)
                 Truth.assertThat(baseEvent.eventName).isEqualTo("ImpressionProvider")
                 Truth.assertThat(baseEvent.pageShowTimestamp).isGreaterThan(0)
-                Truth.assertThat(baseEvent.attributes).hasSize(1)
+                // 滚动前调用了 updateViewImpressionAttributes，曝光时带的是更新后的属性
+                Truth.assertThat(baseEvent.attributes).hasSize(2)
                 Truth.assertThat(baseEvent.attributes).containsEntry("type", "scroll")
+                Truth.assertThat(baseEvent.attributes).containsEntry("price", "20")
                 return@runEventTest true
             }
             false
