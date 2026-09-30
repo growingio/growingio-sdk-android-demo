@@ -75,17 +75,24 @@ class SdkImpressionFragment : PageFragment<FragmentImpressionBinding>() {
 
     @SourceCode
     private fun setViewImpression() {
+        // 露出即算曝光，离开可视区再进入会再次曝光
         GrowingAutotracker.get()
             .trackViewImpression(pageBinding.impView, "ImpressionProvider", mapOf("type" to "visible"))
 
+        // 滚入可视区才算曝光。可见面积阈值与停留时长通过
+        // AutotrackConfiguration.setImpressionConfig 全局配置
         GrowingAutotracker.get()
-            .trackViewImpression(pageBinding.impScrollView, "ImpressionProvider", mapOf("type" to "scroll"))
+            .trackViewImpression(
+                pageBinding.impScrollView,
+                "ImpressionProvider",
+                mapOf("type" to "scroll"),
+            )
     }
 
     @SourceCode
     private fun cleanViewImpression() {
+        // 移除该视图上的全部标记
         GrowingAutotracker.get().stopTrackViewImpression(pageBinding.impView)
-
         GrowingAutotracker.get().stopTrackViewImpression(pageBinding.impScrollView)
     }
 
