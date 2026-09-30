@@ -88,7 +88,7 @@ class SdkInitFragment : PageFragment<FragmentInitBinding>() {
             | setIdMappingEnabled          | false | 是否开启多用户身份上报         | 
             | setImpressionEnabled         | true   | 曝光采集总开关                | 
             | setImpressionScale           | 0f     | 元素曝光事件中的比例因子,范围 [0-1] | 
-            | setImpressionConfig          | 默认值 | 曝光条件全局默认值(比例因子/停留时长/是否可重复曝光) | 
+            | setImpressionConfig          | 默认值 | 曝光条件全局默认值(可见比例/停留时长) | 
             | setImpressionCheckInterval   | 500    | 曝光检测的节流间隔,单位毫秒      | 
             | setRequireAppProcessesEnabled | false  | SDK 是否能获取应用多进程ID     | 
             | setImeiEnabled               | false | 是否采集Imei信息，默认不采集     |
